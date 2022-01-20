@@ -25,6 +25,15 @@ const Screen = () => {
         <li key={uuidv4()}>
           <StyledLink to="/pokemon">Pokemon</StyledLink>
         </li>
+        <li key={uuidv4()}>
+          <StyledLink to="/items">Items</StyledLink>
+        </li>
+        <li key={uuidv4()}>
+          <StyledLink to="/moves">Moves</StyledLink>
+        </li>
+        <li key={uuidv4()}>
+          <StyledLink to="/abilities">Abilities</StyledLink>
+        </li>
       </ul>
     </Wrapper>
   );
@@ -40,9 +49,7 @@ const data = [
         <li>Gen 3</li>
         <li>Gen 4</li>
         <li>Gen 5</li>
-        <li>Gen 6</li>
-        <li>Gen 7</li>
-        <li>Gen 8</li>
+        <li>Gen 6-8</li>
       </ul>
     ),
   },

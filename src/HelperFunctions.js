@@ -13,3 +13,9 @@ export const cardGenerator = (data) => {
 
 export const keyGenerator = (data) =>
   data.forEach((item) => (item.key = uuidv4()));
+
+export const spriteGenerator = (data) =>
+  data.forEach(
+    (item) =>
+      (item.sprite = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${item.id}.png`)
+  );

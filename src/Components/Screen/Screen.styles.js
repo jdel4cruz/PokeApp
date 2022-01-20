@@ -17,6 +17,7 @@ export const Wrapper = styled.div`
 `;
 
 export const StyledLink = styled(Link)`
+  color: black;
   display: flex;
   justify-content: center;
   align-items: center;
