@@ -60,14 +60,13 @@ const Wrapper = styled.div`
 // console.log(data);
 
 const Pokemon = () => {
-  const { state } = usePokemonGridFetch();
-  console.log(state);
+  const { cards, setLimit, setPage } = usePokemonGridFetch();
 
   return (
     <Wrapper>
       <Header />
       <PokemonFilter></PokemonFilter>
-      {/* <Grid>{cards}</Grid> */}
+      <Grid>{cards}</Grid>
       <Pagination />
     </Wrapper>
   );

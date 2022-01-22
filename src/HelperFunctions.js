@@ -5,7 +5,7 @@ import Card from "./Components/Card";
 
 export const cardGenerator = (data) => {
   const cards = data.map((item, i) => (
-    <Card img={item["image"]} text={item["text"]} key={i} />
+    <Card img={item.sprite} name={item.name} id={item.id} key={i} />
   ));
 
   return cards;

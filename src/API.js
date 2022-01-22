@@ -9,8 +9,8 @@ const apiSettings = {
       },
       body: JSON.stringify({
         query: `
-          query PokemonGrid {
-            pokemon_v2_pokemon {
+          query PokemonGrid  {
+            pokemon_v2_pokemon (order_by: {id: asc}) {
               pokemon_v2_pokemonstats {
                 base_stat
                 pokemon_v2_stat {
@@ -23,6 +23,11 @@ const apiSettings = {
                 pokemon_v2_type {
                   name
                 }
+              }
+              pokemon_v2_pokemonspecy {
+                is_baby
+                is_legendary
+                is_mythical
               }
             }
           }

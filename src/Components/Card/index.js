@@ -1,15 +1,12 @@
 //Styles
 import { Wrapper, CardImg, CardText } from "./Card.Styles";
 
-const Card = ({ img, text }) => (
+const Card = ({ img, name, id }) => (
   <Wrapper>
     <CardImg src={img} alt="Card Img" />
     <CardText>
-      {Object.keys(text).map((keyName, i) => (
-        <div key={i}>
-          {keyName}: {text[keyName]}
-        </div>
-      ))}
+      <div>{name}</div>
+      {id && <div>{id}</div>}
     </CardText>
   </Wrapper>
 );

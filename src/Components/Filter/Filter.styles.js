@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Wrapper = styled.div`
   position: absolute;
-  right: 0;
+  right: -25rem;
 
   display: flex;
   flex-flow: column nowrap;
