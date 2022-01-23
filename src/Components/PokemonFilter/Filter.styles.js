@@ -20,12 +20,17 @@ export const Wrapper = styled.div`
     transition: transform 0.7s ease 0s;
   }
 
-  Select {
-    margin-left: 1rem;
+  ul {
+    padding: 0;
   }
 `;
 
-export const SelectionTitle = styled.h2`
+export const SelectContainer = styled.div`
+  display: flex;
+  gap: 1rem;
+`;
+
+export const SelectionTitle = styled.h1`
   margin: 0;
 `;
 

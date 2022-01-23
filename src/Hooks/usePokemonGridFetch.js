@@ -10,17 +10,17 @@ import { spriteGenerator, cardGenerator } from "../HelperFunctions";
 //If special !="", will filter pokemonspecy object to see if array[special] == true
 const initialFilter = {
   filtered: true,
-  typeCriteria: { type2: "flying" },
-  special: "is_legendary",
+  typeCriteria: { type1: "", type2: "" },
+  special: "",
 };
 
 //If sort criteria changes, sort will be compared against state[sortCriteria]
 //Sortstat values(index to stat type) = [hp, atk, def, sp atk, sp def, speed ]
 const initialSort = {
-  sorted: true,
+  sorted: false,
   sortAsc: true,
-  sortStat: 5,
-  sortId: false,
+  sortStat: 1,
+  sortId: true,
   sortName: false,
 };
 
@@ -38,9 +38,7 @@ export const usePokemonGridFetch = () => {
     try {
       const response = await API.fetchPokemonGrid();
       const data = response.data.pokemon_v2_pokemon;
-      console.log("initial fetch complete");
       await spriteGenerator(data);
-      console.log("sprite addition complete");
       setState(data);
     } catch (error) {
       console.log(error);
@@ -53,8 +51,6 @@ export const usePokemonGridFetch = () => {
     const { sorted, sortAsc, sortStat, sortId, sortName } = filterSort.sort;
 
     if (filtered) {
-      console.log("filtering");
-
       newData = data.filter((item) => {
         if (special) {
           const { pokemon_v2_pokemonspecy: dataSpecial } = item;
@@ -69,12 +65,13 @@ export const usePokemonGridFetch = () => {
           let matches = true;
 
           Object.values(typeCriteria).forEach((type) => {
+            if (!type) {
+              return;
+            }
             let isType = false;
 
             dataTypes.forEach((el) => {
               const dataType = el.pokemon_v2_type.name;
-              console.log(dataType);
-              console.log(type);
 
               if (dataType == type) {
                 isType = true;
@@ -82,7 +79,6 @@ export const usePokemonGridFetch = () => {
             });
 
             if (!isType) {
-              console.log(`isType: ` + isType);
               matches = false;
             }
           });
@@ -97,7 +93,6 @@ export const usePokemonGridFetch = () => {
     }
 
     if (sorted) {
-      console.log(sortStat != null);
       newData.sort((a, b) => {
         if (sortStat != null) {
           const { pokemon_v2_pokemonstats: aStats } = a;
@@ -142,7 +137,6 @@ export const usePokemonGridFetch = () => {
         }
       });
     }
-    console.log(newData);
     return newData;
   };
 
@@ -154,7 +148,6 @@ export const usePokemonGridFetch = () => {
 
   useEffect(() => {
     if (state != null) {
-      console.log(state);
       const end = page * limit;
       const start = page * limit - limit;
       const data = applyFilterSort(state);
@@ -162,5 +155,5 @@ export const usePokemonGridFetch = () => {
     }
   }, [state, limit, page]);
 
-  return { state, setLimit, setPage, cards };
+  return { limit, setLimit, page, setPage, cards, filterSort, setFilterSort };
 };

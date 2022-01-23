@@ -4,6 +4,10 @@ export const Wrapper = styled.div`
   width: 10rem;
   height: 14rem;
   background-color: var(--pokedexGreen);
+
+  &.broken {
+    display: none;
+  }
 `;
 
 export const CardImg = styled.img`

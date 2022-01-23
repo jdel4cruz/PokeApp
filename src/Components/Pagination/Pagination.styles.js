@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Wrapper = styled.ul`
   display: flex;
   list-style: none;
-  margin-bottom: 2rem;
+  margin: 0;
 `;
 
 export const PageLink = styled.a`
