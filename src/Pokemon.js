@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 
 //Components
@@ -17,6 +17,8 @@ const Wrapper = styled.div`
   position: relative;
   display: flex;
   flex-flow: column nowrap;
+  justify-content: space-between;
+  min-height: 100%;
   width: 100%;
   overflow: hidden;
   align-items: center;
@@ -24,10 +26,12 @@ const Wrapper = styled.div`
 `;
 
 const GridOptions = styled.div`
+  position: relative;
   display: flex;
   align-items: center;
   gap: 1rem;
-  margin-bottom: 1rem;
+
+  bottom: 1rem;
 `;
 
 const Button = styled.button`
@@ -54,7 +58,14 @@ const Pokemon = () => {
       <Grid>{cards}</Grid>
       <GridOptions>
         <Pagination />
-        <Button onClick={() => setOpenFilter(!openFilter)}>Filter/Sort</Button>
+        <Button
+          onClick={(e) => {
+            console.log(e.target.innerText);
+            setOpenFilter(!openFilter);
+          }}
+        >
+          Filter/Sort
+        </Button>
       </GridOptions>
     </Wrapper>
   );

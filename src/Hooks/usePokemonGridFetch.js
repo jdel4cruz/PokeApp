@@ -10,18 +10,20 @@ import { spriteGenerator, cardGenerator } from "../HelperFunctions";
 //If special !="", will filter pokemonspecy object to see if array[special] == true
 const initialFilter = {
   filtered: true,
-  typeCriteria: { type1: "", type2: "" },
+  typeCriteria: { type1: "fire", type2: "" },
   special: "",
 };
 
 //If sort criteria changes, sort will be compared against state[sortCriteria]
 //Sortstat values(index to stat type) = [hp, atk, def, sp atk, sp def, speed ]
 const initialSort = {
-  sorted: false,
-  sortAsc: true,
-  sortStat: 1,
+  sorted: true,
+  sortStat: null,
   sortId: true,
   sortName: false,
+  statAsc: true,
+  nameAsc: false,
+  idAsc: true,
 };
 
 export const usePokemonGridFetch = () => {
@@ -33,7 +35,6 @@ export const usePokemonGridFetch = () => {
     filter: initialFilter,
     sort: initialSort,
   });
-
   const fetchGrid = async () => {
     try {
       const response = await API.fetchPokemonGrid();
@@ -48,7 +49,8 @@ export const usePokemonGridFetch = () => {
   const applyFilterSort = (data) => {
     let newData = data;
     const { filtered, typeCriteria, special } = filterSort.filter;
-    const { sorted, sortAsc, sortStat, sortId, sortName } = filterSort.sort;
+    const { sorted, sortStat, sortId, sortName, statAsc, nameAsc, idAsc } =
+      filterSort.sort;
 
     if (filtered) {
       newData = data.filter((item) => {
@@ -98,7 +100,7 @@ export const usePokemonGridFetch = () => {
           const { pokemon_v2_pokemonstats: aStats } = a;
           const { pokemon_v2_pokemonstats: bStats } = b;
 
-          if (sortAsc) {
+          if (statAsc) {
             return aStats[sortStat].base_stat - bStats[sortStat].base_stat;
           }
 
@@ -108,7 +110,7 @@ export const usePokemonGridFetch = () => {
         if (sortName) {
           const { name: aName } = a;
           const { name: bName } = b;
-          if (sortAsc) {
+          if (nameAsc) {
             if (aName.toUpperCase() < bName.toUpperCase()) {
               return -1;
             }
@@ -130,7 +132,7 @@ export const usePokemonGridFetch = () => {
         if (sortId) {
           const { id: aId } = a;
           const { id: bId } = b;
-          if (sortAsc) {
+          if (idAsc) {
             return aId - bId;
           }
           return bId - aId;
@@ -151,9 +153,10 @@ export const usePokemonGridFetch = () => {
       const end = page * limit;
       const start = page * limit - limit;
       const data = applyFilterSort(state);
-      setCards(cardGenerator(data.slice(start, end)));
+      console.log(data);
+      setCards(cardGenerator(data.slice(start, end), filterSort));
     }
-  }, [state, limit, page]);
+  }, [state, limit, page, filterSort]);
 
   return { limit, setLimit, page, setPage, cards, filterSort, setFilterSort };
 };

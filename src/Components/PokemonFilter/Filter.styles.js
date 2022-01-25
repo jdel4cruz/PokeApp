@@ -6,12 +6,18 @@ export const Wrapper = styled.div`
 
   display: flex;
   flex-flow: column nowrap;
-  gap: 5rem 0;
-  min-height: 100%;
+  gap: 2rem 0;
+  max-height: 100%;
   width: fit-content;
   padding: 1rem;
   background-color: grey;
 
+  overflow: scroll;
+
+  ::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+  }
   transform: translateX(0);
   transition: transform 0.7s ease 0s;
 
@@ -22,6 +28,10 @@ export const Wrapper = styled.div`
 
   ul {
     padding: 0;
+  }
+
+  h2 {
+    margin: 0;
   }
 `;
 
@@ -42,4 +52,11 @@ export const Selection = styled.ul`
   gap: 1rem 0;
 
   margin-top: 2rem;
+`;
+
+export const CloseButton = styled.button`
+  border: none;
+  padding: 1rem 2rem;
+  background-color: var(--pokedexGreen);
+  border-radius: 10px;
 `;

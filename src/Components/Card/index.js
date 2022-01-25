@@ -1,13 +1,17 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 //Styles
 import { Wrapper, CardImg, CardText } from "./Card.Styles";
 
-const Card = ({ img, name, id }) => {
+const Card = ({ img, name, id, filterSort }) => {
   const [isValid, setIsValid] = useState(true);
 
+  useEffect(() => {
+    setIsValid(true);
+  }, [filterSort]);
+
   return (
-    <Wrapper className={!isValid && "broken"}>
+    <Wrapper className={!isValid ? "broken" : ""}>
       <CardImg
         src={img}
         alt="Card Img"

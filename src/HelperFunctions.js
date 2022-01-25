@@ -3,11 +3,18 @@ import { v4 as uuidv4 } from "uuid";
 //Components
 import Card from "./Components/Card";
 
-export const cardGenerator = (data) => {
+export const cardGenerator = (data, filterSort) => {
+  console.log("creating cards");
   const cards = data.map((item, i) => (
-    <Card img={item.sprite} name={item.name} id={item.id} key={i} />
+    <Card
+      img={item.sprite}
+      name={item.name}
+      id={item.id}
+      key={i}
+      filterSort={filterSort}
+    />
   ));
-
+  console.log(cards);
   return cards;
 };
 
