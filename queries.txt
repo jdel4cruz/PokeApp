@@ -1,0 +1,279 @@
+query MoveInfo {
+  pokemon_v2_move {
+    accuracy
+    pp
+    power
+    id
+    name
+    move_effect_chance
+    move_effect_id
+    move_target_id
+    pokemon_v2_machines {
+      machine_number
+      version_group_id
+    }
+    pokemon_v2_movedamageclass {
+      name
+    }
+    pokemon_v2_moveeffect {
+      pokemon_v2_moveeffecteffecttexts {
+        effect
+      }
+    }
+    pokemon_v2_type {
+      name
+    }
+  }
+}
+
+----------------------------------
+
+query PokemonGridQuery {
+  pokemon_v2_pokemon {
+    pokemon_v2_pokemonspecy {
+      is_mythical
+      is_legendary
+      is_baby
+      name
+      id
+    }
+    pokemon_v2_pokemonstats {
+      base_stat
+      pokemon_v2_stat {
+        name
+      }
+    }
+  }
+}
+
+-------------------------------------------
+
+query Pokemon($id: Int) {
+  pokemon_v2_pokemon(where: {id: {_eq: $id}}) {
+    name
+    id
+    pokemon_v2_pokemonstats {
+      pokemon_v2_stat {
+        name
+        id
+      }
+      base_stat
+    }
+    pokemon_v2_pokemontypes {
+      pokemon_v2_type {
+        name
+      }
+    }
+    pokemon_v2_pokemonabilities {
+      pokemon_v2_ability {
+        name
+        pokemon_v2_abilityeffecttexts(where: {language_id: {_eq: 9}}) {
+          effect
+          language_id
+        }
+      }
+      is_hidden
+    }
+    pokemon_v2_pokemonmoves(distinct_on: move_id, order_by: {version_group_id: desc, move_id: desc}, where: {move_learn_method_id: {}}) {
+      level
+      move_learn_method_id
+      id
+      move_id
+      version_group_id
+      pokemon_v2_move {
+        name
+        accuracy
+        move_damage_class_id
+        power
+        pp
+        priority
+        move_effect_chance
+        type_id
+        pokemon_v2_moveeffect {
+          pokemon_v2_moveeffecteffecttexts {
+            effect
+          }
+        }
+      }
+    }
+    pokemon_v2_pokemonspecy {
+      pokemon_v2_evolutionchain {
+        id
+        pokemon_v2_pokemonspecies {
+          name
+          evolves_from_species_id
+            pokemon_v2_evolutiontrigger {
+              name
+            }
+          pokemon_v2_pokemonevolutions(where: {}) {
+            known_move_id
+            known_move_type_id
+            location_id
+            min_affection
+            min_beauty
+            min_happiness
+            min_level
+            needs_overworld_rain
+            party_species_id
+            party_type_id
+            relative_physical_stats
+            time_of_day
+            trade_species_id
+            turn_upside_down
+            gender_id
+            evolution_item_id
+            evolution_trigger_id
+            evolved_species_id
+            id
+            held_item_id
+
+          }
+        }
+      }
+    }
+  }
+
+}
+
+------------------------------------------
+
+query PokemonDescription($id: Int) {
+  pokemon_v2_pokemon(where: {id: {_eq: $id}}) {
+    name
+    id
+    pokemon_v2_pokemonstats {
+      pokemon_v2_stat {
+        name
+        id
+      }
+      base_stat
+    }
+    pokemon_v2_pokemontypes {
+      type_id
+    }
+    pokemon_v2_pokemonabilities {
+      pokemon_v2_ability {
+        name
+        pokemon_v2_abilityeffecttexts(where: {language_id: {_eq: 9}}) {
+          effect
+        }
+      }
+      is_hidden
+    }
+  }
+}
+
+
+--------------------------------------------------------
+
+
+query PokemonMoves($pokemonId: Int, $learnMethod: Int) {
+  pokemon_v2_pokemonmove(where: {pokemon_id: {_eq: $pokemonId}, move_learn_method_id: {_eq: $learnMethod}}, distinct_on: move_id, order_by: {move_id: desc}) {
+    level
+    pokemon_v2_movelearnmethod {
+      name
+    }
+    pokemon_v2_move {
+      accuracy
+      move_damage_class_id
+      move_effect_chance
+      name
+      power
+      pp
+      priority
+      type_id
+      id
+      pokemon_v2_moveeffect {
+        pokemon_v2_moveeffecteffecttexts {
+          effect
+        }
+      }
+    }
+  }
+}
+
+-----------------------------
+
+
+query PokemonEvolution($id: [Int!]) {
+  pokemon_v2_evolutionchain(where: {pokemon_v2_pokemonspecies: {id: {_in: $id}}}) {
+    pokemon_v2_pokemonspecies {
+      id
+      name
+      pokemon_v2_pokemonevolutions {
+        pokemon_v2_evolutiontrigger {
+          name
+        }
+        evolution_item_id
+        evolution_trigger_id
+        evolved_species_id
+        gender_id
+        held_item_id
+        id
+        known_move_id
+        known_move_type_id
+        location_id
+        min_affection
+        min_beauty
+        min_happiness
+        min_level
+        needs_overworld_rain
+        party_species_id
+        party_type_id
+      }
+    }
+  }
+}
+
+
+-----------------------------------------
+
+
+query TypeWeaknesses($type: String = "") {
+  pokemon_v2_typeefficacy(where: {pokemonV2TypeByTargetTypeId: {name: {_eq: $type}}}) {
+    damage_factor
+    pokemon_v2_type {
+      name
+    }
+    pokemonV2TypeByTargetTypeId {
+      name
+    }
+  }
+}
+
+
+
+---------------------------------------
+
+query PokemonType($pokemonId: Int) {
+  pokemon_v2_pokemontype(where: {pokemon_id: {_eq: $pokemonId}}) {
+    pokemon_v2_type {
+      name
+    }
+  }
+}
+
+fragment typeWeaknessFields on pokemon_v2_typeefficacy {
+  damage_factor
+  pokemon_v2_type {
+    name
+  }
+  pokemonV2TypeByTargetTypeId {
+    name
+  }
+}
+
+query TypeWeaknesses($type1: String = "", $type2: String = "") {
+  weakness1: pokemon_v2_typeefficacy(where: {pokemonV2TypeByTargetTypeId: {name: {_eq: $type1}}}) {
+    ...typeWeaknessFields
+  }
+  weakness2: pokemon_v2_typeefficacy(where: {pokemonV2TypeByTargetTypeId: {name: {_eq: $type2}}}) {
+    ...typeWeaknessFields
+  }
+}
+
+{
+ "type1": "fire",
+ "type2": ""
+}
+

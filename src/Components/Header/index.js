@@ -1,7 +1,14 @@
 import { Link } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
 
 //Styles
-import { Wrapper, NavContainer, LogoContainer, Logo } from "./Header.styles";
+import {
+  Wrapper,
+  NavContainer,
+  LogoContainer,
+  Logo,
+  StyledLink,
+} from "./Header.styles";
 
 //Images
 const LogoImg =
@@ -16,7 +23,22 @@ const Header = () => (
     </LogoContainer>
 
     <div>SearchBar Here</div>
-    <NavContainer>taco</NavContainer>
+    <NavContainer>
+      <ul>
+        <li key={uuidv4()}>
+          <StyledLink to="/pokemon">Pokemon</StyledLink>
+        </li>
+        <li key={uuidv4()}>
+          <StyledLink to="/items">Items</StyledLink>
+        </li>
+        <li key={uuidv4()}>
+          <StyledLink to="/moves">Moves</StyledLink>
+        </li>
+        <li key={uuidv4()}>
+          <StyledLink to="/abilities">Abilities</StyledLink>
+        </li>
+      </ul>
+    </NavContainer>
   </Wrapper>
 );
 

@@ -10,7 +10,7 @@ import { spriteGenerator, cardGenerator } from "../HelperFunctions";
 //If special !="", will filter pokemonspecy object to see if array[special] == true
 const initialFilter = {
   filtered: true,
-  typeCriteria: { type1: "fire", type2: "" },
+  typeCriteria: { type1: "", type2: "" },
   special: "",
 };
 
@@ -30,16 +30,17 @@ export const usePokemonGridFetch = () => {
   const [state, setState] = useState(null);
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(54);
-  const [cards, setCards] = useState(null);
+  const [cards, setCards] = useState([]);
   const [filterSort, setFilterSort] = useState({
     filter: initialFilter,
     sort: initialSort,
   });
+
   const fetchGrid = async () => {
     try {
       const response = await API.fetchPokemonGrid();
       const data = response.data.pokemon_v2_pokemon;
-      await spriteGenerator(data);
+      spriteGenerator(data);
       setState(data);
     } catch (error) {
       console.log(error);
@@ -107,6 +108,15 @@ export const usePokemonGridFetch = () => {
           return bStats[sortStat].base_stat - aStats[sortStat].base_stat;
         }
 
+        if (sortId) {
+          const { id: aId } = a;
+          const { id: bId } = b;
+          if (idAsc) {
+            return aId - bId;
+          }
+          return bId - aId;
+        }
+
         if (sortName) {
           const { name: aName } = a;
           const { name: bName } = b;
@@ -117,7 +127,6 @@ export const usePokemonGridFetch = () => {
             if (aName.toUpperCase() > bName.toUpperCase()) {
               return 1;
             }
-            return 0;
           }
 
           if (aName.toUpperCase() < bName.toUpperCase()) {
@@ -127,15 +136,6 @@ export const usePokemonGridFetch = () => {
             return -1;
           }
           return 0;
-        }
-
-        if (sortId) {
-          const { id: aId } = a;
-          const { id: bId } = b;
-          if (idAsc) {
-            return aId - bId;
-          }
-          return bId - aId;
         }
       });
     }
@@ -154,7 +154,14 @@ export const usePokemonGridFetch = () => {
       const start = page * limit - limit;
       const data = applyFilterSort(state);
       console.log(data);
-      setCards(cardGenerator(data.slice(start, end), filterSort));
+      setCards((prevCards) =>
+        page == 1
+          ? cardGenerator(data.slice(start, end), filterSort, page, limit)
+          : [
+              ...prevCards,
+              cardGenerator(data.slice(start, end), filterSort, page, limit),
+            ]
+      );
     }
   }, [state, limit, page, filterSort]);
 

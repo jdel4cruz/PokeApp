@@ -1,0 +1,1 @@
+- Need to use some form of exception handling when making API calls. Unsurprisingly at this point, there's missing data all over the place and it'll brick component renders if I don't address them

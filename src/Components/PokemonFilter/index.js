@@ -92,7 +92,13 @@ const statOptions = [
   { value: 5, label: "Speed" },
 ];
 
-const Filter = ({ filterSort, setFilterSort, openFilter }) => {
+const Filter = ({
+  filterSort,
+  setFilterSort,
+  openFilter,
+  setOpenFilter,
+  setPage,
+}) => {
   const selectedTypes = Object.values(filterSort.filter.typeCriteria);
   const category = filterSort.filter.special;
   const sortStat = filterSort.sort.sortStat;
@@ -102,13 +108,6 @@ const Filter = ({ filterSort, setFilterSort, openFilter }) => {
   const idAsc = filterSort.sort.idAsc;
   const nameAsc = filterSort.sort.nameAsc;
 
-  // console.log(filterSort);
-  // console.log(sortStat);
-
-  // console.log(statOptions.map((stat) => stat.value));
-  // console.log(statOptions.map((stat) => stat.value).indexOf(sortStat));
-  // console.log(statOptions[2]);
-
   const selectStyles = {
     container: (base) => ({ ...base, width: "7rem" }),
   };
@@ -116,6 +115,8 @@ const Filter = ({ filterSort, setFilterSort, openFilter }) => {
   const handleChange = (event, key) => {
     let newFilterSort = { ...filterSort };
     let value = event.value;
+
+    console.log(value);
 
     if (key === "type1") {
       newFilterSort.filter.typeCriteria.type1 = value;
@@ -146,8 +147,12 @@ const Filter = ({ filterSort, setFilterSort, openFilter }) => {
       newFilterSort.sort.sortName = value.isOn;
       newFilterSort.sort.nameAsc = value.order;
     }
-
+    setPage(1);
     return setFilterSort(newFilterSort);
+  };
+
+  const closeFilter = () => {
+    setOpenFilter(false);
   };
 
   return (
@@ -205,12 +210,6 @@ const Filter = ({ filterSort, setFilterSort, openFilter }) => {
               }
               onChange={(e) => handleChange(e, "category")}
             />
-            {/* <label htmlFor="isMythic">Is Mythic</label>
-            <input type="checkbox" id="isMythic"></input>
-            <label htmlFor="isLegendary">Is Legendary</label>
-            <input type="checkbox" id="isLegendary"></input>
-            <label htmlFor="isBaby">Is Baby</label>
-            <input type="checkbox" id="isBaby"></input> */}
           </li>
         </Selection>
       </div>
@@ -224,7 +223,7 @@ const Filter = ({ filterSort, setFilterSort, openFilter }) => {
                 options={statOptions}
                 styles={selectStyles}
                 value={
-                  sortStat
+                  sortStat != null
                     ? statOptions[
                         statOptions.map((stat) => stat.value).indexOf(sortStat)
                       ]
@@ -236,7 +235,7 @@ const Filter = ({ filterSort, setFilterSort, openFilter }) => {
                 options={orderOptions}
                 styles={selectStyles}
                 value={
-                  sortStat
+                  sortStat != null
                     ? orderOptions[
                         orderOptions
                           .map((option) => option.value)
@@ -248,7 +247,6 @@ const Filter = ({ filterSort, setFilterSort, openFilter }) => {
               />
             </SelectContainer>
           </li>
-
           <li>
             <h2>Id:</h2>
             <Select
@@ -282,7 +280,9 @@ const Filter = ({ filterSort, setFilterSort, openFilter }) => {
           </li>
         </Selection>
       </div>
-      <CloseButton type="button">Apply and Close</CloseButton>
+      <CloseButton type="button" onClick={() => closeFilter()}>
+        Close
+      </CloseButton>
     </Wrapper>
   );
 };

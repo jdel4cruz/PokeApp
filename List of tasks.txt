@@ -1,0 +1,1 @@
+- Some data pulled from the API contains hyphens/underscores for spaces and does not capitalize the 1st letter of words. Create a function to replace hyphens/underscores with spaces and use text-transform to get proper capitalization

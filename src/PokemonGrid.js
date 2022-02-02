@@ -54,10 +54,19 @@ const Pokemon = () => {
         filterSort={filterSort}
         setFilterSort={setFilterSort}
         openFilter={openFilter}
+        setOpenFilter={setOpenFilter}
+        setPage={setPage}
       ></PokemonFilter>
       <Grid>{cards}</Grid>
       <GridOptions>
-        <Pagination />
+        <Button
+          onClick={(e) => {
+            console.log(e.target.innerText);
+            setPage((prevPage) => prevPage + 1);
+          }}
+        >
+          Load More
+        </Button>
         <Button
           onClick={(e) => {
             console.log(e.target.innerText);

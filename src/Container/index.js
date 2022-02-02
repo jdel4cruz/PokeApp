@@ -3,19 +3,24 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 //Components
 import Sidebar from "../Components/Sidebar";
-import Pokemon from "../Pokemon";
+import PokemonGrid from "../PokemonGrid";
 import Home from "../Home";
-
+import PokemonDescription from "../PokemonDescription.js";
+import PokemonWeakness from "../PokemonWeakness";
 //Styles
 import { Wrapper } from "./Container.styles";
 
 const Container = () => (
   <Router>
     <Wrapper>
-      <Sidebar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/pokemon" element={<Pokemon />} />
+        <Route path="pokemon" element={<PokemonGrid />} />
+        <Route path="pokemon/:pokemonId" element={<PokemonDescription />} />
+        <Route
+          path="pokemon/:pokemonId/weakness"
+          element={<PokemonWeakness />}
+        />
       </Routes>
     </Wrapper>
   </Router>

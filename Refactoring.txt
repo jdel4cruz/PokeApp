@@ -1,0 +1,3 @@
+- Header should be rendered before routes instead of rendering it in every route.
+- Lots of repetition in my different API calls. Refactor by writing a function to do repeated work.
+- Instead of doing a follow up useEffect to break down state from hooks into more usable parts, create helper functions to break down state and use in componenents after custom hook is called. This should prevent unnecessary re-renders
