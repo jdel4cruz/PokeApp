@@ -22,13 +22,12 @@ const Wrapper = styled.div`
 const Body = styled.div`
   display: flex;
   flex-flow: column nowrap;
-  max-width: 80%;
+  max-width: var(--maxWidth);
   align-items: center;
 `;
 
 const Home = () => (
   <Wrapper>
-    <Header />
     <Body>
       <HeroTitle />
       <HeroText />

@@ -10,6 +10,7 @@ export const Wrapper = styled.div`
 
   min-height: 8rem;
   width: 100%;
+  margin-bottom: 3rem;
 `;
 
 export const NavContainer = styled.nav`

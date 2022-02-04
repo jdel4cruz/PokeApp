@@ -19,6 +19,10 @@ const Wrapper = styled.div`
   width: 100%;
   overflow: scroll;
   align-items: center;
+  ::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+  }
 `;
 
 const HomeGrid = styled.div`
@@ -79,7 +83,6 @@ const Pokemon = () => {
 
   return (
     <Wrapper>
-      <Header />
       <HomeGrid>
         <PokemonText>
           <PokemonInfo

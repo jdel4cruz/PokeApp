@@ -98,7 +98,6 @@ const apiSettings = {
 
   fetchTypeWeakness: async (pokemonId) => {
     const endpoint = "https://beta.pokeapi.co/graphql/v1beta";
-    console.log(pokemonId);
 
     const fetchTypes = await fetch(endpoint, {
       method: "POST",
@@ -162,11 +161,62 @@ const apiSettings = {
     const weakness1 = data.data.weakness1;
     const weakness2 = data.data.weakness2;
 
-    console.log(data);
-    console.log(type1);
-    console.log(type2);
-
     return { weakness1, weakness2, type1, type2 };
+  },
+
+  fetchMoves: async (pokemonId) => {
+    const endpoint = "https://beta.pokeapi.co/graphql/v1beta";
+
+    const response = await fetch(endpoint, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        query: `
+        fragment PokemonMoveFields on pokemon_v2_pokemonmove {
+          level
+          pokemon_v2_move {
+            accuracy
+            move_damage_class_id
+            move_effect_chance
+            name
+            power
+            pp
+            priority
+            type_id
+            id
+            pokemon_v2_moveeffect {
+              pokemon_v2_moveeffecteffecttexts {
+                effect
+              }
+            }
+          }
+        }
+        
+        query PokemonLevelMoves($pokemonId: Int) {
+          levelMoves: pokemon_v2_pokemonmove(where: {pokemon_id: {_eq: $pokemonId}, move_learn_method_id: {_eq: 1}, version_group_id: {_eq: 18}}, order_by: {level: asc}) {
+            ...PokemonMoveFields
+          }
+          eggMoves: pokemon_v2_pokemonmove(where: {pokemon_id: {_eq: $pokemonId}, move_learn_method_id: {_eq: 2}, version_group_id: {_eq: 18}}, order_by: {pokemon_v2_move: {name: asc}}) {
+            ...PokemonMoveFields
+          }
+          tutorMoves: pokemon_v2_pokemonmove(where: {pokemon_id: {_eq: $pokemonId}, move_learn_method_id: {_eq: 3}, version_group_id: {_eq: 18}}, order_by: {pokemon_v2_move: {name: asc}}) {
+            ...PokemonMoveFields
+          }
+          machineMoves: pokemon_v2_pokemonmove(where: {pokemon_id: {_eq: $pokemonId}, move_learn_method_id: {_eq: 4}, version_group_id: {_eq: 18}}, order_by: {pokemon_v2_move: {name: asc}}) {
+            ...PokemonMoveFields
+          }
+        }`,
+        variables: {
+          pokemonId: pokemonId,
+        },
+      }),
+    });
+
+    const data = await response.json();
+
+    return data;
   },
 };
 

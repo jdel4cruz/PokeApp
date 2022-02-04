@@ -6,7 +6,8 @@ import Sidebar from "../Components/Sidebar";
 import PokemonGrid from "../PokemonGrid";
 import Home from "../Home";
 import PokemonDescription from "../PokemonDescription.js";
-import PokemonWeakness from "../PokemonWeakness";
+import PokemonMoves from "../PokemonMoves";
+
 //Styles
 import { Wrapper } from "./Container.styles";
 
@@ -17,10 +18,7 @@ const Container = () => (
         <Route path="/" element={<Home />} />
         <Route path="pokemon" element={<PokemonGrid />} />
         <Route path="pokemon/:pokemonId" element={<PokemonDescription />} />
-        <Route
-          path="pokemon/:pokemonId/weakness"
-          element={<PokemonWeakness />}
-        />
+        <Route path="pokemon/:pokemonId/moves" element={<PokemonMoves />} />
       </Routes>
     </Wrapper>
   </Router>

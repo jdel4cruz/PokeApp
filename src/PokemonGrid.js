@@ -49,7 +49,6 @@ const Pokemon = () => {
 
   return (
     <Wrapper>
-      <Header />
       <PokemonFilter
         filterSort={filterSort}
         setFilterSort={setFilterSort}

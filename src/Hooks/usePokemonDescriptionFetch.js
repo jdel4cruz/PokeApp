@@ -21,6 +21,7 @@ export const usePokemonDescriptionFetch = (pokemonId) => {
       const response = await API.fetchPokemonDescription(pokemonId);
       const { pokemon_v2_pokemon: pokemon } = response.data;
       const types = response.data.pokemon_v2_type;
+      console.log(response);
 
       spriteGenerator(pokemon);
       setState({ pokemon, types });
