@@ -28,7 +28,7 @@ const PokemonInfo = ({ name, id, types, abilities }) => {
     <Wrapper>
       <TextContainer>
         <PokemonNameNav>
-          <PokemonName>{name}</PokemonName> <PokemonNav id={id} />
+          <PokemonName>{name}</PokemonName> <PokemonNav />
         </PokemonNameNav>
         <PokemonType>
           {types.length > 1 ? `${types[0]}/${types[1]}` : `${types[0]}`}

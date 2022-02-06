@@ -10,7 +10,7 @@ export const usePokemonMoveFetch = (pokemonId) => {
     try {
       const response = await API.fetchMoves(pokemonId);
 
-      setMoves(response.data);
+      setMoves(response);
     } catch (error) {
       console.log("There was an error", error);
     }

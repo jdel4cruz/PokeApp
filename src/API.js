@@ -1,5 +1,5 @@
-import Pokedex from "pokedex-promise-v2";
-const P = new Pokedex();
+//Helper Functions
+import { updateMoveText, generateEvoTiers } from "./HelperFunctions";
 
 const apiSettings = {
   fetchPokemonGrid: async () => {
@@ -42,8 +42,6 @@ const apiSettings = {
 
     return data;
   },
-
-  fetchPokemon: (pokemonId) => P.getPokemonByName(pokemonId),
 
   fetchPokemonDescription: async (pokemonId) => {
     const endpoint = "https://beta.pokeapi.co/graphql/v1beta";
@@ -214,9 +212,91 @@ const apiSettings = {
       }),
     });
 
-    const data = await response.json();
+    const toJson = await response.json();
+    const { data } = toJson;
+    console.log(data);
+    updateMoveText(data);
+    console.log(data);
 
     return data;
+  },
+
+  fetchPokemonEvolutions: async (pokemonId) => {
+    const endpoint = "https://beta.pokeapi.co/graphql/v1beta";
+
+    const response = await fetch(endpoint, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        query: `query PokemonEvolution($id: [Int!]) {
+          pokemon_v2_evolutionchain(where: {pokemon_v2_pokemonspecies: {id: {_in: $id}}}) {
+            pokemon_v2_pokemonspecies(order_by: {evolves_from_species_id: asc_nulls_first}) {
+              id
+              name
+              evolves_from_species_id
+              pokemon_v2_pokemonevolutions(limit: 1, order_by: {id: desc}) {
+                evo_Trigger:pokemon_v2_evolutiontrigger {
+                  name
+                }
+                useItem:pokemon_v2_item {
+                  name
+                }
+                location:pokemon_v2_location {
+                  name
+                }
+                heldItem:pokemonV2ItemByHeldItemId {
+                  name
+                }
+                gender:pokemon_v2_gender {
+                  name
+                }
+                learnedMove:pokemon_v2_move {
+                  name
+                }
+                tradeWith:pokemonV2PokemonspecyByTradeSpeciesId {
+                  name
+                }
+                moveType:pokemon_v2_type {
+                  name
+                }
+                affection: min_affection
+                beauty: min_beauty
+                happiness: min_happiness
+                level: min_level
+                needsRain:needs_overworld_rain
+                time:time_of_day
+                atkIsGreater:relative_physical_stats
+                turnUpsideDown:turn_upside_down
+              }
+            }
+          }
+        }
+        `,
+        variables: {
+          id: pokemonId,
+        },
+      }),
+    });
+
+    const toJson = await response.json();
+
+    const {
+      data: {
+        pokemon_v2_evolutionchain: [{ pokemon_v2_pokemonspecies: data }],
+      },
+    } = toJson;
+
+    if (data.length > 1) {
+      const evoTiers = generateEvoTiers(data);
+
+      return evoTiers;
+    }
+
+    const evoTiers = new Array();
+    evoTiers.push(data);
+    return evoTiers;
   },
 };
 

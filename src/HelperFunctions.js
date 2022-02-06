@@ -38,3 +38,59 @@ export const calcDamageFactor = (weakness1, weakness2) => {
 
   return calc;
 };
+
+export const updateMoveText = (data) =>
+  Object.keys(data).forEach((moveList) => {
+    data[moveList].forEach((move) => {
+      const moveData = move.pokemon_v2_move;
+      const moveEffectChance = moveData.move_effect_chance;
+
+      moveData.name = moveData.name.replace("-", " ");
+
+      if (moveEffectChance != null) {
+        const effectTextData =
+          move.pokemon_v2_move.pokemon_v2_moveeffect
+            .pokemon_v2_moveeffecteffecttexts[0];
+
+        effectTextData.effect = effectTextData.effect.replaceAll(
+          "$effect_chance%",
+          `${moveEffectChance}%`
+        );
+      }
+    });
+  });
+
+export const generateEvoTiers = (evoChain) => {
+  const visited = new Array(evoChain.length);
+  visited[0] = true;
+
+  const evoTiers = new Array();
+
+  evoTiers.push(new Array(evoChain[0]));
+
+  let prevEvoId = new Array();
+  prevEvoId.push(evoChain[0].id);
+
+  while (prevEvoId.length) {
+    const evoTier = new Array();
+    const nextIds = new Array();
+
+    prevEvoId.forEach((id) => {
+      evoChain.forEach((pokemon, i) => {
+        if (!visited[i]) {
+          if (pokemon.evolves_from_species_id == id) {
+            evoTier.push(pokemon);
+            nextIds.push(pokemon.id);
+            visited[i] = true;
+          }
+        }
+      });
+    });
+
+    evoTier.length && evoTiers.push(evoTier);
+
+    prevEvoId = nextIds;
+  }
+
+  return evoTiers;
+};
