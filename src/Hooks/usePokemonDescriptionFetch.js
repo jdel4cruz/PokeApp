@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from "uuid";
 import API from "../API";
 
 //Helper Function
-import { spriteGenerator } from "../HelperFunctions";
+import { pokemonSpriteGenerator } from "../HelperFunctions";
 
 export const usePokemonDescriptionFetch = (pokemonId) => {
   const [state, setState] = useState(null);
@@ -23,11 +23,8 @@ export const usePokemonDescriptionFetch = (pokemonId) => {
       const types = response.data.pokemon_v2_type;
       console.log(response);
 
-      spriteGenerator(pokemon);
+      pokemonSpriteGenerator(pokemon);
       setState({ pokemon, types });
-
-      // spriteGenerator(data);
-      // setState(data);
     } catch (error) {
       console.log("there was an error", error);
     }

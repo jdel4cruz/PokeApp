@@ -7,9 +7,6 @@ import Grid from "./Components/Grid";
 import Pagination from "./Components/Pagination";
 import PokemonFilter from "./Components/PokemonFilter";
 
-//Helpers
-import { cardGenerator } from "./HelperFunctions";
-
 //Hooks
 import { usePokemonGridFetch } from "./Hooks/usePokemonGridFetch";
 
@@ -18,7 +15,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-flow: column nowrap;
   justify-content: space-between;
-  min-height: 100%;
+
   width: 100%;
   overflow: hidden;
   align-items: center;
@@ -68,7 +65,6 @@ const Pokemon = () => {
         </Button>
         <Button
           onClick={(e) => {
-            console.log(e.target.innerText);
             setOpenFilter(!openFilter);
           }}
         >

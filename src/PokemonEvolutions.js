@@ -3,9 +3,16 @@ import { useParams } from "react-router-dom";
 
 //Hooks
 import { usePokemonEvolutionsFetch } from "./Hooks/usePokemonEvolutionsFetch";
-import Pokemon from "./PokemonGrid";
 
-const Wrapper = styled.div``;
+//Components
+import PokemonEvoChart from "./Components/PokemonEvoChart";
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  flex-grow: 1;
+`;
 
 const PokemonEvolutions = () => {
   const { pokemonId } = useParams();
@@ -18,7 +25,7 @@ const PokemonEvolutions = () => {
 
   return (
     <Wrapper>
-      <div>placeholder</div>
+      <PokemonEvoChart evoTiers={state} />
     </Wrapper>
   );
 };

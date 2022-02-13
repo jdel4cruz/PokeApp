@@ -2,7 +2,7 @@ import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
 :root {
-    --maxWidth: 1400px;
+    --maxWidth: 1440px;
     --pokedexRed: rgb(216,70,61);
     --pokedexGreen: #B6E3B2;
     --fontSmall: 1rem;

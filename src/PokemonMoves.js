@@ -142,30 +142,33 @@ const PokemonMoves = () => {
   const tutorMoves = moves.tutorMoves;
   const levelMoves = moves.levelMoves;
 
+  console.log(eggMoves.length == true);
+
   return (
     <Wrapper>
       <div>
         <PokemonNav />
       </div>
 
-      {levelMoves.length && (
+      {levelMoves.length > 0 && (
         <MoveList
           moveSet={levelMoves}
           isLevel={true}
           title={"Learned by Level Up"}
         />
       )}
-      {eggMoves.length && (
+
+      {eggMoves.length > 0 && (
         <MoveList moveSet={eggMoves} isLevel={false} title={"Egg Moves"} />
       )}
-      {tutorMoves.length && (
+      {tutorMoves.length > 0 && (
         <MoveList
           moveSet={tutorMoves}
           isLevel={false}
           title={"Learned by Tutor"}
         />
       )}
-      {machineMoves.length && (
+      {machineMoves.length > 0 && (
         <MoveList
           moveSet={machineMoves}
           isLevel={false}

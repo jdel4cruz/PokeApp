@@ -163,7 +163,6 @@ query PokemonDescription($id: Int) {
   }
 }
 
-
 --------------------------------------------------------
 
 fragment PokemonMoveFields on pokemon_v2_pokemonmove {
@@ -207,34 +206,47 @@ query PokemonLevelMoves($pokemonId: Int) {
 
 query PokemonEvolution($id: [Int!]) {
   pokemon_v2_evolutionchain(where: {pokemon_v2_pokemonspecies: {id: {_in: $id}}}) {
-    pokemon_v2_pokemonspecies {
+    pokemon_v2_pokemonspecies(order_by: {evolves_from_species_id: asc_nulls_first}) {
       id
       name
-      pokemon_v2_pokemonevolutions {
-        pokemon_v2_evolutiontrigger {
+      evolves_from_species_id
+      pokemon_v2_pokemonevolutions(limit: 1, order_by: {id: desc}) {
+        evo_Trigger:pokemon_v2_evolutiontrigger {
           name
         }
-        evolution_item_id
-        evolution_trigger_id
-        evolved_species_id
-        gender_id
-        held_item_id
-        id
-        known_move_id
-        known_move_type_id
-        location_id
-        min_affection
-        min_beauty
-        min_happiness
-        min_level
-        needs_overworld_rain
-        party_species_id
-        party_type_id
+        useItem:pokemon_v2_item {
+          name
+        }
+        location:pokemon_v2_location {
+          name
+        }
+        heldItem:pokemonV2ItemByHeldItemId {
+          name
+        }
+        gender:pokemon_v2_gender {
+          name
+        }
+        learnedMove:pokemon_v2_move {
+          name
+        }
+        tradeWith:pokemonV2PokemonspecyByTradeSpeciesId {
+          name
+        }
+        moveType:pokemon_v2_type {
+          name
+        }
+        affection: min_affection
+        beauty: min_beauty
+        happiness: min_happiness
+        level: min_level
+        needsRain:needs_overworld_rain
+        time:time_of_day
+        atkIsGreater:relative_physical_stats
+        turnUpsideDown:turn_upside_down
       }
     }
   }
 }
-
 
 -----------------------------------------
 
@@ -286,4 +298,37 @@ query TypeWeaknesses($type1: String = "", $type2: String = "") {
  "type1": "fire",
  "type2": ""
 }
+
+---------------------------------------
+
+query PokemonItems {
+  pokemon_v2_item {
+    name
+    id
+    cost
+    pokemon_v2_itemeffecttexts {
+      effect
+    }
+  }
+}
+
+---------------------------------------
+
+Attributes I care about
+
+- "consumable" id: 2 (consumable)
+- "usable-in-battle" id: 4 (battle-items)
+- "holdable-active" id:7 (held-items)
+
+Categories I care about
+- "evolution" id: 10 (evo)
+- "gameplay" id:21 (key items)
+- "all-machines" id: 37 (tms)
+
+effect text to override
+string.slice(4) = cult to "sellable"
+
+cost override
+0 = "Not purchasable"
+
 

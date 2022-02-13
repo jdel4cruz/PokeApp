@@ -1,5 +1,28 @@
 //Helper Functions
-import { updateMoveText, generateEvoTiers } from "./HelperFunctions";
+import {
+  updateMoveText,
+  generateEvoTiers,
+  itemSpriteGenerator,
+} from "./HelperFunctions";
+
+// fetchData = async (queryString, vars = {}) => {
+//   const endpoint = "https://beta.pokeapi.co/graphql/v1beta";
+
+//   const response = await fetch(endpoint, {
+//     method: "POST",
+//     headers: {
+//       "Content-Type": "application/json",
+//     },
+//     body: JSON.stringify({
+//       query: `${queryString}`,
+//       variables: vars,
+//     }),
+//   });
+
+//   const data = await response.json();
+
+//   return data;
+// },
 
 const apiSettings = {
   fetchPokemonGrid: async () => {
@@ -237,7 +260,7 @@ const apiSettings = {
               name
               evolves_from_species_id
               pokemon_v2_pokemonevolutions(limit: 1, order_by: {id: desc}) {
-                evo_Trigger:pokemon_v2_evolutiontrigger {
+                evoTrigger:pokemon_v2_evolutiontrigger {
                   name
                 }
                 useItem:pokemon_v2_item {
@@ -297,6 +320,38 @@ const apiSettings = {
     const evoTiers = new Array();
     evoTiers.push(data);
     return evoTiers;
+  },
+
+  fetchItems: async () => {
+    const endpoint = "https://beta.pokeapi.co/graphql/v1beta";
+
+    const response = await fetch(endpoint, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        query: `
+        query PokemonItems {
+          items: pokemon_v2_item {
+            name
+            id
+            cost
+            itemEffect:pokemon_v2_itemeffecttexts {
+              effect
+            }
+          }
+        }
+          `,
+      }),
+    });
+
+    const toJson = await response.json();
+    const items = toJson.data.items;
+
+    itemSpriteGenerator(items);
+
+    return items;
   },
 };
 

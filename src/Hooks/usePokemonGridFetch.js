@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import API from "../API";
 
 //Helper Function
-import { spriteGenerator, cardGenerator } from "../HelperFunctions";
+import { pokemonSpriteGenerator, cardGenerator } from "../HelperFunctions";
 
 //If type == true, will filter pokemontypes array against typecriteria, otherwise skip
 //If special !="", will filter pokemonspecy object to see if array[special] == true
@@ -40,7 +40,7 @@ export const usePokemonGridFetch = () => {
     try {
       const response = await API.fetchPokemonGrid();
       const data = response.data.pokemon_v2_pokemon;
-      spriteGenerator(data);
+      pokemonSpriteGenerator(data);
       setState(data);
     } catch (error) {
       console.log(error);
@@ -153,7 +153,7 @@ export const usePokemonGridFetch = () => {
       const end = page * limit;
       const start = page * limit - limit;
       const data = applyFilterSort(state);
-      console.log(data);
+
       setCards((prevCards) =>
         page == 1
           ? cardGenerator(data.slice(start, end), filterSort, page, limit)

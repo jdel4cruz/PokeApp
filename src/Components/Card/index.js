@@ -1,9 +1,7 @@
 import { useState, useEffect } from "react";
 
-import { Link } from "react-router-dom";
-
 //Styles
-import { Wrapper, CardImg, CardText } from "./Card.Styles";
+import { Wrapper, CardImg, CardText, StyledLink } from "./Card.Styles";
 
 const Card = ({ img, name, id, filterSort }) => {
   const [isValid, setIsValid] = useState(true);
@@ -13,7 +11,7 @@ const Card = ({ img, name, id, filterSort }) => {
   }, [filterSort]);
 
   return (
-    <Link to={`/pokemon/${id}`}>
+    <StyledLink to={`/pokemon/${id}`}>
       <Wrapper className={!isValid ? "broken" : ""}>
         <CardImg
           src={img}
@@ -25,7 +23,7 @@ const Card = ({ img, name, id, filterSort }) => {
           {id && <div>{id}</div>}
         </CardText>
       </Wrapper>
-    </Link>
+    </StyledLink>
   );
 };
 
