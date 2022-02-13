@@ -14,7 +14,7 @@ const initialFilter = {
   special: "",
 };
 
-//If sort criteria changes, sort will be compared against state[sortCriteria]
+//If sort criteria changes, sort will be compared against rawData[sortCriteria]
 //Sortstat values(index to stat type) = [hp, atk, def, sp atk, sp def, speed ]
 const initialSort = {
   sorted: true,
@@ -27,7 +27,7 @@ const initialSort = {
 };
 
 export const usePokemonGridFetch = () => {
-  const [state, setState] = useState(null);
+  const [rawData, setRawData] = useState(null);
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(54);
   const [cards, setCards] = useState([]);
@@ -38,10 +38,10 @@ export const usePokemonGridFetch = () => {
 
   const fetchGrid = async () => {
     try {
-      const response = await API.fetchPokemonGrid();
-      const data = response.data.pokemon_v2_pokemon;
-      pokemonSpriteGenerator(data);
-      setState(data);
+      const data = await API.fetchPokemonGrid();
+      const pokemon = data.pokemon_v2_pokemon;
+      pokemonSpriteGenerator(pokemon);
+      setRawData(pokemon);
     } catch (error) {
       console.log(error);
     }
@@ -149,10 +149,10 @@ export const usePokemonGridFetch = () => {
   }, []);
 
   useEffect(() => {
-    if (state != null) {
+    if (rawData != null) {
       const end = page * limit;
       const start = page * limit - limit;
-      const data = applyFilterSort(state);
+      const data = applyFilterSort(rawData);
 
       setCards((prevCards) =>
         page == 1
@@ -163,7 +163,7 @@ export const usePokemonGridFetch = () => {
             ]
       );
     }
-  }, [state, limit, page, filterSort]);
+  }, [rawData, limit, page, filterSort]);
 
   return { limit, setLimit, page, setPage, cards, filterSort, setFilterSort };
 };

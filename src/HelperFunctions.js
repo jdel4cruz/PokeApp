@@ -84,7 +84,6 @@ export const updateMoveText = (data) =>
       }
     });
   });
-
 export const generateEvoTiers = (evoChain) => {
   const visited = new Array(evoChain.length);
   visited[0] = true;
