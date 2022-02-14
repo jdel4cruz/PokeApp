@@ -1,11 +1,11 @@
-import { type } from "@testing-library/user-event/dist/type";
 import { v4 as uuidv4 } from "uuid";
 
 //Components
 import Card from "./Components/Card";
 import ItemCard from "./Components/ItemCard";
 
-export const cardGenerator = (data, filterSort, page, limit) => {
+//Functions to create the cards shown in their respective grids
+export const pokemonCardGenerator = (data, filterSort, page, limit) => {
   console.log("creating cards");
   const cards = data.map((item, i) => (
     <Card
@@ -41,6 +41,7 @@ export const itemCardGenerator = (data, filterSort, page, limit, setPopup) => {
 export const keyGenerator = (data) =>
   data.forEach((item) => (item.key = uuidv4()));
 
+// Functions to set sprite properties to
 export const itemSpriteGenerator = (data) =>
   data.forEach(
     (item) =>
@@ -53,8 +54,8 @@ export const pokemonSpriteGenerator = (data) =>
       (item.sprite = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${item.id}.png`)
   );
 
+// Calcs weakness values. If pokemon is dual typed it multiplies the 2 values and divides the result to get a single digit multiplier.
 export const calcDamageFactor = (weakness1, weakness2) => {
-  console.log(weakness2);
   const calc = weakness1.map((type, i) =>
     weakness2.length > 1
       ? (type.damage_factor * weakness2[i].damage_factor) / 100
@@ -64,6 +65,7 @@ export const calcDamageFactor = (weakness1, weakness2) => {
   return calc;
 };
 
+// Goes into 4 different moveList objects (level up, egg, tutor, tm) and updates name and text. Aliases could be applied to the graphQL request to clean up some of the code
 export const updateMoveText = (data) =>
   Object.keys(data).forEach((moveList) => {
     data[moveList].forEach((move) => {
@@ -84,13 +86,17 @@ export const updateMoveText = (data) =>
       }
     });
   });
+
+// Does 2 things. For each Pokemon in the evolution chain, it makes function calls  It also places pokemon in their respective evo tiers based on the pokemon they previously evolve from
 export const generateEvoTiers = (evoChain) => {
+  // An array to ensure that when generating evoTiers later on, we only visit a given element once and to give us a way to break out of our while loop.
   const visited = new Array(evoChain.length);
   visited[0] = true;
 
+  // Adds a sprite property to each pokemon in the chain for display
   pokemonSpriteGenerator(evoChain);
-  console.log("evochain", evoChain);
 
+  // Performs a forEach on the evochain and calls 2 functions to turn their evo condition strings into something sensible as the raw data is not very usable.
   evoChain.forEach((pokemon) => {
     const evoConditions = pokemon.pokemon_v2_pokemonevolutions;
 
@@ -99,14 +105,20 @@ export const generateEvoTiers = (evoChain) => {
       buildEvoCondition(pokemon);
     }
   });
+
+  // Begins building evo tiers. Ex) If a pokemon has 3 stages (charmander, charmelion, charizard) they will be in tier 1, 2, and 3 respecitvely.
   const evoTiers = new Array();
 
+  //pushes the inital pokemon in the chain into it's own tier
   evoTiers.push(new Array(evoChain[0]));
 
+  //prevEvoId will be used to see if the current pokemon in the while loop below had evolved from the previous pokemon
   let prevEvoId = new Array();
   prevEvoId.push(evoChain[0].id);
 
+  // While loop on our evoChain as long as there is a prevEvoId to check pokemon in the evoChain against. When all elements have been visited, prevEvoId will be empty at the end of the cycle and break out.
   while (prevEvoId.length) {
+    // Creates an empty array to push pokemon for next evo tier onto and for the next set of ids to check against.
     const evoTier = new Array();
     const nextIds = new Array();
 
@@ -122,14 +134,17 @@ export const generateEvoTiers = (evoChain) => {
       });
     });
 
+    // If we found any pokemon that evolved from the current prevEvoId, push it onto the evoTiers array
     evoTier.length && evoTiers.push(evoTier);
 
+    // If any pokemon were found for the current evoTier, update prevEvoIds to check against them for the next cycle
     prevEvoId = nextIds;
   }
 
   return evoTiers;
 };
 
+// This simply checks all the keys for the evoCondition object and either deletes them if they're null/false, or calls the evoCondition function to update the key's value to something usable.
 export const updateEvoCondition = (data) => {
   Object.keys(data).forEach((key) => {
     if (!data[key] && data[key] !== 0) {
@@ -151,6 +166,7 @@ const capitalizeFirstLetterEachWord = (string) => {
   return capitalizedWords.join(" ");
 };
 
+// A massive switch statement that based on the key, if the value is true update it with something I can use in a stringbuilder later
 const evoConditions = (data, key) => {
   let property = data[key];
 
@@ -219,6 +235,7 @@ const evoConditions = (data, key) => {
   }
 };
 
+// Takes the values in the evoCondition object within the pokemon object, combines them, and adds the result as a property for the pokemon object
 const buildEvoCondition = (pokemon) => {
   const evoConditions = pokemon.pokemon_v2_pokemonevolutions[0];
 
