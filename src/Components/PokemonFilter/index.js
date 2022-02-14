@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Select from "react-select";
 
 //Styles
@@ -10,27 +9,7 @@ import {
   CloseButton,
 } from "./Filter.styles";
 
-// class FilterFields {
-//   static Type1 = new FilterFields("type1");
-//   static Type2 = new FilterFields("type2");
-//   static Category = new FilterFields("category");
-
-//   constructor(name) {
-//     this.name = name;
-//   }
-// }
-
-// class SortFields {
-//   static Stat = new SortFields("stat");
-//   static Order = new SortFields("order");
-//   static Id = new SortFields("id");
-//   static Name = new SortFields("name");
-
-//   constructor(name) {
-//     this.name = name;
-//   }
-// }
-
+// A bunch of arrays filled with objects that contain the label and value properties for the filter options.
 const filterOptions = [
   { value: "", label: "Choose Type" },
   { value: "normal", label: "Normal" },
@@ -99,24 +78,21 @@ const Filter = ({
   setOpenFilter,
   setPage,
 }) => {
-  const selectedTypes = Object.values(filterSort.filter.typeCriteria);
-  const category = filterSort.filter.special;
-  const sortStat = filterSort.sort.sortStat;
-  const statAsc = filterSort.sort.statAsc;
-  const sortId = filterSort.sort.sortId;
-  const sortName = filterSort.sort.sortName;
-  const idAsc = filterSort.sort.idAsc;
-  const nameAsc = filterSort.sort.nameAsc;
+  const filters = filterSort.filter;
+  const selectedTypes = Object.values(filters.typeCriteria);
+  const category = filters.special;
+
+  const sorts = filterSort.sort;
+  const { sortStat, statAsc, sortId, sortName, idAsc, nameAsc } = sorts;
 
   const selectStyles = {
     container: (base) => ({ ...base, width: "7rem" }),
   };
 
+  // Function that is called when a filter or sort option is changed. Takes changes and passes them to setFilterSort to update the state
   const handleChange = (event, key) => {
     let newFilterSort = { ...filterSort };
     let value = event.value;
-
-    console.log(value);
 
     if (key === "type1") {
       newFilterSort.filter.typeCriteria.type1 = value;

@@ -22,10 +22,10 @@ import {
 
 const Pokemon = () => {
   const { pokemonId } = useParams();
-  const { state, stats, abilities, sprite, id, name, pokemonTypes } =
+  const { rawData, stats, abilities, sprite, id, name, pokemonTypes } =
     usePokemonDescriptionFetch(pokemonId);
 
-  if (state == null) {
+  if (rawData == null) {
     return <div>loading</div>;
   }
 

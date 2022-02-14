@@ -26,6 +26,7 @@ export const CardText = styled.div`
 export const StyledLink = styled(Link)`
 text-decoration: none;
 color: inherit;
+
 &: focus, 
 &: hover, 
 &: visited, 

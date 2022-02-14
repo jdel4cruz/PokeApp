@@ -8,7 +8,7 @@ import API from "../API";
 import { pokemonSpriteGenerator } from "../HelperFunctions";
 
 export const usePokemonDescriptionFetch = (pokemonId) => {
-  const [state, setState] = useState(null);
+  const [rawData, setRawData] = useState(null);
   const [stats, setStats] = useState(null);
   const [pokemonTypes, setPokemonTypes] = useState(null);
   const [abilities, setAbilities] = useState();
@@ -16,34 +16,36 @@ export const usePokemonDescriptionFetch = (pokemonId) => {
   const [id, setId] = useState();
   const [name, setName] = useState();
 
+  // Fetches data from API and sets it to rawData
   const fetchPokemonData = async (pokemonId) => {
     try {
       const data = await API.fetchPokemonDescription(pokemonId);
       const { pokemon_v2_pokemon: pokemon, pokemon_v2_type: types } = data;
 
       pokemonSpriteGenerator(pokemon);
-      setState({ pokemon, types });
+      setRawData({ pokemon, types });
     } catch (error) {
       console.log("there was an error", error);
     }
   };
 
+  // Initial data fetch
   useEffect(() => {
     console.log("fetching from API");
     fetchPokemonData(pokemonId);
   }, []);
 
+  // Sets additional hooks once rawData has been set
   useEffect(() => {
-    if (state != null) {
-      console.log(state);
+    if (rawData != null) {
       setStats(
-        state.pokemon[0].pokemon_v2_pokemonstats.map((item) => ({
+        rawData.pokemon[0].pokemon_v2_pokemonstats.map((item) => ({
           base_stat: item.base_stat,
           name: item.pokemon_v2_stat.name,
         }))
       );
       setAbilities(
-        state.pokemon[0].pokemon_v2_pokemonabilities.map((item) => ({
+        rawData.pokemon[0].pokemon_v2_pokemonabilities.map((item) => ({
           title: `${item.pokemon_v2_ability.name} ${
             item.is_hidden ? "(Hidden)" : ""
           }`,
@@ -53,25 +55,18 @@ export const usePokemonDescriptionFetch = (pokemonId) => {
             item.pokemon_v2_ability.pokemon_v2_abilityeffecttexts[0].effect,
         }))
       );
-      // setAbilities(
-      //   state.pokemon[0].pokemon_v2_pokemonabilities.map((item) => ({
-      //     is_hidden: item.is_hidden,
-      //     name: item.pokemon_v2_ability.name,
-      //     effect:
-      //       item.pokemon_v2_ability.pokemon_v2_abilityeffecttexts[0].effect,
-      //   }))
-      // );
-      setSprite(state.pokemon[0].sprite);
-      setId(state.pokemon[0].id);
-      setName(state.pokemon[0].name);
+
+      setSprite(rawData.pokemon[0].sprite);
+      setId(rawData.pokemon[0].id);
+      setName(rawData.pokemon[0].name);
 
       setPokemonTypes(
-        state.pokemon[0].pokemon_v2_pokemontypes.map(
-          (item) => state.types[item.type_id - 1].name
+        rawData.pokemon[0].pokemon_v2_pokemontypes.map(
+          (item) => rawData.types[item.type_id - 1].name
         )
       );
     }
-  }, [state]);
+  }, [rawData]);
 
-  return { state, stats, abilities, sprite, id, name, pokemonTypes };
+  return { rawData, stats, abilities, sprite, id, name, pokemonTypes };
 };

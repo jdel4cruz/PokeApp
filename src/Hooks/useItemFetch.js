@@ -6,6 +6,7 @@ import API from "../API";
 //Helper Functions
 import { itemCardGenerator } from "../HelperFunctions";
 
+// WIP but will function extremely similarly to usePokemonGridFetch
 export const useItemFetch = () => {
   const [state, setState] = useState(null);
   const [page, setPage] = useState(1);

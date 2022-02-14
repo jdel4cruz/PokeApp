@@ -9,7 +9,6 @@ const PokemonNav = () => {
       <StyledLink to={`/pokemon/${id}`}>Pokemon</StyledLink>
       <StyledLink to={`/pokemon/${id}/moves`}>Moves</StyledLink>
       <StyledLink to={`/pokemon/${id}/evo`}>Evolutions</StyledLink>
-      {/* <StyledLink to={`/pokemon/${id}/locations`}>Locations</StyledLink> */}
     </Wrapper>
   );
 };

@@ -21,11 +21,5 @@ export const usePokemonEvolutionsFetch = (pokemonId) => {
     fetchPokemonEvolutions(pokemonId);
   }, []);
 
-  useEffect(() => {
-    if (state != null) {
-      console.log(state);
-    }
-  }, [state]);
-
   return { state };
 };

@@ -22,11 +22,5 @@ export const usePokemonWeaknessFetch = (pokemonId) => {
     fetchPokemonWeakness(pokemonId);
   }, []);
 
-  useEffect(() => {
-    if (typeData != null) {
-      console.log(typeData);
-    }
-  }, [typeData]);
-
   return { typeData };
 };

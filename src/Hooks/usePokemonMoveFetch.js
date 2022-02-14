@@ -21,11 +21,5 @@ export const usePokemonMoveFetch = (pokemonId) => {
     fetchMoves(pokemonId);
   }, []);
 
-  useEffect(() => {
-    if (moves != null) {
-      console.log(moves);
-    }
-  }, [moves]);
-
   return { moves };
 };

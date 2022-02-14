@@ -1,4 +1,3 @@
-import { Chart } from "react-chartjs-2";
 import { v4 as uuidv4 } from "uuid";
 
 //Components
@@ -9,7 +8,22 @@ import PokemonNav from "../PokemonNav";
 import { Wrapper, EvoTier, ChartContainer } from "./PokemonEvoChart.styles";
 
 const PokemonEvoChart = ({ evoTiers }) => {
-  console.log(evoTiers.length);
+  const generateCells = (tier) => {
+    const cells = tier.map((pokemon) => {
+      const { name, sprite, evoCondition, id } = pokemon;
+      return (
+        <EvoChartCell
+          name={name}
+          sprite={sprite}
+          evoCondition={evoCondition}
+          id={id}
+          key={uuidv4()}
+        />
+      );
+    });
+    return cells;
+  };
+
   return (
     <Wrapper>
       <PokemonNav />
@@ -17,18 +31,7 @@ const PokemonEvoChart = ({ evoTiers }) => {
       <ChartContainer length={evoTiers.length}>
         {evoTiers.map((tier) => (
           <EvoTier key={uuidv4()} length={evoTiers.length}>
-            {tier.map((pokemon) => {
-              const { name, sprite, evoCondition, id } = pokemon;
-              return (
-                <EvoChartCell
-                  name={name}
-                  sprite={sprite}
-                  evoCondition={evoCondition}
-                  id={id}
-                  key={uuidv4()}
-                />
-              );
-            })}
+            {generateCells(tier)}
           </EvoTier>
         ))}
       </ChartContainer>

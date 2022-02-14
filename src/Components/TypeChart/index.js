@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 //Styled
 import { Wrapper, Chart, Cell } from "./TypeChart.styles";
 
+// Contains the label and color for each label cell
 const typeLabels = [
   {
     name: "NOR",
@@ -84,6 +85,7 @@ const TypeChart = ({ weakness, type1, type2 }) => {
   console.log(type1);
   console.log(type2);
 
+  // Used to set the background color of the damage cells based on the value within the cell
   const damageColor = (value) => {
     switch (value) {
       case 0:
@@ -101,16 +103,17 @@ const TypeChart = ({ weakness, type1, type2 }) => {
     }
   };
 
+  // Chart is 2 rows 9 columns. First row is for labels and the second row is for damage values. 2 charts are generated for the whole TypeChart
   return (
     <Wrapper>
       <h2>Weakness Chart</h2>
+
       <Chart>
         {typeLabels.slice(0, 9).map((type) => (
           <Cell backgroundColor={type.color} key={uuidv4()}>
             {type.name}
           </Cell>
         ))}
-
         {weakness.slice(0, 9).map((value) => (
           <Cell backgroundColor={damageColor(value)} key={uuidv4()}>
             {`${value / 100}x`}
