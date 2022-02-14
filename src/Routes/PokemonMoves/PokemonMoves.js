@@ -1,59 +1,20 @@
 import { useParams } from "react-router-dom";
-import styled from "styled-components";
+
 import { v4 as uuidv4 } from "uuid";
 
 //Components
-import PokemonNav from "./Components/PokemonNav";
+import PokemonNav from "../../Components/PokemonNav";
+
+import {
+  Wrapper,
+  MoveContainer,
+  MoveListContainer,
+  MoveCell,
+  MoveListTitle,
+} from "./PokemonMoves.styles";
 
 //Hooks
-import { usePokemonMoveFetch } from "./Hooks/usePokemonMoveFetch";
-
-const Wrapper = styled.div`
-  display: flex;
-  flex-flow: column nowrap;
-  align-items: center;
-`;
-
-const MoveListContainer = styled.ul`
-  list-style: none;
-
-  width: var(--maxWidth);
-  border: 1px solid black;
-  padding: 0;
-  background-color: ${(props) => props.backgroundColor || ""};
-`;
-
-const MoveContainer = styled.li`
-  display: grid;
-  grid-template-columns: ${(props) =>
-    props.isLevel
-      ? "4rem 10rem 6rem 8rem 4rem 4rem 4rem 1fr"
-      : "10rem 6rem 8rem 4rem 4rem 4rem 1fr"};
-  border: 1px solid black;
-
-  div {
-    font-size: ${(props) => (props.isHeader ? "var(--fontMed)" : "")};
-  }
-`;
-
-const MoveCell = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  padding: 1rem;
-
-  text-transform: ${(props) => (props.isName ? "capitalize" : "")};
-`;
-
-const MoveListTitle = styled.div`
-  display: flex;
-  justify-content: center;
-  border: 1px solid black;
-  padding: 1rem;
-  font-size: var(--fontLarge);
-  background-color: ${(props) => props.backgroundColor || ""};
-`;
+import { usePokemonMoveFetch } from "../../Hooks/usePokemonMoveFetch";
 
 const types = [
   "Normal",
@@ -97,6 +58,17 @@ const MoveHeader = ({ isLevel, title }) => {
   );
 };
 
+const MoveList = ({ moveSet, isLevel, title }) => {
+  return (
+    <MoveListContainer>
+      <MoveHeader isLevel={isLevel} title={title}></MoveHeader>
+      {moveSet.map((move) => {
+        return <Move move={move} isLevel={isLevel} key={uuidv4()} />;
+      })}
+    </MoveListContainer>
+  );
+};
+
 const Move = ({ move, isLevel }) => {
   const { level } = move;
   const moveData = move.pokemon_v2_move;
@@ -117,17 +89,6 @@ const Move = ({ move, isLevel }) => {
   );
 };
 
-const MoveList = ({ moveSet, isLevel, title }) => {
-  return (
-    <MoveListContainer>
-      <MoveHeader isLevel={isLevel} title={title}></MoveHeader>
-      {moveSet.map((move) => {
-        return <Move move={move} isLevel={isLevel} key={uuidv4()} />;
-      })}
-    </MoveListContainer>
-  );
-};
-
 const PokemonMoves = () => {
   const { pokemonId } = useParams();
   const { moves } = usePokemonMoveFetch(pokemonId);
@@ -136,13 +97,10 @@ const PokemonMoves = () => {
     return <div>loading</div>;
   }
 
-  console.log(moves);
   const eggMoves = moves.eggMoves;
   const machineMoves = moves.machineMoves;
   const tutorMoves = moves.tutorMoves;
   const levelMoves = moves.levelMoves;
-
-  console.log(eggMoves.length == true);
 
   return (
     <Wrapper>

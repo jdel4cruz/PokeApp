@@ -3,12 +3,12 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import styled from "styled-components";
 
 // Routes
-import PokemonGrid from "./PokemonGrid";
-import Home from "./Home";
-import PokemonDescription from "./PokemonDescription.js";
-import PokemonMoves from "./PokemonMoves";
-import PokemonEvolutions from "./PokemonEvolutions";
-import ItemGrid from "./ItemGrid";
+import PokemonGrid from "./Routes/PokemonGrid/PokemonGrid.js";
+import Home from "./Routes/Home";
+import PokemonDescription from "./Routes/PokemonDescription/PokemonDescription.js";
+import PokemonMoves from "./Routes/PokemonMoves/PokemonMoves";
+import PokemonEvolutions from "./Routes/PokemonEvolutions/PokemonEvolutions.js";
+import ItemGrid from "./Routes/ItemGrid/ItemGrid.js";
 
 // Components
 import Header from "./Components/Header";

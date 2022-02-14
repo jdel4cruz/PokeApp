@@ -1,24 +1,16 @@
-import styled from "styled-components";
-
 //Components
-import TypeChart from "./Components/TypeChart";
-import Header from "./Components/Header";
+import TypeChart from "../TypeChart";
+import Header from "../Header";
 import { useParams } from "react-router-dom";
 
+// Styles
+import { Wrapper } from "./PokemonWeakness.styles";
+
 //Hooks
-import { usePokemonWeaknessFetch } from "./Hooks/usePokemonWeaknessFetch";
+import { usePokemonWeaknessFetch } from "../../Hooks/usePokemonWeaknessFetch";
 
 //Helper Functions
-import { calcDamageFactor } from "./HelperFunctions";
-
-const Wrapper = styled.div`
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
-  align-items: end;
-  flex-grow: 1;
-  flex-shrink: 1;
-`;
+import { calcDamageFactor } from "../../HelperFunctions";
 
 const PokemonWeakness = () => {
   const { pokemonId } = useParams();

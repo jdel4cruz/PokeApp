@@ -275,7 +275,9 @@ query PokemonType($id: Int) {
     }
       `;
 
-    const items = await fetchData(query).items;
+    const data = await fetchData(query);
+    const items = data.items;
+
     itemSpriteGenerator(items);
 
     return items;

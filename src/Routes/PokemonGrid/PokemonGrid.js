@@ -1,43 +1,16 @@
 import { useEffect, useState } from "react";
-import styled from "styled-components";
 
 //Components
-import Header from "./Components/Header";
-import Grid from "./Components/Grid";
-import Pagination from "./Components/Pagination";
-import PokemonFilter from "./Components/PokemonFilter";
+import Header from "../../Components/Header";
+import Grid from "../../Components/Grid";
+import Pagination from "../../Components/Pagination";
+import PokemonFilter from "../../Components/PokemonFilter";
+
+//Styles
+import { Wrapper, GridOptions, Button } from "./PokemonGrid.styles";
 
 //Hooks
-import { usePokemonGridFetch } from "./Hooks/usePokemonGridFetch";
-
-const Wrapper = styled.div`
-  position: relative;
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: space-between;
-
-  width: 100%;
-  overflow: hidden;
-  align-items: center;
-  gap: 2rem 0;
-`;
-
-const GridOptions = styled.div`
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-
-  bottom: 1rem;
-`;
-
-const Button = styled.button`
-  border: none;
-  padding: 1rem 2rem;
-  display: inline;
-  background-color: var(--pokedexGreen);
-  border-radius: 10px;
-`;
+import { usePokemonGridFetch } from "../../Hooks/usePokemonGridFetch";
 
 const Pokemon = () => {
   const [openFilter, setOpenFilter] = useState(false);

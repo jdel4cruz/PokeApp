@@ -1,18 +1,13 @@
-import styled from "styled-components";
 import { useParams } from "react-router-dom";
 
-//Hooks
-import { usePokemonEvolutionsFetch } from "./Hooks/usePokemonEvolutionsFetch";
-
 //Components
-import PokemonEvoChart from "./Components/PokemonEvoChart";
+import PokemonEvoChart from "../../Components/PokemonEvoChart";
 
-const Wrapper = styled.div`
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
-  flex-grow: 1;
-`;
+// Styles
+import { Wrapper } from "./PokemonEvolutions.styles";
+
+//Hooks
+import { usePokemonEvolutionsFetch } from "../../Hooks/usePokemonEvolutionsFetch";
 
 const PokemonEvolutions = () => {
   const { pokemonId } = useParams();
