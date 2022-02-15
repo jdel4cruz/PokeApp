@@ -4,11 +4,14 @@ export const Wrapper = styled.div`
   display: flex;
   align-items: center;
   height: 350px;
-  position: relative;
+  position: absolute;
   width: 800px;
 
+  top: 50%;
+  transform: translateY(-50%);
+
   padding: 3rem 1rem;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(90, 90, 90);
 `;
 
 export const ImgContainer = styled.div`

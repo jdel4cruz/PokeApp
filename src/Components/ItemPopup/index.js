@@ -8,7 +8,7 @@ import {
   CloseButton,
 } from "./ItemPopup.styles";
 
-const ItemPopup = ({ data }) => {
+const ItemPopup = ({ data, setPopup }) => {
   const [state, setState] = useState(null);
 
   useEffect(() => {
@@ -16,14 +16,14 @@ const ItemPopup = ({ data }) => {
   }, [data]);
 
   if (state == null) {
-    return <div>loading</div>;
+    return null;
   }
 
   const { sprite, name, category, effectText, cost } = state;
 
   return (
     <Wrapper>
-      <CloseButton />
+      <CloseButton onClick={() => setPopup(null)} />
       <ImgContainer>
         <img src={sprite} />
       </ImgContainer>

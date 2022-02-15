@@ -127,6 +127,7 @@ const Filter = ({
     return setFilterSort(newFilterSort);
   };
 
+  // Called when close filter button is click. Simply calls setOpenFilter and is passed false to close the filter window.
   const closeFilter = () => {
     setOpenFilter(false);
   };

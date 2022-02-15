@@ -1,9 +1,11 @@
+import { useState } from "react";
+
 //Components
 import Grid from "../../Components/Grid";
 import ItemPopup from "../../Components/ItemPopup";
 
 // Styles
-import { Wrapper } from "./ItemGrid.style";
+import { Wrapper, Overlay } from "./ItemGrid.style";
 //Hooks
 import { useItemFetch } from "../../Hooks/useItemFetch";
 
@@ -16,8 +18,9 @@ const ItemGrid = () => {
 
   return (
     <Wrapper>
-      <ItemPopup data={popup} />
-      <Grid>{cards}</Grid>;
+      <Grid>{cards}</Grid>
+      <Overlay popup={popup} />
+      <ItemPopup data={popup} setPopup={setPopup} />
     </Wrapper>
   );
 };
