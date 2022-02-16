@@ -42,11 +42,8 @@ export const keyGenerator = (data) =>
   data.forEach((item) => (item.key = uuidv4()));
 
 // Functions to set sprite properties to
-export const itemSpriteGenerator = (data) =>
-  data.forEach(
-    (item) =>
-      (item.sprite = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/${item.name}.png`)
-  );
+export const itemSpriteGenerator = (item) =>
+  (item.sprite = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/${item.name}.png`);
 
 export const pokemonSpriteGenerator = (data) =>
   data.forEach(
@@ -252,4 +249,75 @@ const buildEvoCondition = (pokemon) => {
   }
 
   pokemon.evoCondition = evoCondition;
+};
+
+export const updateItemData = (items) =>
+  items.forEach((item) => {
+    generateItemCategory(item);
+    itemSpriteGenerator(item);
+  });
+
+const generateItemCategory = (item) => {
+  switch (item.rawCategory.id) {
+    case 37:
+      item.category = "TM";
+      break;
+    case 24:
+      item.category = "Sellable";
+      break;
+    case 21:
+      item.category = "Key Item";
+      break;
+    case 10:
+      item.category = "Evolution";
+      break;
+    default:
+      break;
+  }
+
+  for (let element of item.attributes) {
+    const attribute = element.attribute;
+    let foundCategory = false;
+
+    switch (attribute.id) {
+      case 7:
+        item.category = "Held Item";
+        foundCategory = true;
+        break;
+      case 4:
+        item.category = "Battle-Item";
+        foundCategory = true;
+        break;
+      case 2:
+        item.category = "Consumable";
+        foundCategory = true;
+        break;
+      default:
+        break;
+    }
+
+    if (foundCategory) {
+      break;
+    }
+  }
+  // item.attributes.forEach((element) => {
+
+  //   switch (element.attribute.id) {
+  //     case 7:
+  //       item.category = "Held Item";
+  //       foundCategory = true;
+  //       break;
+  //     case 4:
+  //       item.category = "Battle-Item";
+  //       foundCategory = true;
+  //       break;
+  //     case 2:
+  //       item.category = "Consumable";
+  //       foundCategory = true;
+  //       break;
+  //     default:
+  //       break;
+  //   }
+
+  // });
 };

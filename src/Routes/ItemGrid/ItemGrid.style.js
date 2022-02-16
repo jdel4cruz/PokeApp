@@ -20,3 +20,20 @@ export const Overlay = styled.div`
 
   display: ${(props) => (props.popup != null ? "block" : "none")};
 `;
+
+export const GridOptions = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  bottom: 1rem;
+`;
+
+export const Button = styled.button`
+  border: none;
+  padding: 1rem 2rem;
+  display: inline;
+  background-color: var(--pokedexGreen);
+  border-radius: 10px;
+`;

@@ -59,5 +59,5 @@ export const useItemFetch = () => {
     }
   }, [state, limit, page, filterSort]);
 
-  return { popup, setPopup, cards, setFilterSort };
+  return { popup, setPopup, cards, setFilterSort, setPage };
 };

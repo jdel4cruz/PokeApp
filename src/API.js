@@ -2,7 +2,7 @@
 import {
   updateMoveText,
   generateEvoTiers,
-  itemSpriteGenerator,
+  updateItemData,
 } from "./HelperFunctions";
 
 const fetchData = async (queryString, vars = {}) => {
@@ -264,12 +264,22 @@ query PokemonType($id: Int) {
   fetchItems: async () => {
     const query = `
     query PokemonItems {
-      items: pokemon_v2_item {
+      items: pokemon_v2_item(order_by: {id: asc}) {
         name
         id
         cost
-        itemEffect:pokemon_v2_itemeffecttexts {
+        itemEffect: pokemon_v2_itemeffecttexts {
           effect
+        }
+        attributes: pokemon_v2_itemattributemaps(order_by: {item_attribute_id: desc}) {
+          attribute: pokemon_v2_itemattribute {
+            name
+            id
+          }
+        }
+        rawCategory: pokemon_v2_itemcategory {
+          name
+          id
         }
       }
     }
@@ -278,8 +288,8 @@ query PokemonType($id: Int) {
     const data = await fetchData(query);
     const items = data.items;
 
-    itemSpriteGenerator(items);
-
+    updateItemData(items);
+    console.log(items);
     return items;
   },
 };

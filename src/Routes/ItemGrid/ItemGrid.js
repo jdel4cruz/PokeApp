@@ -5,12 +5,13 @@ import Grid from "../../Components/Grid";
 import ItemPopup from "../../Components/ItemPopup";
 
 // Styles
-import { Wrapper, Overlay } from "./ItemGrid.style";
+import { Wrapper, Overlay, Button, GridOptions } from "./ItemGrid.style";
+
 //Hooks
 import { useItemFetch } from "../../Hooks/useItemFetch";
 
 const ItemGrid = () => {
-  const { popup, setPopup, cards, setFilterSort } = useItemFetch();
+  const { popup, setPopup, cards, setFilterSort, setPage } = useItemFetch();
 
   if (cards == null) {
     return <div>Loading</div>;
@@ -21,6 +22,16 @@ const ItemGrid = () => {
       <Grid>{cards}</Grid>
       <Overlay popup={popup} />
       <ItemPopup data={popup} setPopup={setPopup} />
+      <GridOptions>
+        <Button
+          onClick={(e) => {
+            console.log(e.target.innerText);
+            setPage((prevPage) => prevPage + 1);
+          }}
+        >
+          Load More
+        </Button>
+      </GridOptions>
     </Wrapper>
   );
 };
