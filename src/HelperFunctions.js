@@ -256,6 +256,7 @@ export const updateItemData = (items) =>
   items.forEach((item) => {
     generateItemCategory(item);
     itemSpriteGenerator(item);
+    removeHyphen(item, "name");
   });
 
 const generateItemCategory = (item) => {
@@ -286,7 +287,7 @@ const generateItemCategory = (item) => {
         foundCategory = true;
         break;
       case 4:
-        item.category = "Battle-Item";
+        item.category = "Battle Item";
         foundCategory = true;
         break;
       case 2:
@@ -322,3 +323,6 @@ const generateItemCategory = (item) => {
 
   // });
 };
+
+//Generic function used to remove hyphens from strings
+const removeHyphen = (obj, key) => (obj[key] = obj[key].replace("-", " "));

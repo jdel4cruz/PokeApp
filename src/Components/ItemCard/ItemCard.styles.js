@@ -21,4 +21,8 @@ export const CardText = styled.div`
   flex-flow: column nowrap;
   align-items: center;
   justify-content: center;
+
+  div {
+    text-transform: capitalize;
+  }
 `;
