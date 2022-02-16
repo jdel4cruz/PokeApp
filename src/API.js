@@ -289,7 +289,6 @@ query PokemonType($id: Int) {
     const items = data.items;
 
     updateItemData(items);
-    console.log(items);
     return items;
   },
 };

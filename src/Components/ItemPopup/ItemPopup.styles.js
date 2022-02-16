@@ -58,3 +58,7 @@ export const CloseButton = styled.button`
     transform: rotate(-45deg);
   }
 `;
+
+export const Name = styled.div`
+  text-transform: capitalize;
+`;

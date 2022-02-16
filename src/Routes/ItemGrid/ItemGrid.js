@@ -3,6 +3,7 @@ import { useState } from "react";
 //Components
 import Grid from "../../Components/Grid";
 import ItemPopup from "../../Components/ItemPopup";
+import ItemFilter from "../../Components/ItemFilter";
 
 // Styles
 import { Wrapper, Overlay, Button, GridOptions } from "./ItemGrid.style";
@@ -11,7 +12,9 @@ import { Wrapper, Overlay, Button, GridOptions } from "./ItemGrid.style";
 import { useItemFetch } from "../../Hooks/useItemFetch";
 
 const ItemGrid = () => {
-  const { popup, setPopup, cards, setFilterSort, setPage } = useItemFetch();
+  const { popup, setPopup, cards, filterSort, setFilterSort, setPage } =
+    useItemFetch();
+  const [isOpen, setIsOpen] = useState(false);
 
   if (cards == null) {
     return <div>Loading</div>;
@@ -21,7 +24,6 @@ const ItemGrid = () => {
     <Wrapper>
       <Grid>{cards}</Grid>
       <Overlay popup={popup} />
-      <ItemPopup data={popup} setPopup={setPopup} />
       <GridOptions>
         <Button
           onClick={(e) => {
@@ -31,7 +33,23 @@ const ItemGrid = () => {
         >
           Load More
         </Button>
+
+        <Button
+          onClick={(e) => {
+            setIsOpen(!isOpen);
+          }}
+        >
+          Filter/Sort
+        </Button>
       </GridOptions>
+      <ItemFilter
+        filterSort={filterSort}
+        setFilterSort={setFilterSort}
+        openFilter={isOpen}
+        setOpenFilter={setIsOpen}
+        setPage={setPage}
+      />
+      <ItemPopup data={popup} setPopup={setPopup} />
     </Wrapper>
   );
 };

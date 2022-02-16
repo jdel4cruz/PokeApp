@@ -6,6 +6,7 @@ import {
   ImgContainer,
   ItemText,
   CloseButton,
+  Name,
 } from "./ItemPopup.styles";
 
 const ItemPopup = ({ data, setPopup }) => {
@@ -28,7 +29,7 @@ const ItemPopup = ({ data, setPopup }) => {
         <img src={sprite} />
       </ImgContainer>
       <ItemText>
-        <div>{`Name: ${name}`}</div>
+        <Name>{`Name: ${name}`}</Name>
         <div>{`Category: ${category}`}</div>
         <div>{`Effect Text: ${effectText}`}</div>
         <div>{`Cost: ${cost}`}</div>
