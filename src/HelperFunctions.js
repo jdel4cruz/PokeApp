@@ -25,6 +25,7 @@ export const itemCardGenerator = (data, filterSort, page, limit, setPopup) => {
   const cards = data.map((item, i) => (
     <ItemCard
       sprite={item.sprite}
+      category={item.category}
       cost={item.cost}
       name={item.name}
       id={item.id}

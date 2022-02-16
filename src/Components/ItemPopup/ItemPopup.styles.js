@@ -12,6 +12,7 @@ export const Wrapper = styled.div`
 
   padding: 3rem 1rem;
   background-color: rgba(90, 90, 90);
+  border-radius: 2rem;
 `;
 
 export const ImgContainer = styled.div`
@@ -34,8 +35,8 @@ export const CloseButton = styled.button`
 
   min-width: 3rem;
   min-height: 3rem;
-  top: 1rem;
-  right: 1rem;
+  top: 2rem;
+  right: 2rem;
   padding: 0;
   border: none;
 

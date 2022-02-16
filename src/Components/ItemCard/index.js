@@ -6,6 +6,7 @@ import { Wrapper, CardImg, CardText } from "./ItemCard.styles";
 const ItemCard = ({
   sprite,
   cost,
+  category,
   name,
   id,
   effectText,
@@ -18,7 +19,7 @@ const ItemCard = ({
     setIsValid(true);
   }, [filterSort]);
 
-  const data = { sprite, name, effectText, cost };
+  const data = { sprite, name, effectText, cost, category };
 
   return (
     <Wrapper
