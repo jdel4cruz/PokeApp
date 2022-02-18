@@ -67,7 +67,9 @@ export const calcDamageFactor = (weakness1, weakness2) => {
 export const updateMoveText = (data) =>
   Object.keys(data).forEach((moveList) => {
     data[moveList].forEach((move) => {
+      console.log(move);
       const moveData = move.pokemon_v2_move;
+      console.log(moveData);
       const moveEffectChance = moveData.move_effect_chance;
 
       moveData.name = moveData.name.replace("-", " ");
@@ -302,27 +304,26 @@ const generateItemCategory = (item) => {
       break;
     }
   }
-  // item.attributes.forEach((element) => {
-
-  //   switch (element.attribute.id) {
-  //     case 7:
-  //       item.category = "Held Item";
-  //       foundCategory = true;
-  //       break;
-  //     case 4:
-  //       item.category = "Battle-Item";
-  //       foundCategory = true;
-  //       break;
-  //     case 2:
-  //       item.category = "Consumable";
-  //       foundCategory = true;
-  //       break;
-  //     default:
-  //       break;
-  //   }
-
-  // });
 };
 
 //Generic function used to remove hyphens from strings
 const removeHyphen = (obj, key) => (obj[key] = obj[key].replace("-", " "));
+
+export const updateAllMoveText = (data) =>
+  Object.keys(data).forEach((moveList) => {
+    data[moveList].forEach((move) => {
+      const moveEffectChance = move.move_effect_chance;
+
+      move.name = move.name.replace("-", " ");
+
+      if (moveEffectChance != null) {
+        const effectTextData =
+          move.pokemon_v2_moveeffect.pokemon_v2_moveeffecteffecttexts[0];
+
+        effectTextData.effect = effectTextData.effect.replaceAll(
+          "$effect_chance%",
+          `${moveEffectChance}%`
+        );
+      }
+    });
+  });

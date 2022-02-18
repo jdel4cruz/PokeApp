@@ -3,6 +3,7 @@ import {
   updateMoveText,
   generateEvoTiers,
   updateItemData,
+  updateAllMoveText,
 } from "./HelperFunctions";
 
 const fetchData = async (queryString, vars = {}) => {
@@ -290,6 +291,59 @@ query PokemonType($id: Int) {
 
     updateItemData(items);
     return items;
+  },
+
+  fetchAllMoves: async (filter, filterVal, sort, sortVal) => {
+    let query;
+    if (filter == null) {
+      query = `query AllMoves {
+        moves: pokemon_v2_move {
+          accuracy
+          move_damage_class_id
+          move_effect_chance
+          name
+          power
+          pp
+          priority
+          type_id
+          id
+          pokemon_v2_moveeffect {
+            pokemon_v2_moveeffecteffecttexts {
+              effect
+            }
+          }
+        }
+      }
+      `;
+    } else {
+      query = `
+      query AllMoves() {
+        moves: pokemon_v2_move(where: {${filter}: {_eq: ${filterVal}}}, order_by: {${sort}: ${sortVal}}) {
+          accuracy
+          move_damage_class_id
+          move_effect_chance
+          name
+          power
+          pp
+          priority
+          type_id
+          id
+          pokemon_v2_moveeffect {
+            pokemon_v2_moveeffecteffecttexts {
+              effect
+            }
+          }
+        }
+      }
+    }
+    `;
+    }
+
+    const data = await fetchData(query);
+    updateAllMoveText(data);
+    console.log(data);
+
+    return data;
   },
 };
 

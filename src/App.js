@@ -9,6 +9,7 @@ import PokemonDescription from "./Routes/PokemonDescription/PokemonDescription.j
 import PokemonMoves from "./Routes/PokemonMoves/PokemonMoves";
 import PokemonEvolutions from "./Routes/PokemonEvolutions/PokemonEvolutions.js";
 import ItemGrid from "./Routes/ItemGrid/ItemGrid.js";
+import AllMoves from "./Routes/AllMoves/AllMoves.js";
 
 // Components
 import Header from "./Components/Header";
@@ -40,6 +41,7 @@ function App() {
             element={<PokemonEvolutions />}
           />
           <Route path="items" element={<ItemGrid />} />
+          <Route path="moves" element={<AllMoves />} />
         </Routes>
       </Router>
       <GlobalStyle />
