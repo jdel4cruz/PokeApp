@@ -6,9 +6,9 @@ import API from "../API";
 const initialFilterSort = {
   filter: "move_damage_class_id",
   filterCondition: "_eq:",
-  filterVal: "2",
-  sort: "accuracy",
-  sortVal: "desc_nulls_last",
+  filterVal: "3",
+  sort: "id",
+  sortVal: "asc_nulls_first",
 };
 
 //Might take out limit and page states if they're not needed

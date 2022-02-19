@@ -1,5 +1,8 @@
+import { useState } from "react";
+
 //Components
 import MoveList from "../../Components/MoveList";
+import MoveFilter from "../../Components/MoveFilter";
 
 //Styles
 import { Wrapper } from "./AllMoves.styles";
@@ -31,8 +34,10 @@ const types = [
 const atkTypes = ["Status", "Phys", "Spec"];
 
 const AllMoves = () => {
-  const { rawData, filterSort, setFilterSort } = useAllMovesFetch();
+  const { rawData, filterSort, setFilterSort, setPage } = useAllMovesFetch();
   const { filter, filterVal, sort, sortVal } = filterSort;
+  const [isOpen, setIsOpen] = useState(true);
+
   let title;
 
   if (rawData == null) {
@@ -61,6 +66,13 @@ const AllMoves = () => {
   return (
     <Wrapper>
       <MoveList moveSet={rawData.moves} isLevel={false} title={title} />
+      <MoveFilter
+        filterSort={filterSort}
+        setFilterSort={setFilterSort}
+        openFilter={isOpen}
+        setOpenFilter={setIsOpen}
+        setPage={setPage}
+      />
     </Wrapper>
   );
 };
