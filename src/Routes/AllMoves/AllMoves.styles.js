@@ -4,4 +4,7 @@ export const Wrapper = styled.div`
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
+
+  overflow: hidden;
+  height: 80%;
 `;

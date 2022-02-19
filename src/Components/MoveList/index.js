@@ -5,15 +5,17 @@ import Move from "../Move";
 
 //Styles
 import {
+  Wrapper,
   MoveListTitle,
   MoveListContainer,
   MoveContainer,
   MoveCell,
+  MoveHeaderContainer,
 } from "./MoveList.styles";
 
 const MoveHeader = ({ isLevel, title }) => {
   return (
-    <>
+    <MoveHeaderContainer>
       <MoveListTitle backgroundColor={"var(--pokedexGreen)"}>
         {title}
       </MoveListTitle>
@@ -28,19 +30,21 @@ const MoveHeader = ({ isLevel, title }) => {
         <MoveCell>PP</MoveCell>
         <MoveCell>Effect</MoveCell>
       </MoveContainer>
-    </>
+    </MoveHeaderContainer>
   );
 };
 
 const MoveList = ({ moveSet, isLevel, title }) => {
   console.log("moveset", moveSet);
   return (
-    <MoveListContainer>
+    <Wrapper>
       <MoveHeader isLevel={isLevel} title={title}></MoveHeader>
-      {moveSet.map((move) => {
-        return <Move move={move} isLevel={isLevel} key={uuidv4()} />;
-      })}
-    </MoveListContainer>
+      <MoveListContainer>
+        {moveSet.map((move) => {
+          return <Move move={move} isLevel={isLevel} key={uuidv4()} />;
+        })}
+      </MoveListContainer>
+    </Wrapper>
   );
 };
 

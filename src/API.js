@@ -293,7 +293,7 @@ query PokemonType($id: Int) {
     return items;
   },
 
-  fetchAllMoves: async (filter, filterVal, sort, sortVal) => {
+  fetchAllMoves: async (filter, filterCondition, filterVal, sort, sortVal) => {
     let query;
     if (filter == null) {
       query = `query AllMoves {
@@ -317,8 +317,8 @@ query PokemonType($id: Int) {
       `;
     } else {
       query = `
-      query AllMoves() {
-        moves: pokemon_v2_move(where: {${filter}: {_eq: ${filterVal}}}, order_by: {${sort}: ${sortVal}}) {
+      query AllMoves {
+        moves: pokemon_v2_move(where: {${filter}: {${filterCondition} ${filterVal}}}, order_by: {${sort}: ${sortVal}}) {
           accuracy
           move_damage_class_id
           move_effect_chance
@@ -335,9 +335,11 @@ query PokemonType($id: Int) {
           }
         }
       }
-    }
+    
     `;
     }
+
+    console.log(query);
 
     const data = await fetchData(query);
     updateAllMoveText(data);

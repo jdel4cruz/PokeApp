@@ -4,10 +4,11 @@ import { useState, useEffect } from "react";
 import API from "../API";
 
 const initialFilterSort = {
-  filter: null,
-  filterVal: null,
-  sort: null,
-  sortVal: null,
+  filter: "move_damage_class_id",
+  filterCondition: "_eq:",
+  filterVal: "2",
+  sort: "accuracy",
+  sortVal: "desc_nulls_last",
 };
 
 //Might take out limit and page states if they're not needed
@@ -18,9 +19,15 @@ export const useAllMovesFetch = () => {
   const [filterSort, setFilterSort] = useState(initialFilterSort);
 
   const fetchAllMoves = async () => {
-    const { filter, filterVal, sort, sortVal } = filterSort;
+    const { filter, filterCondition, filterVal, sort, sortVal } = filterSort;
     try {
-      const moves = await API.fetchAllMoves(filter, filterVal, sort, sortVal);
+      const moves = await API.fetchAllMoves(
+        filter,
+        filterCondition,
+        filterVal,
+        sort,
+        sortVal
+      );
       console.log(moves);
 
       setRawData(moves);

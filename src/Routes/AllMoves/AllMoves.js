@@ -55,7 +55,7 @@ const AllMoves = () => {
       title = "moves with effects";
       break;
     default:
-      console.log("No filter applied");
+      title = "all moves";
   }
 
   return (

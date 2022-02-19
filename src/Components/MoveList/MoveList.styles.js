@@ -1,12 +1,32 @@
 import styled from "styled-components";
 
-export const MoveListContainer = styled.ul`
-  list-style: none;
+export const Wrapper = styled.div`
+  position: relative;
 
   width: var(--maxWidth);
+
   border: 1px solid black;
   padding: 0;
+  margin-top: 3rem;
   background-color: ${(props) => props.backgroundColor || ""};
+
+  overflow: scroll;
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
+`;
+
+export const MoveHeaderContainer = styled.div`
+  position: sticky;
+  background-color: white;
+  top: 0;
+`;
+
+export const MoveListContainer = styled.ul`
+  list-style: none;
+  padding: 0;
+  margin: 0;
 `;
 
 export const MoveListTitle = styled.div`
