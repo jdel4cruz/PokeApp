@@ -11,20 +11,20 @@ import {
 
 // A bunch of arrays filled with objects that contain the label and value properties for the filter options.
 const filterOptions = [
-  { value: "", label: "Choose Category" },
+  { value: null, label: "Choose Category" },
   { value: "priority", label: "Priority" },
   { value: "type_id", label: "Type" },
   { value: "move_damage_class_id", label: "Attack Class" },
 ];
 
 const priorityOptions = [
-  { value: "", label: "Choose Category" },
+  { value: null, label: "Choose Category" },
   { value: "1", label: "Has Priority" },
-  { value: "0", label: "NoPriority" },
+  { value: "0", label: "No Priority" },
 ];
 
 const typeOptions = [
-  { value: "", label: "Choose Type" },
+  { value: null, label: "Choose Type" },
   { value: "1", label: "Normal" },
   { value: "2", label: "Fighting" },
   { value: "3", label: "Flying" },
@@ -46,7 +46,7 @@ const typeOptions = [
 ];
 
 const damageClassOptions = [
-  { value: "", label: "Choose Category" },
+  { value: null, label: "Choose Category" },
   { value: "1", label: "Status" },
   { value: "2", label: "Physical" },
   { value: "3", label: "Special" },
@@ -73,46 +73,6 @@ const Filter = ({
 }) => {
   const { filter, filterVal, sort, sortVal } = filterSort;
 
-  const selectStyles = {
-    container: (base) => ({ ...base, width: "7rem" }),
-  };
-
-  // Function that is called when a filter or sort option is changed. Takes changes and passes them to setFilterSort to update the state
-  const handleChange = (event, key) => {
-    let newFilterSort = { ...filterSort };
-    let value = event.value;
-
-    if (key == "filter") {
-      newFilterSort.filter = value;
-    }
-
-    if (key == "filterVal") {
-      console.log(subOptions == priorityOptions);
-      if (subOptions == priorityOptions && filterSort.filter > 0) {
-        newFilterSort.filterCondition = "_gte:";
-      } else {
-        newFilterSort.filterCondition = "_eq:";
-      }
-      newFilterSort.filterVal = value;
-    }
-
-    if (key == "sort") {
-      newFilterSort.sort = value;
-    }
-
-    if (key == "order") {
-      newFilterSort.sortVal = value;
-    }
-
-    setPage(1);
-    return setFilterSort(newFilterSort);
-  };
-
-  // Called when close filter button is click. Simply calls setOpenFilter and is passed false to close the filter window.
-  const closeFilter = () => {
-    setOpenFilter(false);
-  };
-
   const optionSelect = (filter) => {
     let option;
     switch (filter) {
@@ -126,13 +86,54 @@ const Filter = ({
         option = damageClassOptions;
         break;
       default:
-        option = "";
+        option = null;
     }
 
     return option;
   };
 
   const subOptions = optionSelect(filter);
+
+  const selectStyles = {
+    container: (base) => ({ ...base, width: "7rem" }),
+  };
+
+  // Function that is called when a filter or sort option is changed. Takes changes and passes them to setFilterSort to update the state
+  const handleChange = (event, key) => {
+    let newFilterSort = { ...filterSort };
+    let value = event.value;
+
+    if (key == "filter") {
+      newFilterSort.filter = value;
+      newFilterSort.filterVal = null;
+      newFilterSort.filterCondition = null;
+    }
+
+    if (key == "filterVal") {
+      if (subOptions == priorityOptions && filterSort.filter > 0) {
+        newFilterSort.filterCondition = "_gte:";
+      } else {
+        newFilterSort.filterCondition = "_eq:";
+      }
+      newFilterSort.filterVal = value;
+    }
+
+    if (key == "sort") {
+      newFilterSort.sort = value;
+    }
+
+    if (key == "sortVal") {
+      newFilterSort.sortVal = value;
+    }
+
+    setPage(1);
+    setFilterSort(newFilterSort);
+  };
+
+  // Called when close filter button is click. Simply calls setOpenFilter and is passed false to close the filter window.
+  const closeFilter = () => {
+    setOpenFilter(false);
+  };
 
   return (
     <Wrapper className={openFilter ? "open" : ""}>
@@ -161,13 +162,13 @@ const Filter = ({
                 options={subOptions}
                 styles={selectStyles}
                 value={
-                  filterVal
+                  filterVal != null
                     ? subOptions[
                         subOptions
                           .map((option) => option.value)
                           .indexOf(filterVal)
                       ]
-                    : subOptions[0]
+                    : { value: "", label: "Choose Filter" }
                 }
                 onChange={(e) => handleChange(e, "filterVal")}
               />

@@ -354,15 +354,14 @@ query AllMoves {
 }
 
 //Filters
-- priority
-- type_id
-- move_effect_chance
-- move_damage_class_id
+- priority (val = _eq: 0 / _gt: 0)
+- type_id (val = _eq: type_id)
+- move_damage_class_id (val = _eq: move_damage_class_id)
 
-//Sorts
-- id
+//Sorts (val = asc_nulls_first/ desc_nulls_last)
+- id 
 - name
-- power
+- power 
 - accuracy
 
 

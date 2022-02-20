@@ -4,9 +4,9 @@ import { useState, useEffect } from "react";
 import API from "../API";
 
 const initialFilterSort = {
-  filter: "move_damage_class_id",
-  filterCondition: "_eq:",
-  filterVal: "3",
+  filter: null,
+  filterCondition: null,
+  filterVal: null,
   sort: "id",
   sortVal: "asc_nulls_first",
 };
@@ -28,7 +28,7 @@ export const useAllMovesFetch = () => {
         sort,
         sortVal
       );
-      console.log(moves);
+      // console.log(moves);
 
       setRawData(moves);
     } catch (error) {

@@ -5,7 +5,7 @@ import MoveList from "../../Components/MoveList";
 import MoveFilter from "../../Components/MoveFilter";
 
 //Styles
-import { Wrapper } from "./AllMoves.styles";
+import { Wrapper, ListOptions, Button } from "./AllMoves.styles";
 
 //Hooks
 import { useAllMovesFetch } from "../../Hooks/useAllMovesFetch";
@@ -35,16 +35,14 @@ const atkTypes = ["Status", "Phys", "Spec"];
 
 const AllMoves = () => {
   const { rawData, filterSort, setFilterSort, setPage } = useAllMovesFetch();
-  const { filter, filterVal, sort, sortVal } = filterSort;
-  const [isOpen, setIsOpen] = useState(true);
-
-  let title;
+  const { filter, filterVal } = filterSort;
+  const [isOpen, setIsOpen] = useState(false);
 
   if (rawData == null) {
     return null;
   }
 
-  console.log(rawData);
+  let title;
 
   switch (filter) {
     case "priority":
@@ -73,6 +71,15 @@ const AllMoves = () => {
         setOpenFilter={setIsOpen}
         setPage={setPage}
       />
+      <ListOptions>
+        <Button
+          onClick={(e) => {
+            setIsOpen(!isOpen);
+          }}
+        >
+          Filter/Sort
+        </Button>
+      </ListOptions>
     </Wrapper>
   );
 };
