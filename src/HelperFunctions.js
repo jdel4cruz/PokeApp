@@ -327,3 +327,27 @@ export const updateAllMoveText = (data) =>
       }
     });
   });
+
+export const splitPokemonAbilties = (data) => {
+  console.log("in splitPokemonAbilities", data);
+  const splitData = new Array();
+
+  let currentIndex = data[0].name.charAt(0);
+
+  let currentArray = new Array();
+
+  for (let ability of data) {
+    console.log(ability);
+    if (currentIndex == ability.name.charAt(0)) {
+      currentArray.push(ability);
+    } else {
+      splitData.push(currentArray);
+      currentArray = new Array();
+      currentArray.push(ability);
+      currentIndex = ability.name.charAt(0);
+    }
+  }
+
+  console.log(splitData);
+  return splitData;
+};

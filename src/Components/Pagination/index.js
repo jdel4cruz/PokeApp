@@ -1,24 +1,22 @@
 //Styles
-import { Wrapper, PageLink } from "./Pagination.styles";
+import { Wrapper, PageItem } from "./Pagination.styles";
 
-const Pagination = () => (
-  <Wrapper>
-    <li>
-      <PageLink>First</PageLink>
-    </li>
-    <li>
-      <PageLink>1</PageLink>
-    </li>
-    <li>
-      <PageLink>2</PageLink>
-    </li>
-    <li>
-      <PageLink>3</PageLink>
-    </li>
-    <li>
-      <PageLink>Last</PageLink>
-    </li>
-  </Wrapper>
-);
+const Pagination = ({ data, currentIndex, setCurrentIndex }) => {
+  let pageItems = new Array();
+
+  data.forEach((abilityGroup, i) => {
+    const char = abilityGroup[0].name.charAt(0);
+    pageItems.push(
+      <PageItem
+        onClick={() => setCurrentIndex(i)}
+        isCurrent={i == currentIndex}
+      >
+        {char}
+      </PageItem>
+    );
+  });
+
+  return <Wrapper>{pageItems}</Wrapper>;
+};
 
 export default Pagination;

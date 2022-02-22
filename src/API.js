@@ -4,6 +4,7 @@ import {
   generateEvoTiers,
   updateItemData,
   updateAllMoveText,
+  splitPokemonAbilties,
 } from "./HelperFunctions";
 
 const fetchData = async (queryString, vars = {}) => {
@@ -346,6 +347,31 @@ query PokemonType($id: Int) {
     // console.log(data);
 
     return data;
+  },
+
+  fetchAbilities: async () => {
+    const query = `
+    query AllMoves {
+      abilities: pokemon_v2_ability(order_by: {name: asc}) {
+        id
+        name
+        abilityEffect: pokemon_v2_abilityeffecttexts(where: {language_id: {_eq: 9}}) {
+          effect
+        }
+        pokemonInfo: pokemon_v2_pokemonabilities {
+          pokemon: pokemon_v2_pokemon {
+            name
+          }
+          is_hidden
+        }
+      }
+    }
+    `;
+
+    const data = await fetchData(query);
+    console.log(data);
+    const splitData = splitPokemonAbilties(data.abilities);
+    return splitData;
   },
 };
 
