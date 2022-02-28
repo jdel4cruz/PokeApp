@@ -12,7 +12,7 @@ import {
 
 //Images
 const LogoImg =
-  "https://fontmeme.com/permalink/220118/faa67ecf8375f989aaedde74d5c61dc7.png";
+  "https://fontmeme.com/permalink/220228/42265cafe99a4859e3a787b661dff437.png";
 
 const Header = () => (
   <Wrapper>
@@ -22,7 +22,6 @@ const Header = () => (
       </Link>
     </LogoContainer>
 
-    <div>SearchBar Here</div>
     <NavContainer>
       <ul>
         <li key={uuidv4()}>

@@ -23,7 +23,10 @@ const AllAbilities = () => {
 
   return (
     <Wrapper>
-      <AbilityList abilities={abilities[currentIndex]} title="placeholder" />
+      <AbilityList
+        abilities={abilities[currentIndex]}
+        title="Abilities By Name"
+      />
       <ListOptions>
         <Pagination
           data={abilities}

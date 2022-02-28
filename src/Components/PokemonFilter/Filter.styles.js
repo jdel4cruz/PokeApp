@@ -2,15 +2,23 @@ import styled from "styled-components";
 
 export const Wrapper = styled.div`
   position: absolute;
+  top: 50%;
   right: -25rem;
 
   display: flex;
   flex-flow: column nowrap;
-  gap: 2rem 0;
+  align-items: center;
+  gap: 3rem 0;
   max-height: 100%;
   width: fit-content;
-  padding: 1rem;
-  background-color: grey;
+  padding: 1rem 2rem;
+  background-color: white;
+  color: black;
+  border: 6px solid black;
+
+  border-radius: 10px;
+
+  z-index: 99999;
 
   overflow: scroll;
 
@@ -18,20 +26,21 @@ export const Wrapper = styled.div`
     width: 0px;
     background: transparent;
   }
-  transform: translateX(0);
+  transform: translate(0, -50%);
   transition: transform 0.7s ease 0s;
 
   &.open {
-    transform: translateX(-25rem);
+    transform: translate(-25rem, -50%);
     transition: transform 0.7s ease 0s;
   }
 
   ul {
     padding: 0;
+    margin: 0;
   }
 
   h2 {
-    margin: 0;
+    margin-bottom: 0.5rem;
   }
 `;
 
@@ -57,6 +66,17 @@ export const Selection = styled.ul`
 export const CloseButton = styled.button`
   border: none;
   padding: 1rem 2rem;
-  background-color: var(--pokedexGreen);
+  background-color: white;
   border-radius: 10px;
+  border: 3px solid black;
+
+  width: 70%;
+  font-size: var(--fontLarge);
+  font-weight: bold;
+  color: Black;
+
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  &:hover {
+    cursor: pointer;
+  }
 `;

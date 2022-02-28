@@ -1,22 +1,20 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-  position: relative;
   display: flex;
   flex-flow: column nowrap;
+  justify-content: space-between;
   align-items: center;
 
   overflow: hidden;
-  height: 100%;
+  height: 100vh;
 `;
 
 export const ListOptions = styled.div`
-  position: relative;
   display: flex;
   align-items: center;
   gap: 1rem;
-
-  bottom: 0;
+  margin: 1rem;
 `;
 
 export const Button = styled.button`

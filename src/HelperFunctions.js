@@ -320,10 +320,12 @@ export const updateAllMoveText = (data) =>
         const effectTextData =
           move.pokemon_v2_moveeffect.pokemon_v2_moveeffecteffecttexts[0];
 
-        effectTextData.effect = effectTextData.effect.replaceAll(
-          "$effect_chance%",
-          `${moveEffectChance}%`
-        );
+        if (effectTextData != null) {
+          effectTextData.effect = effectTextData.effect.replaceAll(
+            "$effect_chance%",
+            `${moveEffectChance}%`
+          );
+        }
       }
     });
   });

@@ -1,7 +1,16 @@
 import { useState, useEffect } from "react";
 
 //Styles
-import { Wrapper, CardImg, CardText, StyledLink } from "./Card.Styles";
+import {
+  Wrapper,
+  CardImg,
+  CardText,
+  StyledLink,
+  Corner,
+  CardId,
+  CardName,
+  ImgContainer,
+} from "./Card.Styles";
 
 const Card = ({ img, name, id, filterSort }) => {
   // If part of a cards data is not available from the API and an error is thrown upon card generation, this state is used to set className isValid on the Wrapper to "broken". This in turn sets display: none
@@ -17,14 +26,17 @@ const Card = ({ img, name, id, filterSort }) => {
   return (
     <StyledLink to={`/pokemon/${id}`}>
       <Wrapper className={!isValid ? "broken" : ""}>
-        <CardImg
-          src={img}
-          alt="Card Img"
-          onError={() => isValid && setIsValid(false)}
-        />
+        <Corner />
+        <ImgContainer>
+          <CardImg
+            src={img}
+            alt="Card Img"
+            onError={() => isValid && setIsValid(false)}
+          />
+        </ImgContainer>
         <CardText>
-          <div>{name}</div>
-          {id && <div>{id}</div>}
+          <CardId>{id}</CardId>
+          <CardName>{name}</CardName>
         </CardText>
       </Wrapper>
     </StyledLink>

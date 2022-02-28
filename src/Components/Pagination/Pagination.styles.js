@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.ul`
+  position: relative;
   display: flex;
   list-style: none;
   margin: 0;

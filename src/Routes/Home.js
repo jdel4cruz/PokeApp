@@ -17,6 +17,7 @@ const Wrapper = styled.div`
 
   align-items: center;
   gap: 2rem 0;
+  padding: 3rem;
 `;
 
 const Body = styled.div`

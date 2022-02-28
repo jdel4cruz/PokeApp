@@ -28,8 +28,12 @@ const Move = ({ move, isLevel }) => {
   let moveEffectText;
 
   if (move.pokemon_v2_moveeffect != null) {
-    moveEffectText =
-      move.pokemon_v2_moveeffect.pokemon_v2_moveeffecteffecttexts[0].effect;
+    if (
+      move.pokemon_v2_moveeffect.pokemon_v2_moveeffecteffecttexts[0] != null
+    ) {
+      moveEffectText =
+        move.pokemon_v2_moveeffect.pokemon_v2_moveeffecteffecttexts[0].effect;
+    }
   } else {
     moveEffectText = "Not provided by API";
   }

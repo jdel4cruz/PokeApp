@@ -36,6 +36,7 @@ export const MoveListTitle = styled.div`
   padding: 1rem;
   font-size: var(--fontLarge);
   background-color: ${(props) => props.backgroundColor || ""};
+  text-transform: capitalize;
 `;
 
 export const MoveContainer = styled.li`

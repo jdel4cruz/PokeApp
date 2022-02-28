@@ -9,6 +9,7 @@ export const Wrapper = styled.div`
   gap: 2rem 0;
 
   width: 100%;
+  height: 100vh;
   overflow: hidden;
 `;
 
