@@ -12,8 +12,9 @@ export const StyledLink = styled(Link)`
 
   text-decoration: none;
 
-  font-size: var(--fontMed);
-  padding: 1rem;
+  font-size: 2rem;
+  font-weight: bold;
+  padding: 0 1rem;
 
   :visited {
     color: inherit;

@@ -156,7 +156,7 @@ export const updateEvoCondition = (data) => {
   });
 };
 
-const capitalizeFirstLetterEachWord = (string) => {
+export const capitalizeFirstLetterEachWord = (string) => {
   const words = string.split(" ");
 
   const capitalizedWords = words.map(
@@ -307,7 +307,8 @@ const generateItemCategory = (item) => {
 };
 
 //Generic function used to remove hyphens from strings
-const removeHyphen = (obj, key) => (obj[key] = obj[key].replace("-", " "));
+export const removeHyphen = (obj, key) =>
+  (obj[key] = obj[key].replace("-", " "));
 
 export const updateAllMoveText = (data) =>
   Object.keys(data).forEach((moveList) => {

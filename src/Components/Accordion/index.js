@@ -1,7 +1,12 @@
 import { useState } from "react";
 
 //Styles
-import { Wrapper, AccordionData, AccordionHeader } from "./Accordion.styles";
+import {
+  Wrapper,
+  AccordionContainer,
+  AccordionData,
+  AccordionHeader,
+} from "./Accordion.styles";
 
 const Accordion = ({ classDesc, data }) => {
   const [open, setOpen] = useState(null);
@@ -18,7 +23,7 @@ const Accordion = ({ classDesc, data }) => {
     <Wrapper>
       {data.map((item) => {
         return (
-          <div key={item.key}>
+          <AccordionContainer key={item.key}>
             <AccordionHeader
               className={classDesc}
               onClick={() => toggle(item.key)}
@@ -32,7 +37,7 @@ const Accordion = ({ classDesc, data }) => {
             >
               <div>{item.content}</div>
             </AccordionData>
-          </div>
+          </AccordionContainer>
         );
       })}
     </Wrapper>

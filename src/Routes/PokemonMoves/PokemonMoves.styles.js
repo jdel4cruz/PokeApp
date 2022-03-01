@@ -4,6 +4,8 @@ export const Wrapper = styled.div`
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
+
+  margin-top: 1rem;
 `;
 
 export const MoveListContainer = styled.ul`
@@ -44,5 +46,6 @@ export const MoveListTitle = styled.div`
   border: 1px solid black;
   padding: 1rem;
   font-size: var(--fontLarge);
+  font-weight: bold;
   background-color: ${(props) => props.backgroundColor || ""};
 `;

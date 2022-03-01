@@ -9,6 +9,12 @@ import {
   Legend,
 } from "chart.js";
 
+//Helper functions
+import {
+  removeHyphen,
+  capitalizeFirstLetterEachWord,
+} from "../../HelperFunctions";
+
 import { Wrapper } from "./PokemonStats.styles";
 
 const PokemonStats = ({ stats }) => {
@@ -19,7 +25,10 @@ const PokemonStats = ({ stats }) => {
   ChartJS.register(CategoryScale, LinearScale, BarElement);
 
   const data = {
-    labels: stats.map((stat) => stat.name),
+    labels: stats.map((stat) => {
+      const removedHyphen = removeHyphen(stat, "name");
+      return capitalizeFirstLetterEachWord(removedHyphen);
+    }),
     datasets: [
       {
         data: stats.map((stat) => stat.base_stat),

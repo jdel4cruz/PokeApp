@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 //Styles
 import {
   Wrapper,
+  Wrapper2,
   CardImg,
   CardText,
   StyledLink,
@@ -26,18 +27,20 @@ const Card = ({ img, name, id, filterSort }) => {
   return (
     <StyledLink to={`/pokemon/${id}`}>
       <Wrapper className={!isValid ? "broken" : ""}>
+        <Wrapper2>
+          <ImgContainer>
+            <CardImg
+              src={img}
+              alt="Card Img"
+              onError={() => isValid && setIsValid(false)}
+            />
+          </ImgContainer>
+          <CardText>
+            <CardId>{id}</CardId>
+            <CardName>{name}</CardName>
+          </CardText>
+        </Wrapper2>
         <Corner />
-        <ImgContainer>
-          <CardImg
-            src={img}
-            alt="Card Img"
-            onError={() => isValid && setIsValid(false)}
-          />
-        </ImgContainer>
-        <CardText>
-          <CardId>{id}</CardId>
-          <CardName>{name}</CardName>
-        </CardText>
       </Wrapper>
     </StyledLink>
   );

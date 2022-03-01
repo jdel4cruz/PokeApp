@@ -5,6 +5,8 @@ export const Wrapper = styled.div`
   flex-flow: column nowrap;
   width: 100%;
   overflow: scroll;
+
+  margin-top: 1rem;
   align-items: center;
   ::-webkit-scrollbar {
     width: 0px;
@@ -17,7 +19,7 @@ export const HomeGrid = styled.div`
   width: 1400px;
   flex-grow: 1;
 
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1.5fr 1fr;
   grid-template-rows: min-content 1fr;
 
   grid-template-areas:
@@ -35,8 +37,8 @@ export const PokemonText = styled.div`
 export const WeaknessContainer = styled.div`
   grid-area: weakness;
   display: flex;
-  justify-content: end;
-  align-items: flex-end;
+  justify-content: start;
+  align-items: flex-start;
 `;
 
 export const ImgContainer = styled.div`

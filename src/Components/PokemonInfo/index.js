@@ -14,6 +14,9 @@ import {
   TextContainer,
 } from "./PokemonInfo.styles";
 
+// Helper functions
+import { removeHyphen } from "../../HelperFunctions";
+
 const PokemonAccordion = styled(Accordion)`
   width: 50%;
 `;
@@ -23,20 +26,20 @@ const PokemonInfo = ({ name, id, types, abilities }) => {
     return <div>loading</div>;
   }
   console.log(abilities);
+  abilities.forEach((ability) => removeHyphen(ability, "title"));
 
   return (
     <Wrapper>
-      <TextContainer>
-        <PokemonNameNav>
-          <PokemonName>{name}</PokemonName> <PokemonNav />
-        </PokemonNameNav>
-        <PokemonType>
-          {types.length > 1 ? `${types[0]}/${types[1]}` : `${types[0]}`}
-        </PokemonType>
-        <PokemonAbilities>
-          <PokemonAccordion data={abilities} />
-        </PokemonAbilities>
-      </TextContainer>
+      <PokemonNameNav>
+        <PokemonName>{name}</PokemonName> <PokemonNav />
+      </PokemonNameNav>
+      <PokemonType>
+        type: {types.length > 1 ? `${types[0]}/${types[1]}` : `${types[0]}`}
+      </PokemonType>
+      <PokemonAbilities>
+        <h3>Abilities:</h3>
+        <PokemonAccordion data={abilities} />
+      </PokemonAbilities>
     </Wrapper>
   );
 };

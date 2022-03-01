@@ -3,16 +3,20 @@ import { Link } from "react-router-dom";
 
 export const Wrapper = styled.div`
   position: relative;
+
+  overflow: hidden;
+`;
+
+export const Wrapper2 = styled.div`
+  border: 3px solid #7dbfda;
+  width: 10rem;
+  height: 14rem;
   display: flex;
   flex-flow: column nowrap;
   justify-content: space-between;
   align-items: center;
-  border: 3px solid #7dbfda;
 
-  width: 10rem;
-  height: 14rem;
-
-  transition: all 0.2s ease-in-out;
+  transition: all 0.3s ease-in-out;
 
   &.broken {
     display: none;
@@ -35,14 +39,13 @@ export const Corner = styled.div`
   transform-origin: center;
 
   transform: rotate(45deg);
-  transition: all 0.1s ease;
+  transition: all 0.3s ease-in-out;
 
   background-color: white;
 
   ${Wrapper}:hover & {
-    border-color: transparent;
-    width: 0;
-    height: 0;
+    transform: translate(1.5rem, -1.5rem) rotate(45deg);
+    border-color: var(--pokedexOrange);
   }
 `;
 
@@ -61,7 +64,7 @@ export const CardText = styled.div`
   display: flex;
   flex-flow: row nowrap;
 
-  width: 100%;
+  min-width: 100%;
   height: 2.5rem;
   gap: 1rem;
 
@@ -93,11 +96,13 @@ export const CardId = styled.div`
     border: 1px solid #3b3e3d;
     height: 75%;
     right: -0.5rem;
+    background-color: black;
 
     transition: border-color 0.3s ease-in-out;
 
     ${Wrapper}:hover & {
       border-color: white;
+      background-color: white;
     }
   }
 `;
