@@ -8,7 +8,7 @@ export const Wrapper = styled.div`
 `;
 
 export const Wrapper2 = styled.div`
-  border: 3px solid #7dbfda;
+  border: 3px solid var(--pokedexBlue);
   width: 10rem;
   height: 14rem;
   display: flex;
@@ -32,7 +32,7 @@ export const Corner = styled.div`
   content: "";
   width: 3rem;
   height: 3rem;
-  border-bottom: 3px solid #7dbfda;
+  border-bottom: 3px solid var(--pokedexBlue);
 
   top: -1.5rem;
   right: -1.5rem;
@@ -73,7 +73,7 @@ export const CardText = styled.div`
 
   color: #3b3e3d;
   text-transform: capitalize;
-  background-color: #7dbfda;
+  background-color: var(--pokedexBlue);
 
   transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 

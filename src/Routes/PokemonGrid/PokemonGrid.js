@@ -40,6 +40,7 @@ const Pokemon = () => {
           onClick={(e) => {
             setOpenFilter(!openFilter);
           }}
+          openFilter={openFilter}
         >
           Filter/Sort
         </Button>

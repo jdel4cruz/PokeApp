@@ -46,16 +46,25 @@ const AllMoves = () => {
 
   switch (filter) {
     case "priority":
-      title = "priority moves";
+      title = `${
+        filterVal === "1"
+          ? "priority moves"
+          : filterVal === "0"
+          ? "non-Priority moves"
+          : "all moves"
+      }`;
       break;
     case "type_id":
-      title = `${types[filterVal - 1]} moves`;
+      title = `${
+        types[filterVal - 1] ? `${types[filterVal - 1]} moves` : "all moves"
+      }`;
       break;
     case "move_damage_class_id":
-      title = `${atkTypes[filterVal - 1]} moves`;
-      break;
-    case "move_effect_chance":
-      title = "moves with effects";
+      title = `${
+        atkTypes[filterVal - 1]
+          ? `${atkTypes[filterVal - 1]} moves`
+          : "all moves"
+      }`;
       break;
     default:
       title = "all moves";
@@ -76,6 +85,7 @@ const AllMoves = () => {
           onClick={(e) => {
             setIsOpen(!isOpen);
           }}
+          isOpen={isOpen}
         >
           Filter/Sort
         </Button>

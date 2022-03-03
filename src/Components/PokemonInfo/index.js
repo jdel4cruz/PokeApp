@@ -31,7 +31,8 @@ const PokemonInfo = ({ name, id, types, abilities }) => {
   return (
     <Wrapper>
       <PokemonNameNav>
-        <PokemonName>{name}</PokemonName> <PokemonNav />
+        <PokemonName>{name}</PokemonName>{" "}
+        <PokemonNav currentRoute={"pokemon"} />
       </PokemonNameNav>
       <PokemonType>
         type: {types.length > 1 ? `${types[0]}/${types[1]}` : `${types[0]}`}

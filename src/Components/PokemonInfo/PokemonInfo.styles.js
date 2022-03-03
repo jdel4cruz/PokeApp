@@ -3,12 +3,13 @@ import styled from "styled-components";
 export const Wrapper = styled.div`
   display: flex;
   flex-flow: column nowrap;
-  padding: 1rem;
+  padding: 2rem;
   gap: 2rem;
   justify-content: space-between;
   min-width: 100%;
 
-  border: 6px solid black;
+  background: white;
+  border-radius: 12px;
 `;
 
 export const TextContainer = styled.div`

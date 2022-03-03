@@ -35,6 +35,8 @@ export const AccordionData = styled.div`
   max-height: 0;
   overflow: hidden;
 
+  font-size: var(--fontMed);
+
   transition: all 0.5s cubic-bezier(0, 1, 0, 1);
 
   &.open {

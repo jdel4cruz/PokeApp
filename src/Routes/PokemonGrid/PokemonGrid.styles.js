@@ -26,7 +26,9 @@ export const Button = styled.button`
   border: none;
   padding: 1rem 2rem;
   display: inline;
-  background-color: var(--pokedexBlue);
+  background-color: ${(props) =>
+    props.openFilter ? "var(--pokedexOrange)" : "var(--pokedexBlue)"};
+  color: ${(props) => (props.openFilter ? "white" : "black")};
   border-radius: 10px;
 
   font-weight: bold;

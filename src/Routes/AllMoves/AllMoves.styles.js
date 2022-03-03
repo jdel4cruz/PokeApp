@@ -23,7 +23,19 @@ export const Button = styled.button`
   border: none;
   padding: 1rem 2rem;
   display: inline;
-  background-color: var(--pokedexGreen);
+  background-color: ${(props) =>
+    props.isOpen ? "var(--pokedexBlue)" : "var(--pokedexOrange)"};
+  color: ${(props) => (props.isOpen ? "black" : "white")};
   border-radius: 10px;
+
+  font-weight: bold;
+  font-size: var(--fontMed);
+
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  &:hover {
+    cursor: pointer;
+    background-color: var(--pokedexOrange);
+    color: white;
+  }
   margin: 2rem 0;
 `;

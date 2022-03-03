@@ -5,8 +5,8 @@ export const GlobalStyle = createGlobalStyle`
     --maxWidth: 1440px;
     --pokedexRed: rgb(216,70,61);
     --pokedexGreen: #B6E3B2;
-    --pokedexBlue: #7dbfda;
-    --pokedexOrange: #ea7d17;
+    --pokedexBlue: #69B6FE;
+    --pokedexOrange: #FC993C;
     --fontSmall: 1rem;
     --fontMed: 1.2rem;
     --fontLarge: 1.5rem;

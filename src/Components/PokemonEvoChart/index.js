@@ -26,7 +26,7 @@ const PokemonEvoChart = ({ evoTiers }) => {
 
   return (
     <Wrapper>
-      <PokemonNav />
+      <PokemonNav currentRoute={"evo"} />
 
       <ChartContainer length={evoTiers.length}>
         {evoTiers.map((tier) => (

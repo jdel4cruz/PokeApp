@@ -20,6 +20,9 @@ import {
   StatsContainer,
 } from "./PokemonDescription.styles";
 
+//Background image
+import Background from "../../Images/Pokedex_Background.png";
+
 const Pokemon = () => {
   const { pokemonId } = useParams();
   const { rawData, stats, abilities, sprite, id, name, pokemonTypes } =
@@ -44,7 +47,7 @@ const Pokemon = () => {
           <PokemonWeakness />
         </WeaknessContainer>
         <ImgContainer>
-          <Image pokemonImg={sprite}></Image>
+          <Image pokemonImg={sprite} background={Background}></Image>
         </ImgContainer>
         <StatsContainer>
           <PokemonStats stats={stats}></PokemonStats>

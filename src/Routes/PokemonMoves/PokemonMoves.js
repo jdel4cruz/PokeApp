@@ -41,7 +41,7 @@ const atkTypes = ["Status", "Phys", "Spec"];
 const MoveHeader = ({ isLevel, title }) => {
   return (
     <>
-      <MoveListTitle backgroundColor={"var(--pokedexBlue)"}>
+      <MoveListTitle backgroundColor={"var(--pokedexOrange)"}>
         {title}
       </MoveListTitle>
       <MoveContainer isLevel={isLevel} isHeader={true}>
@@ -105,7 +105,7 @@ const PokemonMoves = () => {
   return (
     <Wrapper>
       <div>
-        <PokemonNav />
+        <PokemonNav currentRoute={"moves"} />
       </div>
 
       {levelMoves.length > 0 && (

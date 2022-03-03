@@ -5,7 +5,8 @@ export const Wrapper = styled.div`
   flex-flow: column nowrap;
   align-items: center;
 
-  margin-top: 1rem;
+  margin-top: 3rem;
+  gap: 1rem;
 `;
 
 export const MoveListContainer = styled.ul`
@@ -45,7 +46,8 @@ export const MoveListTitle = styled.div`
   justify-content: center;
   border: 1px solid black;
   padding: 1rem;
-  font-size: var(--fontLarge);
+  font-size: 2rem;
   font-weight: bold;
   background-color: ${(props) => props.backgroundColor || ""};
+  color: white;
 `;

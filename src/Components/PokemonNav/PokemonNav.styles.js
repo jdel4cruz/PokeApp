@@ -16,6 +16,9 @@ export const StyledLink = styled(Link)`
   font-weight: bold;
   padding: 0 1rem;
 
+  text-decoration: ${(props) => (props.isCurrent ? "underline" : "none")};
+  pointer-events: ${(props) => (props.isCurrent ? "none" : "")};
+
   :visited {
     color: inherit;
   }

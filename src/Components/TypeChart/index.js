@@ -115,7 +115,11 @@ const TypeChart = ({ weakness, type1, type2 }) => {
           </Cell>
         ))}
         {weakness.slice(0, 9).map((value) => (
-          <Cell backgroundColor={damageColor(value)} key={uuidv4()}>
+          <Cell
+            backgroundColor={damageColor(value)}
+            key={uuidv4()}
+            isValue={true}
+          >
             {`${value / 100}x`}
           </Cell>
         ))}
@@ -127,7 +131,11 @@ const TypeChart = ({ weakness, type1, type2 }) => {
           </Cell>
         ))}
         {weakness.slice(9, 18).map((value) => (
-          <Cell backgroundColor={damageColor(value)} key={uuidv4()}>
+          <Cell
+            backgroundColor={damageColor(value)}
+            key={uuidv4()}
+            isValue={true}
+          >
             {`${value / 100}x`}
           </Cell>
         ))}

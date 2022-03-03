@@ -4,27 +4,31 @@ export const Wrapper = styled.div`
   display: flex;
   flex-flow: column nowrap;
   width: 100%;
-  overflow: scroll;
+  flex-grow: 1;
 
-  margin-top: 1rem;
+  padding-top: 3rem;
   align-items: center;
-  ::-webkit-scrollbar {
-    width: 0px;
-    background: transparent;
-  }
+
+  background: linear-gradient(135deg, transparent, 90%, var(--pokedexBlue)),
+    linear-gradient(225deg, transparent, 90%, var(--pokedexBlue));
 `;
 
 export const HomeGrid = styled.div`
   display: grid;
-  width: 1400px;
-  flex-grow: 1;
+  width: var(--maxWidth);
+  height: fit-content;
 
-  grid-template-columns: 1.5fr 1fr;
+  grid-template-columns: 1fr 1fr;
   grid-template-rows: min-content 1fr;
+  gap: 1rem;
 
+  padding: 3rem;
+  background: #fc993c;
   grid-template-areas:
     "text weakness"
     "image stats";
+  border-radius: 2rem;
+  margin-bottom: 3rem;
 `;
 
 export const PokemonText = styled.div`
@@ -35,6 +39,7 @@ export const PokemonText = styled.div`
 `;
 
 export const WeaknessContainer = styled.div`
+  position: relative;
   grid-area: weakness;
   display: flex;
   justify-content: start;
@@ -44,10 +49,9 @@ export const WeaknessContainer = styled.div`
 export const ImgContainer = styled.div`
   display: flex;
   flex-flow: column nowrap;
-  justify-content: end;
+  justify-content: center;
   align-items: center;
   grid-area: image;
-  padding-bottom: 3rem;
 `;
 
 export const StatsContainer = styled.div`
@@ -56,7 +60,6 @@ export const StatsContainer = styled.div`
   flex-flow: column nowrap;
   justify-content: end;
   align-items: end;
-  padding-bottom: 3rem;
 
   grid-area: stats;
 `;

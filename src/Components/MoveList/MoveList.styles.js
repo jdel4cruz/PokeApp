@@ -34,8 +34,9 @@ export const MoveListTitle = styled.div`
   justify-content: center;
   border: 1px solid black;
   padding: 1rem;
-  font-size: var(--fontLarge);
+  font-size: 2rem;
   background-color: ${(props) => props.backgroundColor || ""};
+  color: white;
   text-transform: capitalize;
 `;
 
