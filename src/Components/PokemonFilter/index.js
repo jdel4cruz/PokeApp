@@ -1,5 +1,3 @@
-import styled from "styled-components";
-import { useState } from "react";
 import Select from "react-select";
 
 //Styles
@@ -8,60 +6,130 @@ import {
   Selection,
   SelectionTitle,
   SelectContainer,
+  CloseButton,
 } from "./Filter.styles";
 
-const Filter = ({ filterSort, setFilterSort, openFilter }) => {
-  const selectedTypes = Object.values(filterSort.filter.typeCriteria);
-  const sortStat = filterSort.sort.sortStat;
-  const sortAsc = filterSort.sort.sortAsc;
-  const sortId = filterSort.sort.sortId;
-  const sortName = filterSort.sort.sortName;
+// A bunch of arrays filled with objects that contain the label and value properties for the filter options.
+const filterOptions = [
+  { value: "", label: "Choose Type" },
+  { value: "normal", label: "Normal" },
+  { value: "fire", label: "Fire" },
+  { value: "water", label: "Water" },
+  { value: "grass", label: "Grass" },
+  { value: "electric", label: "Electric" },
+  { value: "ice", label: "Ice" },
+  { value: "fighting", label: "Fighting" },
+  { value: "ground", label: "Ground" },
+  { value: "flying", label: "Flying" },
+  { value: "psychic", label: "Psychic" },
+  { value: "bug", label: "Bug" },
+  { value: "rock", label: "Rock" },
+  { value: "ghost", label: "Ghost" },
+  { value: "dark", label: "Dark" },
+  { value: "dragon", label: "Dragon" },
+  { value: "steel", label: "Steel" },
+  { value: "fairy", label: "Fairy" },
+];
 
-  console.log(filterSort);
-  console.log(sortStat);
+const categoryOptions = [
+  {
+    value: "",
+    label: "Choose Category",
+  },
+  {
+    value: "is_legendary",
+    label: "Legendary",
+  },
+  {
+    value: "is_mythical",
+    label: "Mythical",
+  },
+  {
+    value: "is_baby",
+    label: "Baby",
+  },
+];
 
-  const filterOptions = [
-    { value: "", label: "Choose Type" },
-    { value: "normal", label: "Normal" },
-    { value: "fire", label: "Fire" },
-    { value: "water", label: "Water" },
-    { value: "grass", label: "Grass" },
-    { value: "electric", label: "Electric" },
-    { value: "ice", label: "Ice" },
-    { value: "fighting", label: "Fighting" },
-    { value: "ground", label: "Ground" },
-    { value: "flying", label: "Flying" },
-    { value: "psychic", label: "Psychic" },
-    { value: "bug", label: "Bug" },
-    { value: "rock", label: "Rock" },
-    { value: "ghost", label: "Ghost" },
-    { value: "dark", label: "Dark" },
-    { value: "dragon", label: "Dragon" },
-    { value: "steel", label: "Steel" },
-    { value: "fairy", label: "Fairy" },
-  ];
+const orderOptions = [
+  { value: true, label: "Asc" },
+  { value: false, label: "Desc" },
+];
 
-  const orderOptions = [
-    { value: "", label: "Asc/Desc" },
-    { value: true, label: "Asc" },
-    { value: false, label: "Desc" },
-  ];
+const idNameOptions = [
+  { value: { isOn: false, order: false }, label: "Asc/Desc" },
+  { value: { isOn: true, order: true }, label: "Asc" },
+  { value: { isOn: true, order: false }, label: "Desc" },
+];
 
-  const statOptions = [
-    { value: "", label: "Choose stat" },
-    { value: 0, label: "Hp" },
-    { value: 1, label: "Atk" },
-    { value: 2, label: "Def" },
-    { value: 3, label: "Sp. Atk" },
-    { value: 4, label: "Sp.Def" },
-    { value: 5, label: "Speed" },
-  ];
-  console.log(statOptions.map((stat) => stat.value));
-  console.log(statOptions.map((stat) => stat.value).indexOf(sortStat));
-  console.log(statOptions[2]);
+const statOptions = [
+  { value: null, label: "Choose stat" },
+  { value: 0, label: "Hp" },
+  { value: 1, label: "Atk" },
+  { value: 2, label: "Def" },
+  { value: 3, label: "Sp. Atk" },
+  { value: 4, label: "Sp.Def" },
+  { value: 5, label: "Speed" },
+];
+
+const Filter = ({
+  filterSort,
+  setFilterSort,
+  openFilter,
+  setOpenFilter,
+  setPage,
+}) => {
+  const filters = filterSort.filter;
+  const selectedTypes = Object.values(filters.typeCriteria);
+  const category = filters.special;
+
+  const sorts = filterSort.sort;
+  const { sortStat, statAsc, sortId, sortName, idAsc, nameAsc } = sorts;
 
   const selectStyles = {
     container: (base) => ({ ...base, width: "7rem" }),
+  };
+
+  // Function that is called when a filter or sort option is changed. Takes changes and passes them to setFilterSort to update the state
+  const handleChange = (event, key) => {
+    let newFilterSort = { ...filterSort };
+    let value = event.value;
+
+    if (key === "type1") {
+      newFilterSort.filter.typeCriteria.type1 = value;
+    }
+
+    if (key === "type2") {
+      newFilterSort.filter.typeCriteria.type2 = value;
+    }
+
+    if (key === "category") {
+      newFilterSort.filter.special = value;
+    }
+
+    if (key === "order") {
+      newFilterSort.sort.statAsc = value;
+    }
+
+    if (key === "stat") {
+      newFilterSort.sort.sortStat = value;
+    }
+
+    if (key === "id") {
+      newFilterSort.sort.sortId = value.isOn;
+      newFilterSort.sort.idAsc = value.order;
+    }
+
+    if (key === "name") {
+      newFilterSort.sort.sortName = value.isOn;
+      newFilterSort.sort.nameAsc = value.order;
+    }
+    setPage(1);
+    return setFilterSort(newFilterSort);
+  };
+
+  // Called when close filter button is click. Simply calls setOpenFilter and is passed false to close the filter window.
+  const closeFilter = () => {
+    setOpenFilter(false);
   };
 
   return (
@@ -75,7 +143,7 @@ const Filter = ({ filterSort, setFilterSort, openFilter }) => {
               <Select
                 options={filterOptions}
                 styles={selectStyles}
-                defaultValue={
+                value={
                   selectedTypes.length
                     ? filterOptions[
                         filterOptions
@@ -84,12 +152,13 @@ const Filter = ({ filterSort, setFilterSort, openFilter }) => {
                       ]
                     : filterOptions[0]
                 }
+                onChange={(e) => handleChange(e, "type1")}
               />
 
               <Select
                 options={filterOptions}
                 styles={selectStyles}
-                defaultValue={
+                value={
                   selectedTypes.length > 1
                     ? filterOptions[
                         filterOptions
@@ -98,64 +167,26 @@ const Filter = ({ filterSort, setFilterSort, openFilter }) => {
                       ]
                     : ""
                 }
+                onChange={(e) => handleChange(e, "type2")}
               />
             </SelectContainer>
-
-            {/* <label htmlFor="type-selection-1">Type:</label>
-            <select
-              id="type-selection-1"
-              defaultValue={selectedTypes.length > 0 ? selectedTypes[0] : ""}
-            >
-              <option value="">Type 1</option>
-              <option value="normal">Normal</option>
-              <option value="fire">Fire</option>
-              <option value="water">Water</option>
-              <option value="grass">Grass</option>
-              <option value="electric">Elec</option>
-              <option value="ice">Ice</option>
-              <option value="fighting">Fighting</option>
-              <option value="poison">Poison</option>
-              <option value="ground">Ground</option>
-              <option value="flying">Flying</option>
-              <option value="psychic">Psychic</option>
-              <option value="bug">Bug</option>
-              <option value="rock">Rock</option>
-              <option value="ghost">Ghost</option>
-              <option value="dark">Dark</option>
-              <option value="dragon">Dragon</option>
-              <option value="steel">Steel</option>
-              <option value="fairy">Fairy</option>
-            </select> */}
-            {/* <select id="type-selection-2">
-              <option value="">Type 1</option>
-              <option value="normal">Normal</option>
-              <option value="fire">Fire</option>
-              <option value="water">Water</option>
-              <option value="grass">Grass</option>
-              <option value="electric">Elec</option>
-              <option value="ice">Ice</option>
-              <option value="fighting">Fighting</option>
-              <option value="poison">Poison</option>
-              <option value="ground">Ground</option>
-              <option value="flying">Flying</option>
-              <option value="psychic">Psychic</option>
-              <option value="bug">Bug</option>
-              <option value="rock">Rock</option>
-              <option value="ghost">Ghost</option>
-              <option value="dark">Dark</option>
-              <option value="dragon">Dragon</option>
-              <option value="steel">Steel</option>
-              <option value="fairy">Fairy</option>
-            </select> */}
           </li>
           <li>
             <h2>Category</h2>
-            <label htmlFor="isMythic">Is Mythic</label>
-            <input type="checkbox" id="isMythic"></input>
-            <label htmlFor="isLegendary">Is Legendary</label>
-            <input type="checkbox" id="isLegendary"></input>
-            <label htmlFor="isBaby">Is Baby</label>
-            <input type="checkbox" id="isBaby"></input>
+            <Select
+              options={categoryOptions}
+              styles={selectStyles}
+              value={
+                category == "is_legendary"
+                  ? categoryOptions[1]
+                  : category == "is_mythical"
+                  ? categoryOptions[2]
+                  : category == "is_baby"
+                  ? categoryOptions[3]
+                  : categoryOptions[0]
+              }
+              onChange={(e) => handleChange(e, "category")}
+            />
           </li>
         </Selection>
       </div>
@@ -168,91 +199,67 @@ const Filter = ({ filterSort, setFilterSort, openFilter }) => {
               <Select
                 options={statOptions}
                 styles={selectStyles}
-                defaultValue={
-                  sortStat
+                value={
+                  sortStat != null
                     ? statOptions[
                         statOptions.map((stat) => stat.value).indexOf(sortStat)
                       ]
                     : statOptions[0]
                 }
+                onChange={(e) => handleChange(e, "stat")}
               />
               <Select
                 options={orderOptions}
                 styles={selectStyles}
-                defaultValue={
-                  sortStat
+                value={
+                  sortStat != null
                     ? orderOptions[
                         orderOptions
                           .map((option) => option.value)
-                          .indexOf(sortAsc)
+                          .indexOf(statAsc)
                       ]
                     : orderOptions[0]
                 }
+                onChange={(e) => handleChange(e, "order")}
               />
             </SelectContainer>
-
-            {/* <label htmlFor="stat">Stat:</label>
-            <select id="stat">
-              <option value="">Choose stat</option>
-              <option value="hp">HP</option>
-              <option value="atk">Attack</option>
-              <option value="sp-atk">Special Attack</option>
-              <option value="def">Defense</option>
-              <option value="sp-def">Special Defense</option>
-              <option value="spd">Speed</option>
-            </select> */}
-            {/* <select id="stat-sort">
-              <option value="">Asc/Desc</option>
-              <option value="asc">Asc</option>
-              <option value="desc">Desc</option>
-            </select> */}
           </li>
-
           <li>
             <h2>Id:</h2>
             <Select
-              options={orderOptions}
+              options={idNameOptions}
               styles={selectStyles}
-              defaultValue={
-                sortId
-                  ? orderOptions[
-                      orderOptions.map((option) => option.value).indexOf(sortId)
-                    ]
-                  : orderOptions[0]
+              value={
+                sortId && idAsc
+                  ? idNameOptions[1]
+                  : sortId && !idAsc
+                  ? idNameOptions[2]
+                  : idNameOptions[0]
               }
+              onChange={(e) => handleChange(e, "id")}
             />
-            {/* <label htmlFor="id">ID:</label>
-            <select id="id">
-              <option value="">Asc/Desc</option>
-              <option value="asc">Asc</option>
-              <option value="desc">Desc</option>
-            </select> */}
           </li>
 
           <li>
             <h2>Name:</h2>
             <Select
-              options={orderOptions}
+              options={idNameOptions}
               styles={selectStyles}
-              defaultValue={
-                sortName
-                  ? orderOptions[
-                      orderOptions
-                        .map((option) => option.value)
-                        .indexOf(sortName)
-                    ]
-                  : orderOptions[0]
+              value={
+                sortName && nameAsc
+                  ? idNameOptions[1]
+                  : sortName && !nameAsc
+                  ? idNameOptions[2]
+                  : idNameOptions[0]
               }
+              onChange={(e) => handleChange(e, "name")}
             />
-            {/* <label htmlFor="name">Name:</label>
-            <select id="name">
-              <option value="">Asc/Desc</option>
-              <option value="asc">Asc</option>
-              <option value="desc">Desc</option>
-            </select> */}
           </li>
         </Selection>
       </div>
+      <CloseButton type="button" onClick={() => closeFilter()}>
+        Close
+      </CloseButton>
     </Wrapper>
   );
 };

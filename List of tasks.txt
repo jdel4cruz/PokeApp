@@ -1,0 +1,6 @@
+- Some data pulled from the API contains hyphens/underscores for spaces and does not capitalize the 1st letter of words. Create a function to replace hyphens/underscores with spaces and use text-transform to get proper capitalization
+- Filter on pokemon grid isn't fixed or sticky and disappears as you scroll down. Needs to be fixed
+- Eventually will add loading triggers and some form of loading transition for the routes so things don't just phase into existance
+- Ignoring styling right now until all components/routes are ironed out. 
+- Am considering putting off search functionality until styling is done.
+

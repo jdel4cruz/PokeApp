@@ -1,0 +1,2 @@
+- Need to use some form of exception handling when making API calls. Unsurprisingly at this point, there's missing data all over the place and it'll brick component renders if I don't address them. List below
+	- A large quantity of Gen 8 abilities/moves lack effect text. When setting ability/move effect text, need a conditional statement in the event an empty array is passed. Should probably state something along the lines of "Data not available from the API".

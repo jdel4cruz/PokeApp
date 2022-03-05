@@ -14,8 +14,6 @@ import { Wrapper, StyledLink } from "./Screen.styles";
 import { keyGenerator } from "../../HelperFunctions";
 
 const Screen = () => {
-  console.log(data);
-
   return (
     <Wrapper>
       <ul>

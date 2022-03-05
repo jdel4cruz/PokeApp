@@ -1,0 +1,3 @@
+- Lots of repetition in my different API calls. Refactor by writing a function to do repeated work.
+- Instead of doing a follow up useEffect to break down state from hooks into more usable parts, create helper functions to break down state and use in componenents after custom hook is called. This should prevent unnecessary re-renders
+- There's a lot of overlap between generating Cards (PokemonCards) and ItemCards. contents are the same but PokemonCards are wrapped in a link whereas ItemCards are wrapped in a button. Create a generic card and wrap with link or button on respective route.

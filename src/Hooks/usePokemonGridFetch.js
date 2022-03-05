@@ -4,7 +4,10 @@ import { useState, useEffect } from "react";
 import API from "../API";
 
 //Helper Function
-import { spriteGenerator, cardGenerator } from "../HelperFunctions";
+import {
+  pokemonSpriteGenerator,
+  pokemonCardGenerator,
+} from "../HelperFunctions";
 
 //If type == true, will filter pokemontypes array against typecriteria, otherwise skip
 //If special !="", will filter pokemonspecy object to see if array[special] == true
@@ -14,44 +17,52 @@ const initialFilter = {
   special: "",
 };
 
-//If sort criteria changes, sort will be compared against state[sortCriteria]
+//If sort criteria changes, sort will be compared against rawData[sortCriteria]
 //Sortstat values(index to stat type) = [hp, atk, def, sp atk, sp def, speed ]
 const initialSort = {
-  sorted: false,
-  sortAsc: true,
-  sortStat: 1,
+  sorted: true,
+  sortStat: null,
   sortId: true,
   sortName: false,
+  statAsc: true,
+  nameAsc: false,
+  idAsc: true,
 };
 
 export const usePokemonGridFetch = () => {
-  const [state, setState] = useState(null);
+  const [rawData, setRawData] = useState(null);
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(54);
-  const [cards, setCards] = useState(null);
+  const [cards, setCards] = useState([]);
   const [filterSort, setFilterSort] = useState({
     filter: initialFilter,
     sort: initialSort,
   });
 
+  // Fetches data from API and sets it to rawData
   const fetchGrid = async () => {
     try {
-      const response = await API.fetchPokemonGrid();
-      const data = response.data.pokemon_v2_pokemon;
-      await spriteGenerator(data);
-      setState(data);
+      const data = await API.fetchPokemonGrid();
+      const pokemon = data.pokemon_v2_pokemon;
+      pokemonSpriteGenerator(pokemon);
+      setRawData(pokemon);
     } catch (error) {
       console.log(error);
     }
   };
 
+  // Applies filters to rawData before generating cards
   const applyFilterSort = (data) => {
     let newData = data;
+
+    // Pulls filter and sort critera from the filterSort state
     const { filtered, typeCriteria, special } = filterSort.filter;
-    const { sorted, sortAsc, sortStat, sortId, sortName } = filterSort.sort;
+    const { sorted, sortStat, sortId, sortName, statAsc, nameAsc, idAsc } =
+      filterSort.sort;
 
     if (filtered) {
       newData = data.filter((item) => {
+        // If filtering by special pokemon (baby, legendary, mythic), deconstructs special object from pokemon and returns false if obj[special] == false
         if (special) {
           const { pokemon_v2_pokemonspecy: dataSpecial } = item;
 
@@ -60,16 +71,20 @@ export const usePokemonGridFetch = () => {
           }
         }
 
+        //If typeCriteria is set, matches(bool) is set to true
         if (Object.keys(typeCriteria).length) {
           const { pokemon_v2_pokemontypes: dataTypes } = item;
           let matches = true;
 
+          // isType(bool) is set to false and forEach is run on the typeCriteria values
           Object.values(typeCriteria).forEach((type) => {
             if (!type) {
               return;
             }
+
             let isType = false;
 
+            // If a pokemon does matches the given type, isType is set to true
             dataTypes.forEach((el) => {
               const dataType = el.pokemon_v2_type.name;
 
@@ -78,6 +93,7 @@ export const usePokemonGridFetch = () => {
               }
             });
 
+            // If isType was not set to true during the previous forEach, matches is set to false
             if (!isType) {
               matches = false;
             }
@@ -92,30 +108,39 @@ export const usePokemonGridFetch = () => {
       });
     }
 
+    // Sorts pokemon by Stat/Id/Name based on which criteria are set. Due to current implementation, since users can't pick the order in which pokemon are sorted, it goes name > id > stat
     if (sorted) {
       newData.sort((a, b) => {
         if (sortStat != null) {
           const { pokemon_v2_pokemonstats: aStats } = a;
           const { pokemon_v2_pokemonstats: bStats } = b;
 
-          if (sortAsc) {
+          if (statAsc) {
             return aStats[sortStat].base_stat - bStats[sortStat].base_stat;
           }
 
           return bStats[sortStat].base_stat - aStats[sortStat].base_stat;
         }
 
+        if (sortId) {
+          const { id: aId } = a;
+          const { id: bId } = b;
+          if (idAsc) {
+            return aId - bId;
+          }
+          return bId - aId;
+        }
+
         if (sortName) {
           const { name: aName } = a;
           const { name: bName } = b;
-          if (sortAsc) {
+          if (nameAsc) {
             if (aName.toUpperCase() < bName.toUpperCase()) {
               return -1;
             }
             if (aName.toUpperCase() > bName.toUpperCase()) {
               return 1;
             }
-            return 0;
           }
 
           if (aName.toUpperCase() < bName.toUpperCase()) {
@@ -125,15 +150,6 @@ export const usePokemonGridFetch = () => {
             return -1;
           }
           return 0;
-        }
-
-        if (sortId) {
-          const { id: aId } = a;
-          const { id: bId } = b;
-          if (sortAsc) {
-            return aId - bId;
-          }
-          return bId - aId;
         }
       });
     }
@@ -147,13 +163,35 @@ export const usePokemonGridFetch = () => {
   }, []);
 
   useEffect(() => {
-    if (state != null) {
+    if (rawData != null) {
+      // generates data based on filter/sort criteria that will be used to generate cards
+      const data = applyFilterSort(rawData);
+
+      // Start and End variables are used to determine where to slice the data array when generating cards
       const end = page * limit;
       const start = page * limit - limit;
-      const data = applyFilterSort(state);
-      setCards(cardGenerator(data.slice(start, end)));
+
+      // If page = 1, generates and sets first group of cards which is based off of limit. For each additional page, an additional group of cards is pushed onto cards
+      setCards((prevCards) =>
+        page == 1
+          ? pokemonCardGenerator(
+              data.slice(start, end),
+              filterSort,
+              page,
+              limit
+            )
+          : [
+              ...prevCards,
+              pokemonCardGenerator(
+                data.slice(start, end),
+                filterSort,
+                page,
+                limit
+              ),
+            ]
+      );
     }
-  }, [state, limit, page]);
+  }, [rawData, limit, page, filterSort]);
 
   return { limit, setLimit, page, setPage, cards, filterSort, setFilterSort };
 };
