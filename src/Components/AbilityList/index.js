@@ -16,7 +16,7 @@ import {
 const AbilityHeader = ({ isLevel, title }) => {
   return (
     <AbilityHeaderContainer>
-      <AbilityListTitle backgroundColor={"var(--pokedexGreen)"}>
+      <AbilityListTitle backgroundColor={"var(--pokedexBlue)"}>
         {title}
       </AbilityListTitle>
 

@@ -1,14 +1,14 @@
 import { v4 as uuidv4 } from "uuid";
 
 //Components
-import Card from "./Components/Card";
+import PokemonCard from "./Components/PokemonCard";
 import ItemCard from "./Components/ItemCard";
 
 //Functions to create the cards shown in their respective grids
 export const pokemonCardGenerator = (data, filterSort, page, limit) => {
   console.log("creating cards");
   const cards = data.map((item, i) => (
-    <Card
+    <PokemonCard
       img={item.sprite}
       name={item.name}
       id={item.id}

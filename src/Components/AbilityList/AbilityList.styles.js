@@ -35,6 +35,7 @@ export const AbilityListTitle = styled.div`
   border: 1px solid black;
   padding: 1rem;
   font-size: var(--fontLarge);
+  font-weight: bold;
   background-color: ${(props) => props.backgroundColor || ""};
 `;
 
