@@ -73,7 +73,6 @@ const Filter = ({
   return (
     <Wrapper className={openFilter ? "open" : ""}>
       <div>
-        <SelectionTitle>Filter:</SelectionTitle>
         <Selection>
           <li>
             <h2>Filter Options:</h2>
@@ -97,7 +96,6 @@ const Filter = ({
         </Selection>
       </div>
       <div>
-        <SelectionTitle>Sort by:</SelectionTitle>
         <Selection>
           <li>
             <h2>Sort Options:</h2>
