@@ -5,12 +5,12 @@ export const Wrapper = styled.div`
   display: flex;
   flex-flow: column nowrap;
   justify-content: space-between;
-
+  align-items: center;
   width: 100%;
   height: 100vh;
-  overflow: hidden;
-  align-items: center;
   gap: 2rem 0;
+
+  overflow: hidden;
 `;
 
 export const GridOptions = styled.div`

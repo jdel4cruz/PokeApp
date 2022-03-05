@@ -11,6 +11,7 @@ export const Wrapper = styled.div`
   width: fit-content;
   padding: 1rem;
   background-color: grey;
+  z-index: 99999;
 
   overflow: scroll;
 

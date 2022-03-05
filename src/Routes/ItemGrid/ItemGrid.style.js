@@ -6,10 +6,10 @@ export const Wrapper = styled.div`
   flex-flow: column nowrap;
   justify-content: space-between;
   align-items: center;
-  gap: 2rem 0;
-
   width: 100%;
   height: 100vh;
+  gap: 2rem 0;
+
   overflow: hidden;
 `;
 
@@ -35,6 +35,18 @@ export const Button = styled.button`
   border: none;
   padding: 1rem 2rem;
   display: inline;
-  background-color: var(--pokedexGreen);
+  background-color: ${(props) =>
+    props.isOpen ? "var(--pokedexOrange)" : "var(--pokedexBlue)"};
+  color: ${(props) => (props.isOpen ? "white" : "black")};
   border-radius: 10px;
+
+  font-weight: bold;
+  font-size: var(--fontMed);
+
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  &:hover {
+    cursor: pointer;
+    background-color: var(--pokedexOrange);
+    color: white;
+  }
 `;

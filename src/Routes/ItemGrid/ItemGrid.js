@@ -20,8 +20,17 @@ const ItemGrid = () => {
     return <div>Loading</div>;
   }
 
+  console.log(cards);
+
   return (
     <Wrapper>
+      <ItemFilter
+        filterSort={filterSort}
+        setFilterSort={setFilterSort}
+        openFilter={isOpen}
+        setOpenFilter={setIsOpen}
+        setPage={setPage}
+      />
       <Grid>{cards}</Grid>
       <Overlay popup={popup} />
       <GridOptions>
@@ -33,22 +42,16 @@ const ItemGrid = () => {
         >
           Load More
         </Button>
-
         <Button
           onClick={(e) => {
             setIsOpen(!isOpen);
           }}
+          isOpen={isOpen}
         >
           Filter/Sort
         </Button>
       </GridOptions>
-      <ItemFilter
-        filterSort={filterSort}
-        setFilterSort={setFilterSort}
-        openFilter={isOpen}
-        setOpenFilter={setIsOpen}
-        setPage={setPage}
-      />
+
       <ItemPopup data={popup} setPopup={setPopup} />
     </Wrapper>
   );

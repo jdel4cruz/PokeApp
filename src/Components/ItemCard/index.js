@@ -1,7 +1,16 @@
 import { useState, useEffect } from "react";
 
 //Styles
-import { Wrapper, CardImg, CardText } from "./ItemCard.styles";
+import {
+  OuterWrapper,
+  InnerWrapper,
+  Corner,
+  CardImg,
+  CardText,
+  CardId,
+  CardName,
+  ImgContainer,
+} from "./ItemCard.styles";
 
 const ItemCard = ({
   sprite,
@@ -22,20 +31,28 @@ const ItemCard = ({
   const data = { sprite, name, effectText, cost, category };
 
   return (
-    <Wrapper
-      className={!isValid ? "broken" : ""}
-      onClick={() => setPopup(data)}
-    >
-      <CardImg
-        src={sprite}
-        alt="Card Img"
-        onError={() => isValid && setIsValid(false)}
-      />
-      <CardText>
-        <div>{name}</div>
-        {id && <div>{id}</div>}
-      </CardText>
-    </Wrapper>
+    <div>
+      <OuterWrapper
+        className={!isValid ? "broken" : ""}
+        onClick={() => setPopup(data)}
+      >
+        <InnerWrapper>
+          <ImgContainer>
+            <CardImg
+              src={sprite}
+              alt="Card Img"
+              onError={() => isValid && setIsValid(false)}
+            />
+          </ImgContainer>
+
+          <CardText>
+            {id && <CardId>{id}</CardId>}
+            <CardName>{name}</CardName>
+          </CardText>
+        </InnerWrapper>
+        <Corner />
+      </OuterWrapper>
+    </div>
   );
 };
 
