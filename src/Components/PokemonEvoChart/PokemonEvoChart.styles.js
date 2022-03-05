@@ -10,8 +10,11 @@ export const Wrapper = styled.div`
   padding-bottom: 3rem;
 `;
 
+export const NavContainer = styled.div`
+  margin: 3rem 0;
+`;
+
 export const ChartContainer = styled.div`
-  background-color: var(--pokedexGreen);
   display: flex;
   flex-flow: ${(props) => (props.length < 3 ? "column nowrap" : "row nowrap")};
 
@@ -19,6 +22,9 @@ export const ChartContainer = styled.div`
   padding: 2rem;
   max-width: var(--maxWidth);
   gap: 4rem;
+
+  background-color: var(--pokedexBlue);
+  border-radius: 12px;
 `;
 
 export const EvoTier = styled.div`

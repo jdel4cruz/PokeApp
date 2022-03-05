@@ -49,5 +49,5 @@ export const MoveListTitle = styled.div`
   font-size: 2rem;
   font-weight: bold;
   background-color: ${(props) => props.backgroundColor || ""};
-  color: white;
+  color: black;
 `;

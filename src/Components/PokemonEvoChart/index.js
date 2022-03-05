@@ -5,7 +5,12 @@ import EvoChartCell from "../EvoChartCell";
 import PokemonNav from "../PokemonNav";
 
 //Styles
-import { Wrapper, EvoTier, ChartContainer } from "./PokemonEvoChart.styles";
+import {
+  Wrapper,
+  EvoTier,
+  ChartContainer,
+  NavContainer,
+} from "./PokemonEvoChart.styles";
 
 const PokemonEvoChart = ({ evoTiers }) => {
   const generateCells = (tier) => {
@@ -26,7 +31,9 @@ const PokemonEvoChart = ({ evoTiers }) => {
 
   return (
     <Wrapper>
-      <PokemonNav currentRoute={"evo"} />
+      <NavContainer>
+        <PokemonNav currentRoute={"evo"} />
+      </NavContainer>
 
       <ChartContainer length={evoTiers.length}>
         {evoTiers.map((tier) => (

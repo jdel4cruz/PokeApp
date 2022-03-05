@@ -7,17 +7,17 @@ export const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   width: fit-content;
-  background-color: grey;
+  background-color: white;
   border-radius: 12px;
   padding: 1rem;
   height: 18rem;
-  width: 20rem;
+  width: fit-content;
 `;
 
 export const ImgContainer = styled.div`
   display: flex;
   justify-content: center;
-  height: 50%;
+  height: 70%;
   img {
     width: auto;
     height: 100%;
@@ -34,15 +34,13 @@ export const EvoCondition = styled.div`
 `;
 
 export const StyledLink = styled(Link)`
-text-decoration: none;
-color: inherit;
-&: focus, 
-&: hover, 
-&: visited, 
-&: link,
-&: active {
   text-decoration: none;
-}
-
-
+  color: inherit;
+  &:focus,
+  &:hover,
+  &:visited,
+  &:link,
+  &:active {
+    text-decoration: none;
+  }
 `;

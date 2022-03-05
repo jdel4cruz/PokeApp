@@ -34,8 +34,8 @@ export const Button = styled.button`
   transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
   &:hover {
     cursor: pointer;
-    background-color: var(--pokedexOrange);
-    color: white;
+    background-color: var(--pokedexBlue);
+    color: Black;
   }
   margin: 2rem 0;
 `;

@@ -41,7 +41,7 @@ const atkTypes = ["Status", "Phys", "Spec"];
 const MoveHeader = ({ isLevel, title }) => {
   return (
     <>
-      <MoveListTitle backgroundColor={"var(--pokedexOrange)"}>
+      <MoveListTitle backgroundColor={"var(--pokedexBlue)"}>
         {title}
       </MoveListTitle>
       <MoveContainer isLevel={isLevel} isHeader={true}>
