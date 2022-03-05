@@ -16,7 +16,7 @@ import {
 const MoveHeader = ({ isLevel, title }) => {
   return (
     <MoveHeaderContainer>
-      <MoveListTitle backgroundColor={"var(--pokedexOrange)"}>
+      <MoveListTitle backgroundColor={"var(--pokedexBlue)"}>
         {title}
       </MoveListTitle>
 

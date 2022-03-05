@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const Wrapper = styled.div`
   position: absolute;
   right: -25rem;
+  top: 50%;
 
   display: flex;
   flex-flow: column nowrap;
@@ -10,28 +11,33 @@ export const Wrapper = styled.div`
   max-height: 100%;
   width: fit-content;
   padding: 1rem;
-  background-color: grey;
+  background-color: white;
+  color: black;
+  border: 6px solid black;
 
   overflow: scroll;
+
+  z-index: 99999;
 
   ::-webkit-scrollbar {
     width: 0px;
     background: transparent;
   }
-  transform: translateX(0);
+  transform: translate(0, -50%);
   transition: transform 0.7s ease 0s;
 
   &.open {
-    transform: translateX(-25rem);
+    transform: translate(-25rem, -50%);
     transition: transform 0.7s ease 0s;
   }
 
   ul {
     padding: 0;
+    margin: 0;
   }
 
   h2 {
-    margin: 0;
+    margin-bottom: 0.5rem;
   }
 `;
 
@@ -56,7 +62,19 @@ export const Selection = styled.ul`
 
 export const CloseButton = styled.button`
   border: none;
+  align-self: center;
   padding: 1rem 2rem;
-  background-color: var(--pokedexGreen);
+  background-color: white;
   border-radius: 10px;
+  border: 3px solid black;
+
+  width: 70%;
+  font-size: var(--fontLarge);
+  font-weight: bold;
+  color: Black;
+
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  &:hover {
+    cursor: pointer;
+  }
 `;

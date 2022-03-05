@@ -24,8 +24,8 @@ export const Button = styled.button`
   padding: 1rem 2rem;
   display: inline;
   background-color: ${(props) =>
-    props.isOpen ? "var(--pokedexBlue)" : "var(--pokedexOrange)"};
-  color: ${(props) => (props.isOpen ? "black" : "white")};
+    props.isOpen ? "var(--pokedexOrange)" : "var(--pokedexBlue)"};
+  color: ${(props) => (props.isOpen ? "White" : "Black")};
   border-radius: 10px;
 
   font-weight: bold;
@@ -34,8 +34,8 @@ export const Button = styled.button`
   transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
   &:hover {
     cursor: pointer;
-    background-color: var(--pokedexBlue);
-    color: Black;
+    background-color: var(--pokedexOrange);
+    color: white;
   }
   margin: 2rem 0;
 `;

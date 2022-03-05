@@ -39,7 +39,7 @@ export const Wrapper = styled.div`
   }
 
   h2 {
-    margin: 0.5rem;
+    margin-bottom: 0.5rem;
   }
 `;
 
