@@ -20,7 +20,7 @@ const ItemGrid = () => {
     return <div>Loading</div>;
   }
 
-  console.log(cards);
+  console.log(popup);
 
   return (
     <Wrapper>
@@ -32,7 +32,7 @@ const ItemGrid = () => {
         setPage={setPage}
       />
       <Grid>{cards}</Grid>
-      <Overlay isOpen={isOpen} />
+      <Overlay isOpen={isOpen} popup={popup} />
       <GridOptions>
         <Button
           onClick={(e) => {

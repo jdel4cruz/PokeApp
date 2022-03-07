@@ -20,10 +20,15 @@ export const Overlay = styled.div`
 
   transition: all 0.3s ease-in-out;
   background-color: ${(props) =>
-    props.isOpen ? "rgba(0, 0, 0, 0.8)" : "transparent"};
+    props.isOpen
+      ? "rgba(0, 0, 0, 0.8)"
+      : props.popup
+      ? "rgba(0, 0, 0, 0.8)"
+      : "transparent"};
 
-  visibility: ${(props) => (props.isOpen ? "" : "hidden")};
-  display: ${(props) => (props.isOpen ? "block" : "")};
+  visibility: ${(props) =>
+    props.isOpen ? "visible" : props.popup ? "visible" : "hidden"};
+
   z-index: 1;
 `;
 

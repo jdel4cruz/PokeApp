@@ -9,6 +9,9 @@ export const Wrapper = styled.div`
 
   top: 50%;
   transform: translateY(-50%);
+  transition: opacity 0.3s ease-in-out;
+  opacity: ${(props) => (props.isOpen ? 1 : 0)};
+  visibility: ${(props) => (props.isOpen ? "visible" : "hidden")};
 
   padding: 3rem 1rem;
   background-color: rgba(90, 90, 90);

@@ -10,29 +10,32 @@ import {
 } from "./ItemPopup.styles";
 
 const ItemPopup = ({ data, setPopup }) => {
-  const [state, setState] = useState(null);
+  const [state, setState] = useState(data);
+  const [fadeIn, setFadeIn] = useState(true);
 
   useEffect(() => {
     setState(data);
   }, [data]);
 
-  if (state == null) {
-    return null;
-  }
+  useEffect(() => {
+    setFadeIn(!fadeIn);
+  }, [state]);
 
-  const { sprite, name, category, effectText, cost } = state;
+  useEffect(() => {
+    console.log(fadeIn);
+  }, [fadeIn]);
 
   return (
-    <Wrapper>
+    <Wrapper isOpen={fadeIn}>
       <CloseButton onClick={() => setPopup(null)} />
       <ImgContainer>
-        <img src={sprite} />
+        <img src={state != null ? state.sprite : ""} />
       </ImgContainer>
       <ItemText>
-        <Name>{`Name: ${name}`}</Name>
-        <div>{`Category: ${category}`}</div>
-        <div>{`Effect Text: ${effectText}`}</div>
-        <div>{`Cost: ${cost}`}</div>
+        <Name>{state != null ? `Name: ${state.name}` : ""}</Name>
+        <div>{state != null ? `Category: ${state.category}` : ""}</div>
+        <div>{state != null ? `Effect Text: ${state.effectText}` : ""}</div>
+        <div>{state != null ? `Cost: ${state.cost}` : ""}</div>
       </ItemText>
     </Wrapper>
   );

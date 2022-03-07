@@ -15,9 +15,9 @@ export const Wrapper = styled.div`
   background-color: grey;
   z-index: 99999;
 
-  background-color: var(--pokedexOrange);
+  background-color: white;
   color: black;
-  border: 6px solid white;
+  border: 12px solid var(--pokedexOrange);
 
   overflow: scroll;
 
@@ -39,7 +39,7 @@ export const Wrapper = styled.div`
   }
 
   h2 {
-    color: white;
+    color: black;
     margin-bottom: 0.5rem;
   }
 `;
@@ -69,13 +69,13 @@ export const CloseButton = styled.button`
   border: none;
   align-self: center;
   padding: 1rem 2rem;
-  background-color: var(--pokedexBlue);
+  background-color: var(--pokedexOrange);
   border-radius: 10px;
 
   width: 70%;
   font-size: var(--fontLarge);
   font-weight: bold;
-  color: Black;
+  color: white;
 
   transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out,
     filter 0.3s ease-in-out;
