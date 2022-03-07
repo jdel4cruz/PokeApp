@@ -27,7 +27,7 @@ const ItemPopup = ({ data, setPopup }) => {
 
   return (
     <Wrapper isOpen={fadeIn}>
-      <CloseButton onClick={() => setPopup(null)} />
+      <CloseButton onClick={() => setPopup(null)}>Close</CloseButton>
       <ImgContainer>
         <img src={state != null ? state.sprite : ""} />
       </ImgContainer>

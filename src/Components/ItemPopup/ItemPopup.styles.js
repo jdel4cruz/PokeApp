@@ -14,8 +14,10 @@ export const Wrapper = styled.div`
   visibility: ${(props) => (props.isOpen ? "visible" : "hidden")};
 
   padding: 3rem 1rem;
-  background-color: rgba(90, 90, 90);
-  border-radius: 2rem;
+  padding-left: 0;
+  background-color: white;
+  border: 1rem solid var(--pokedexBlue);
+  border-radius: 12px;
 
   z-index: 99999;
 `;
@@ -35,32 +37,57 @@ export const ItemText = styled.div`
   gap: 1rem;
 `;
 
+// export const CloseButton = styled.button`
+//   position: absolute;
+
+//   min-width: 3rem;
+//   min-height: 3rem;
+//   top: 2rem;
+//   right: 2rem;
+//   padding: 0;
+//   border: none;
+
+//   ::before,
+//   ::after {
+//     position: absolute;
+//     right: -1.4px;
+//     content: "";
+//     background-color: black;
+//     width: 100%;
+
+//     border: 1px solid black;
+//   }
+
+//   ::before {
+//     transform: rotate(45deg);
+//   }
+//   ::after {
+//     transform: rotate(-45deg);
+//   }
+// `;
+
 export const CloseButton = styled.button`
   position: absolute;
+  bottom: 0.5rem;
+  right: 0.5rem;
 
-  min-width: 3rem;
-  min-height: 3rem;
-  top: 2rem;
-  right: 2rem;
-  padding: 0;
   border: none;
+  align-self: center;
+  padding: 1rem 2rem;
+  background-color: var(--pokedexBlue);
+  border-radius: 3px;
 
-  ::before,
-  ::after {
-    position: absolute;
-    right: -1.4px;
-    content: "";
-    background-color: black;
-    width: 100%;
+  width: fit-content;
+  font-size: var(--fontLarge);
+  font-weight: bold;
+  color: black;
 
-    border: 1px solid black;
-  }
-
-  ::before {
-    transform: rotate(45deg);
-  }
-  ::after {
-    transform: rotate(-45deg);
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out,
+    color 0.3s ease-in-out;
+  &:hover {
+    cursor: pointer;
+    background-color: var(--pokedexOrange);
+    color: white;
   }
 `;
 
