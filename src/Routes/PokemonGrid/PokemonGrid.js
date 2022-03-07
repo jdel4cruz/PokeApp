@@ -7,7 +7,7 @@ import Pagination from "../../Components/Pagination";
 import PokemonFilter from "../../Components/PokemonFilter";
 
 //Styles
-import { Wrapper, GridOptions, Button } from "./PokemonGrid.styles";
+import { Wrapper, GridOptions, Button, Overlay } from "./PokemonGrid.styles";
 
 //Hooks
 import { usePokemonGridFetch } from "../../Hooks/usePokemonGridFetch";
@@ -45,6 +45,7 @@ const Pokemon = () => {
           Filter/Sort
         </Button>
       </GridOptions>
+      <Overlay openFilter={openFilter} />
     </Wrapper>
   );
 };

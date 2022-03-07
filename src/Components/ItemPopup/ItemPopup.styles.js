@@ -13,6 +13,8 @@ export const Wrapper = styled.div`
   padding: 3rem 1rem;
   background-color: rgba(90, 90, 90);
   border-radius: 2rem;
+
+  z-index: 99999;
 `;
 
 export const ImgContainer = styled.div`

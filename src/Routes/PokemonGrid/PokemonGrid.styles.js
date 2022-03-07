@@ -41,3 +41,17 @@ export const Button = styled.button`
     color: white;
   }
 `;
+
+export const Overlay = styled.div`
+  position: absolute;
+  width: 100%;
+  min-height: 2000px;
+
+  transition: all 0.3s ease-in-out;
+  background-color: ${(props) =>
+    props.openFilter ? "rgba(0, 0, 0, 0.8)" : "transparent"};
+
+  visibility: ${(props) => (props.openFilter ? "" : "hidden")};
+  display: ${(props) => (props.openFilter ? "block" : "")};
+  z-index: 1;
+`;

@@ -32,7 +32,7 @@ const ItemGrid = () => {
         setPage={setPage}
       />
       <Grid>{cards}</Grid>
-      <Overlay popup={popup} />
+      <Overlay isOpen={isOpen} />
       <GridOptions>
         <Button
           onClick={(e) => {

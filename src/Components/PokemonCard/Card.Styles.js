@@ -46,6 +46,7 @@ export const Corner = styled.div`
   ${Wrapper}:hover & {
     transform: translate(1.5rem, -1.5rem) rotate(45deg);
     border-color: var(--pokedexOrange);
+    background-color: transparent;
   }
 `;
 

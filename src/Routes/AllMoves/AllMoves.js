@@ -5,7 +5,7 @@ import MoveList from "../../Components/MoveList";
 import MoveFilter from "../../Components/MoveFilter";
 
 //Styles
-import { Wrapper, ListOptions, Button } from "./AllMoves.styles";
+import { Wrapper, ListOptions, Button, Overlay } from "./AllMoves.styles";
 
 //Hooks
 import { useAllMovesFetch } from "../../Hooks/useAllMovesFetch";
@@ -90,6 +90,7 @@ const AllMoves = () => {
           Filter/Sort
         </Button>
       </ListOptions>
+      <Overlay isOpen={isOpen} />
     </Wrapper>
   );
 };

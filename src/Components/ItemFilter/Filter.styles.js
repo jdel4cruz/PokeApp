@@ -15,9 +15,9 @@ export const Wrapper = styled.div`
   background-color: grey;
   z-index: 99999;
 
-  background-color: white;
+  background-color: var(--pokedexOrange);
   color: black;
-  border: 6px solid black;
+  border: 6px solid white;
 
   overflow: scroll;
 
@@ -39,6 +39,7 @@ export const Wrapper = styled.div`
   }
 
   h2 {
+    color: white;
     margin-bottom: 0.5rem;
   }
 `;
@@ -68,17 +69,18 @@ export const CloseButton = styled.button`
   border: none;
   align-self: center;
   padding: 1rem 2rem;
-  background-color: white;
+  background-color: var(--pokedexBlue);
   border-radius: 10px;
-  border: 3px solid black;
 
   width: 70%;
   font-size: var(--fontLarge);
   font-weight: bold;
   color: Black;
 
-  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out,
+    filter 0.3s ease-in-out;
   &:hover {
     cursor: pointer;
+    filter: brightness(80%);
   }
 `;
