@@ -162,7 +162,7 @@ export const usePokemonGridFetch = () => {
     let searchData;
     if (searchTerm != null) {
       searchData = data.filter((card) => {
-        return card.props.name.toLowerCase().includes(searchTerm.toLowerCase());
+        return card.props.name.includes(searchTerm.toLowerCase());
       });
 
       return searchData;
