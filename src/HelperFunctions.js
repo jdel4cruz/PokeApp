@@ -5,15 +5,19 @@ import PokemonCard from "./Components/PokemonCard";
 import ItemCard from "./Components/ItemCard";
 
 //Functions to create the cards shown in their respective grids
-export const pokemonCardGenerator = (data, filterSort, page, limit) => {
+export const pokemonCardGenerator = (data) => {
   console.log("creating cards");
-  const cards = data.map((item, i) => (
+  const cards = data.map((item) => (
     <PokemonCard
       img={item.sprite}
       name={item.name}
       id={item.id}
-      key={i - limit + page * limit}
-      filterSort={filterSort}
+      key={item.id}
+      data={{
+        pokemonspecy: item.pokemon_v2_pokemonspecy,
+        pokemontypes: item.pokemon_v2_pokemontypes,
+        pokemonstats: item.pokemon_v2_pokemonstats,
+      }}
     />
   ));
   console.log(cards);

@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const Content = styled.div`
   display: grid;
   max-width: 90%;
-  margin-top: 3rem;
 
   height: fit-content;
   grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));

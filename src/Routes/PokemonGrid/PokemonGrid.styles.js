@@ -55,3 +55,22 @@ export const Overlay = styled.div`
   display: ${(props) => (props.openFilter ? "block" : "")};
   z-index: 1;
 `;
+
+export const SearchContainer = styled.div`
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 2rem;
+`;
+
+export const SearchBar = styled.input`
+  padding: 5px;
+  margin-left: 0.5rem;
+  width: 20%;
+
+  font-size: var(--fontSmall);
+`;
+
+export const SearchLabel = styled.h2``;

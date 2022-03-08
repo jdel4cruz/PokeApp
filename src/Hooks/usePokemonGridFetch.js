@@ -33,11 +33,13 @@ export const usePokemonGridFetch = () => {
   const [rawData, setRawData] = useState(null);
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(54);
+  const [rawCards, setRawCards] = useState(null);
   const [cards, setCards] = useState([]);
   const [filterSort, setFilterSort] = useState({
     filter: initialFilter,
     sort: initialSort,
   });
+  const [searchTerm, setSearchTerm] = useState("");
 
   // Fetches data from API and sets it to rawData
   const fetchGrid = async () => {
@@ -64,7 +66,7 @@ export const usePokemonGridFetch = () => {
       newData = data.filter((item) => {
         // If filtering by special pokemon (baby, legendary, mythic), deconstructs special object from pokemon and returns false if obj[special] == false
         if (special) {
-          const { pokemon_v2_pokemonspecy: dataSpecial } = item;
+          const { pokemonspecy: dataSpecial } = item.props.data;
 
           if (!dataSpecial[special]) {
             return false;
@@ -73,7 +75,7 @@ export const usePokemonGridFetch = () => {
 
         //If typeCriteria is set, matches(bool) is set to true
         if (Object.keys(typeCriteria).length) {
-          const { pokemon_v2_pokemontypes: dataTypes } = item;
+          const { pokemontypes: dataTypes } = item.props.data;
           let matches = true;
 
           // isType(bool) is set to false and forEach is run on the typeCriteria values
@@ -112,8 +114,8 @@ export const usePokemonGridFetch = () => {
     if (sorted) {
       newData.sort((a, b) => {
         if (sortStat != null) {
-          const { pokemon_v2_pokemonstats: aStats } = a;
-          const { pokemon_v2_pokemonstats: bStats } = b;
+          const { pokemonstats: aStats } = a.props.data;
+          const { pokemonstats: bStats } = b.props.data;
 
           if (statAsc) {
             return aStats[sortStat].base_stat - bStats[sortStat].base_stat;
@@ -156,6 +158,18 @@ export const usePokemonGridFetch = () => {
     return newData;
   };
 
+  const applySearch = (data) => {
+    let searchData;
+    if (searchTerm != null) {
+      searchData = data.filter((card) => {
+        return card.props.name.toLowerCase().includes(searchTerm.toLowerCase());
+      });
+
+      return searchData;
+    }
+    return data;
+  };
+
   //initial fetch and card generation
   useEffect(() => {
     console.log("grabbing from api");
@@ -164,8 +178,14 @@ export const usePokemonGridFetch = () => {
 
   useEffect(() => {
     if (rawData != null) {
+      setRawCards(pokemonCardGenerator(rawData));
+    }
+  }, rawData);
+
+  useEffect(() => {
+    if (rawCards != null) {
       // generates data based on filter/sort criteria that will be used to generate cards
-      const data = applyFilterSort(rawData);
+      const data = applySearch(applyFilterSort(rawCards));
 
       // Start and End variables are used to determine where to slice the data array when generating cards
       const end = page * limit;
@@ -174,24 +194,21 @@ export const usePokemonGridFetch = () => {
       // If page = 1, generates and sets first group of cards which is based off of limit. For each additional page, an additional group of cards is pushed onto cards
       setCards((prevCards) =>
         page == 1
-          ? pokemonCardGenerator(
-              data.slice(start, end),
-              filterSort,
-              page,
-              limit
-            )
-          : [
-              ...prevCards,
-              pokemonCardGenerator(
-                data.slice(start, end),
-                filterSort,
-                page,
-                limit
-              ),
-            ]
+          ? data.slice(start, end)
+          : [...prevCards, data.slice(start, end)]
       );
     }
-  }, [rawData, limit, page, filterSort]);
+  }, [rawCards, limit, page, filterSort, searchTerm]);
 
-  return { limit, setLimit, page, setPage, cards, filterSort, setFilterSort };
+  return {
+    limit,
+    setLimit,
+    page,
+    setPage,
+    cards,
+    filterSort,
+    setFilterSort,
+    searchTerm,
+    setSearchTerm,
+  };
 };
