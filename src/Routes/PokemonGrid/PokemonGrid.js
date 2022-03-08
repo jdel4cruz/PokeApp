@@ -30,7 +30,7 @@ const Pokemon = () => {
     setPage,
     filterSort,
     setFilterSort,
-    setSearchTerm,
+    setDebouncedTerm,
   } = usePokemonGridFetch();
 
   return (
@@ -41,7 +41,7 @@ const Pokemon = () => {
           type="text"
           placeholder="Search Pokemon name!"
           id="searchBar"
-          onChange={(e) => setSearchTerm(e.target.value)}
+          onChange={(e) => setDebouncedTerm(e.target.value)}
         />
       </SearchContainer>
 

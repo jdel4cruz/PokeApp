@@ -40,6 +40,7 @@ export const usePokemonGridFetch = () => {
     sort: initialSort,
   });
   const [searchTerm, setSearchTerm] = useState("");
+  const [debouncedTerm, setDebouncedTerm] = useState(searchTerm);
 
   // Fetches data from API and sets it to rawData
   const fetchGrid = async () => {
@@ -183,6 +184,11 @@ export const usePokemonGridFetch = () => {
   }, rawData);
 
   useEffect(() => {
+    const timer = setTimeout(() => setSearchTerm(debouncedTerm), 100);
+    return () => clearTimeout(timer);
+  }, [debouncedTerm]);
+
+  useEffect(() => {
     if (rawCards != null) {
       // generates data based on filter/sort criteria that will be used to generate cards
       const data = applySearch(applyFilterSort(rawCards));
@@ -208,7 +214,6 @@ export const usePokemonGridFetch = () => {
     cards,
     filterSort,
     setFilterSort,
-    searchTerm,
-    setSearchTerm,
+    setDebouncedTerm,
   };
 };
