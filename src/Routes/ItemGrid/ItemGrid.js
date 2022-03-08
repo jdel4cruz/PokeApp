@@ -6,24 +6,47 @@ import ItemPopup from "../../Components/ItemPopup";
 import ItemFilter from "../../Components/ItemFilter";
 
 // Styles
-import { Wrapper, Overlay, Button, GridOptions } from "./ItemGrid.style";
+import {
+  Wrapper,
+  Overlay,
+  Button,
+  GridOptions,
+  SearchBar,
+  SearchContainer,
+  SearchLabel,
+} from "./ItemGrid.style";
 
 //Hooks
 import { useItemFetch } from "../../Hooks/useItemFetch";
 
 const ItemGrid = () => {
-  const { popup, setPopup, cards, filterSort, setFilterSort, setPage } =
-    useItemFetch();
+  const {
+    popup,
+    setPopup,
+    cards,
+    filterSort,
+    setFilterSort,
+    setPage,
+    setDebouncedTerm,
+  } = useItemFetch();
   const [isOpen, setIsOpen] = useState(false);
 
   if (cards == null) {
     return <div>Loading</div>;
   }
 
-  console.log(popup);
-
   return (
     <Wrapper>
+      <SearchContainer>
+        <SearchLabel htmlFor="searchBar">Search: </SearchLabel>
+        <SearchBar
+          type="text"
+          placeholder="Search Pokemon name!"
+          id="searchBar"
+          onChange={(e) => setDebouncedTerm(e.target.value)}
+        />
+      </SearchContainer>
+
       <ItemFilter
         filterSort={filterSort}
         setFilterSort={setFilterSort}

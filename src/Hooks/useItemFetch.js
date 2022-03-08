@@ -16,18 +16,21 @@ const initialFilterSort = {
 
 // WIP but will function extremely similarly to usePokemonGridFetch
 export const useItemFetch = () => {
-  const [state, setState] = useState(null);
+  const [rawData, setRawData] = useState(null);
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(54);
+  const [rawCards, setRawCards] = useState(null);
   const [cards, setCards] = useState(null);
   const [popup, setPopup] = useState(null);
   const [filterSort, setFilterSort] = useState(initialFilterSort);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [debouncedTerm, setDebouncedTerm] = useState(searchTerm);
 
   const fetchItems = async () => {
     try {
       const items = await API.fetchItems();
 
-      setState(items);
+      setRawData(items);
     } catch (error) {
       console.log("there was an error", error);
     }
@@ -43,13 +46,13 @@ export const useItemFetch = () => {
 
     if (filter) {
       console.log(`Filtering by ${filter}`);
-      newData = data.filter((item) => filter == item.category);
+      newData = data.filter((item) => filter == item.props.category);
     }
 
     newData.sort((a, b) => {
       if (sortParams.criteria == "id") {
-        const { id: aId } = a;
-        const { id: bId } = b;
+        const { id: aId } = a.props;
+        const { id: bId } = b.props;
         if (sortParams.order == "asc") {
           return aId - bId;
         }
@@ -57,8 +60,8 @@ export const useItemFetch = () => {
         return bId - aId;
       }
       if (sortParams.criteria == "name") {
-        const { name: aName } = a;
-        const { name: bName } = b;
+        const { name: aName } = a.props;
+        const { name: bName } = b.props;
         if (sortParams.order == "asc") {
           if (aName.toUpperCase() <= bName.toUpperCase()) {
             return -1;
@@ -77,6 +80,18 @@ export const useItemFetch = () => {
     return newData;
   };
 
+  const applySearch = (data) => {
+    let searchData;
+    if (searchTerm != "") {
+      searchData = data.filter((card) => {
+        return card.props.name.includes(searchTerm.toLowerCase());
+      });
+
+      return searchData;
+    }
+    return data;
+  };
+
   useEffect(() => {
     console.log("Fetching from API");
 
@@ -84,36 +99,39 @@ export const useItemFetch = () => {
   }, []);
 
   useEffect(() => {
-    if (state != null) {
+    if (rawData != null) {
+      console.log(rawData);
+      setRawCards(itemCardGenerator(rawData, setPopup));
+    }
+  }, [rawData]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setSearchTerm(debouncedTerm), 100);
+    return () => clearTimeout(timer);
+  }, [debouncedTerm]);
+
+  useEffect(() => {
+    if (rawCards != null) {
+      console.log(rawCards);
+      const data = applySearch(applyFilterSort(rawCards));
       const end = page * limit;
       const start = page * limit - limit;
 
-      console.log("state", state);
-      const data = applyFilterSort(state);
-      console.log("data", data);
-
       setCards((prevCards) =>
         page == 1
-          ? itemCardGenerator(
-              data.slice(start, end),
-              filterSort,
-              page,
-              limit,
-              setPopup
-            )
-          : [
-              ...prevCards,
-              itemCardGenerator(
-                data.slice(start, end),
-                filterSort,
-                page,
-                limit,
-                setPopup
-              ),
-            ]
+          ? data.slice(start, end)
+          : [...prevCards, data.slice(start, end)]
       );
     }
-  }, [state, limit, page, filterSort]);
+  }, [rawCards, limit, page, filterSort, searchTerm]);
 
-  return { popup, setPopup, cards, filterSort, setFilterSort, setPage };
+  return {
+    popup,
+    setPopup,
+    cards,
+    filterSort,
+    setFilterSort,
+    setPage,
+    setDebouncedTerm,
+  };
 };

@@ -161,7 +161,7 @@ export const usePokemonGridFetch = () => {
 
   const applySearch = (data) => {
     let searchData;
-    if (searchTerm != null) {
+    if (searchTerm != "") {
       searchData = data.filter((card) => {
         return card.props.name.includes(searchTerm.toLowerCase());
       });
@@ -181,7 +181,7 @@ export const usePokemonGridFetch = () => {
     if (rawData != null) {
       setRawCards(pokemonCardGenerator(rawData));
     }
-  }, rawData);
+  }, [rawData]);
 
   useEffect(() => {
     const timer = setTimeout(() => setSearchTerm(debouncedTerm), 100);

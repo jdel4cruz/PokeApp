@@ -13,7 +13,7 @@ import {
   ImgContainer,
 } from "./Card.Styles";
 
-const PokemonCard = ({ img, name, id, filterSort, data }) => {
+const PokemonCard = ({ img, name, id, filterSort }) => {
   // If part of a cards data is not available from the API and an error is thrown upon card generation, this state is used to set className isValid on the Wrapper to "broken". This in turn sets display: none
   const [isValid, setIsValid] = useState(true);
 

@@ -24,21 +24,31 @@ export const pokemonCardGenerator = (data) => {
   return cards;
 };
 
-export const itemCardGenerator = (data, filterSort, page, limit, setPopup) => {
+export const itemCardGenerator = (data, setPopup) => {
   console.log("Creating item cards");
-  const cards = data.map((item, i) => (
-    <ItemCard
-      sprite={item.sprite}
-      category={item.category}
-      cost={item.cost}
-      name={item.name}
-      id={item.id}
-      key={i - limit + page * limit}
-      filterSort={filterSort}
-      setPopup={setPopup}
-      effectText={item.itemEffect[0].effect}
-    />
-  ));
+  const cards = data.map((item) => {
+    let itemEffect;
+
+    if (item.itemEffect.length > 0) {
+      if (item.itemEffect[0].effect != null)
+        itemEffect = item.itemEffect[0].effect;
+    } else {
+      itemEffect = "Not supported by API";
+    }
+
+    return (
+      <ItemCard
+        sprite={item.sprite}
+        category={item.category}
+        cost={item.cost}
+        name={item.name}
+        id={item.id}
+        key={item.id}
+        setPopup={setPopup}
+        effectText={itemEffect}
+      />
+    );
+  });
 
   return cards;
 };
