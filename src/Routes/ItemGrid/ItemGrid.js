@@ -41,7 +41,7 @@ const ItemGrid = () => {
         <SearchLabel htmlFor="searchBar">Search: </SearchLabel>
         <SearchBar
           type="text"
-          placeholder="Search Pokemon name!"
+          placeholder="Search item name!"
           id="searchBar"
           onChange={(e) => setDebouncedTerm(e.target.value)}
         />
