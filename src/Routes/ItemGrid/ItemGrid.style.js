@@ -43,12 +43,13 @@ export const GridOptions = styled.div`
 
 export const Button = styled.button`
   border: none;
-  padding: 1rem 2rem;
   display: inline;
   background-color: ${(props) =>
     props.isOpen ? "var(--pokedexOrange)" : "var(--pokedexBlue)"};
   color: ${(props) => (props.isOpen ? "white" : "black")};
   border-radius: 10px;
+  padding: 1rem 2rem;
+  margin: 0 1rem;
 
   font-weight: bold;
   font-size: var(--fontMed);
@@ -73,6 +74,7 @@ export const SearchContainer = styled.div`
 export const SearchBar = styled.input`
   padding: 5px;
   margin-left: 0.5rem;
+  margin-right: 1rem;
   width: 20%;
 
   font-size: var(--fontSmall);

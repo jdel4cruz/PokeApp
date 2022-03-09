@@ -45,6 +45,22 @@ const ItemGrid = () => {
           id="searchBar"
           onChange={(e) => setDebouncedTerm(e.target.value)}
         />
+        <Button
+          onClick={(e) => {
+            setIsOpen(!isOpen);
+          }}
+          isOpen={isOpen}
+        >
+          Filter/Sort
+        </Button>
+        <Button
+          onClick={(e) => {
+            console.log(e.target.innerText);
+            setPage((prevPage) => prevPage + 1);
+          }}
+        >
+          Load More
+        </Button>
       </SearchContainer>
 
       <ItemFilter
@@ -56,25 +72,6 @@ const ItemGrid = () => {
       />
       <Grid>{cards}</Grid>
       <Overlay isOpen={isOpen} popup={popup} />
-      <GridOptions>
-        <Button
-          onClick={(e) => {
-            console.log(e.target.innerText);
-            setPage((prevPage) => prevPage + 1);
-          }}
-        >
-          Load More
-        </Button>
-        <Button
-          onClick={(e) => {
-            setIsOpen(!isOpen);
-          }}
-          isOpen={isOpen}
-        >
-          Filter/Sort
-        </Button>
-      </GridOptions>
-
       <ItemPopup data={popup} setPopup={setPopup} />
     </Wrapper>
   );

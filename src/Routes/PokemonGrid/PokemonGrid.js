@@ -43,6 +43,22 @@ const Pokemon = () => {
           id="searchBar"
           onChange={(e) => setDebouncedTerm(e.target.value)}
         />
+        <Button
+          onClick={(e) => {
+            setOpenFilter(!openFilter);
+          }}
+          openFilter={openFilter}
+        >
+          Filter/Sort
+        </Button>
+        <Button
+          onClick={(e) => {
+            console.log(e.target.innerText);
+            setPage((prevPage) => prevPage + 1);
+          }}
+        >
+          Load More
+        </Button>
       </SearchContainer>
 
       <PokemonFilter
@@ -53,24 +69,6 @@ const Pokemon = () => {
         setPage={setPage}
       ></PokemonFilter>
       <Grid>{cards}</Grid>
-      <GridOptions>
-        <Button
-          onClick={(e) => {
-            console.log(e.target.innerText);
-            setPage((prevPage) => prevPage + 1);
-          }}
-        >
-          Load More
-        </Button>
-        <Button
-          onClick={(e) => {
-            setOpenFilter(!openFilter);
-          }}
-          openFilter={openFilter}
-        >
-          Filter/Sort
-        </Button>
-      </GridOptions>
       <Overlay openFilter={openFilter} />
     </Wrapper>
   );
