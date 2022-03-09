@@ -13,7 +13,9 @@ export const Wrapper = styled.div`
   padding: 1rem;
   background-color: white;
   color: black;
-  border: 6px solid black;
+  border: 12px solid var(--pokedexOrange);
+
+  border-radius: 10px;
 
   overflow: scroll;
 
@@ -64,17 +66,18 @@ export const CloseButton = styled.button`
   border: none;
   align-self: center;
   padding: 1rem 2rem;
-  background-color: white;
+  background-color: var(--pokedexOrange);
   border-radius: 10px;
-  border: 3px solid black;
 
   width: 70%;
   font-size: var(--fontLarge);
   font-weight: bold;
-  color: Black;
+  color: white;
 
-  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out,
+    filter 0.3s ease-in-out;
   &:hover {
     cursor: pointer;
+    filter: brightness(80%);
   }
 `;

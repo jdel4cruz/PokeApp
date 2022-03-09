@@ -7,8 +7,10 @@ export const Wrapper = styled.div`
 
   border: 1px solid black;
   padding: 0;
-  margin-top: 3rem;
+  margin-top: 2rem;
   background-color: ${(props) => props.backgroundColor || ""};
+
+  max-height: 80%;
 
   overflow: scroll;
 

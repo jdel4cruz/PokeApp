@@ -23,7 +23,7 @@ export const HomeGrid = styled.div`
   gap: 1rem;
 
   padding: 3rem;
-  background: #fc993c;
+  background: var(--pokedexBlue);
   grid-template-areas:
     "text weakness"
     "image stats";

@@ -18,6 +18,7 @@ export const Wrapper = styled.div`
   background-color: white;
   color: black;
   border: 12px solid var(--pokedexOrange);
+  border-radius: 10px;
 
   overflow: scroll;
 

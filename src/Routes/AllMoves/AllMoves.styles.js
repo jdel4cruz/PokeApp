@@ -10,23 +10,15 @@ export const Wrapper = styled.div`
   height: 100%;
 `;
 
-export const ListOptions = styled.div`
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-
-  bottom: 0;
-`;
-
 export const Button = styled.button`
   border: none;
-  padding: 1rem 2rem;
   display: inline;
   background-color: ${(props) =>
     props.isOpen ? "var(--pokedexOrange)" : "var(--pokedexBlue)"};
-  color: ${(props) => (props.isOpen ? "White" : "Black")};
+  color: ${(props) => (props.isOpen ? "white" : "black")};
   border-radius: 10px;
+  padding: 1rem 2rem;
+  margin: 0 1rem;
 
   font-weight: bold;
   font-size: var(--fontMed);
@@ -37,7 +29,6 @@ export const Button = styled.button`
     background-color: var(--pokedexOrange);
     color: white;
   }
-  margin: 2rem 0;
 `;
 
 export const Overlay = styled.div`
@@ -53,3 +44,23 @@ export const Overlay = styled.div`
   display: ${(props) => (props.isOpen ? "block" : "")};
   z-index: 1;
 `;
+
+export const SearchContainer = styled.div`
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 2rem;
+`;
+
+export const SearchBar = styled.input`
+  padding: 5px;
+  margin-left: 0.5rem;
+  margin-right: 1rem;
+  width: 20%;
+
+  font-size: var(--fontSmall);
+`;
+
+export const SearchLabel = styled.h2``;

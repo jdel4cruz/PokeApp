@@ -12,4 +12,7 @@ export const PageItem = styled.li`
   padding: 0.5rem 1rem;
 
   pointer-events: ${(props) => (props.isCurrent ? "none" : "auto")};
+  cursor: ${(props) => (props.isCurrent ? "none" : "pointer")};
+
+  text-transform: capitalize;
 `;

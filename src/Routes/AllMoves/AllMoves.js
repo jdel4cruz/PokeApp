@@ -5,7 +5,15 @@ import MoveList from "../../Components/MoveList";
 import MoveFilter from "../../Components/MoveFilter";
 
 //Styles
-import { Wrapper, ListOptions, Button, Overlay } from "./AllMoves.styles";
+import {
+  Wrapper,
+  ListOptions,
+  Button,
+  Overlay,
+  SearchContainer,
+  SearchBar,
+  SearchLabel,
+} from "./AllMoves.styles";
 
 //Hooks
 import { useAllMovesFetch } from "../../Hooks/useAllMovesFetch";
@@ -34,7 +42,8 @@ const types = [
 const atkTypes = ["Status", "Phys", "Spec"];
 
 const AllMoves = () => {
-  const { rawData, filterSort, setFilterSort, setPage } = useAllMovesFetch();
+  const { rawData, filterSort, setFilterSort, setPage, setDebouncedTerm } =
+    useAllMovesFetch();
   const { filter, filterVal } = filterSort;
   const [isOpen, setIsOpen] = useState(false);
 
@@ -72,15 +81,14 @@ const AllMoves = () => {
 
   return (
     <Wrapper>
-      <MoveList moveSet={rawData.moves} isLevel={false} title={title} />
-      <MoveFilter
-        filterSort={filterSort}
-        setFilterSort={setFilterSort}
-        openFilter={isOpen}
-        setOpenFilter={setIsOpen}
-        setPage={setPage}
-      />
-      <ListOptions>
+      <SearchContainer>
+        <SearchLabel htmlFor="searchBar">Search: </SearchLabel>
+        <SearchBar
+          type="text"
+          placeholder="Search Pokemon name!"
+          id="searchBar"
+          onChange={(e) => setDebouncedTerm(e.target.value)}
+        />
         <Button
           onClick={(e) => {
             setIsOpen(!isOpen);
@@ -89,7 +97,16 @@ const AllMoves = () => {
         >
           Filter/Sort
         </Button>
-      </ListOptions>
+      </SearchContainer>
+      <MoveList moveSet={rawData.moves} isLevel={false} title={title} />
+      <MoveFilter
+        filterSort={filterSort}
+        setFilterSort={setFilterSort}
+        openFilter={isOpen}
+        setOpenFilter={setIsOpen}
+        setPage={setPage}
+      />
+
       <Overlay isOpen={isOpen} />
     </Wrapper>
   );

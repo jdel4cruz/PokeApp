@@ -17,6 +17,8 @@ export const useAllMovesFetch = () => {
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(54);
   const [filterSort, setFilterSort] = useState(initialFilterSort);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [debouncedTerm, setDebouncedTerm] = useState(searchTerm);
 
   const fetchAllMoves = async () => {
     const { filter, filterCondition, filterVal, sort, sortVal } = filterSort;
@@ -28,18 +30,36 @@ export const useAllMovesFetch = () => {
         sort,
         sortVal
       );
-      // console.log(moves);
-
-      setRawData(moves);
+      console.log(moves);
+      console.log(applySearch(moves));
+      setRawData(applySearch(moves));
     } catch (error) {
       console.log("there was an error", error);
     }
   };
 
+  const applySearch = (data) => {
+    console.log(data);
+
+    if (searchTerm != "") {
+      data.moves = data.moves.filter((move) => {
+        console.log(searchTerm);
+        return move.name.includes(searchTerm.toLowerCase());
+      });
+    }
+
+    return data;
+  };
+
+  useEffect(() => {
+    const timer = setTimeout(() => setSearchTerm(debouncedTerm), 100);
+    return () => clearTimeout(timer);
+  }, [debouncedTerm]);
+
   useEffect(async () => {
     console.log("fetching from API");
     await fetchAllMoves();
-  }, [filterSort, page, limit]);
+  }, [filterSort, page, limit, searchTerm]);
 
-  return { rawData, setPage, setLimit, filterSort, setFilterSort };
+  return { rawData, setPage, setLimit, filterSort, setFilterSort, setDebouncedTerm};
 };
