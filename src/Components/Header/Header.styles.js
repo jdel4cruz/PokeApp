@@ -10,6 +10,10 @@ export const Wrapper = styled.div`
 
   min-height: 8rem;
   width: 100%;
+
+  @media screen and (max-width: 400px) {
+    min-height: 6rem;
+  }
 `;
 
 export const NavContainer = styled.nav`
@@ -27,7 +31,12 @@ export const NavContainer = styled.nav`
 
 export const LogoContainer = styled.div`
   margin-left: 1rem;
+
   flex-shrink: 1;
+
+  @media screen and (max-width: 400px) {
+    width: 40%;
+  }
 `;
 
 export const StyledLink = styled(Link)`
@@ -76,4 +85,8 @@ export const StyledLink = styled(Link)`
 export const Logo = styled.img`
   max-width: 12rem;
   height: fit-content;
+
+  @media screen and (max-width: 400px) {
+    width: 100%;
+  }
 `;
