@@ -14,6 +14,10 @@ export const Wrapper = styled.div`
 
   background: white;
   border-radius: 12px;
+
+  @media screen and (max-width: 1200px) {
+    width: 100%;
+  }
 `;
 
 export const Chart = styled.div`
@@ -34,4 +38,9 @@ export const Cell = styled.div`
 
   background-color: ${(props) => props.backgroundColor || "brown"};
   color: ${(props) => props.textColor || "white"};
+
+  @media screen and (max-width: 600px) {
+    font-size: 12px;
+    padding: ${(props) => (props.isValue ? ".5rem" : ".25rem .5rem")};
+  }
 `;

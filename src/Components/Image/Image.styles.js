@@ -10,6 +10,10 @@ export const Wrapper = styled.div`
   border-radius: 12px;
 
   margin-top: 3rem;
+
+  @media screen and (max-width: 1200px) {
+    margin: 0;
+  }
 `;
 
 export const Img = styled.img`

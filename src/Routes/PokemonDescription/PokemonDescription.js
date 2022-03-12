@@ -43,12 +43,13 @@ const Pokemon = () => {
             abilities={abilities}
           ></PokemonInfo>
         </PokemonText>
-        <WeaknessContainer>
-          <PokemonWeakness />
-        </WeaknessContainer>
         <ImgContainer>
           <Image pokemonImg={sprite} background={Background}></Image>
         </ImgContainer>
+        <WeaknessContainer>
+          <PokemonWeakness />
+        </WeaknessContainer>
+
         <StatsContainer>
           <PokemonStats stats={stats}></PokemonStats>
         </StatsContainer>

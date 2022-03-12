@@ -29,7 +29,4 @@ export const MoveCell = styled.div`
   padding: 1rem;
 
   text-transform: ${(props) => (props.isName ? "capitalize" : "")};
-
-  @media screen and (max-width: 1000px) {
-  }
 `;

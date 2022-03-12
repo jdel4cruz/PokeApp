@@ -5,7 +5,7 @@ export const Wrapper = styled.div`
   flex-flow: column nowrap;
   padding: 2rem;
   gap: 2rem;
-
+  justify-content: space-between;
   min-width: 100%;
 
   background: white;
@@ -21,6 +21,11 @@ export const TextContainer = styled.div`
 export const PokemonNameNav = styled.div`
   display: flex;
   justify-content: space-between;
+
+  @media screen and (max-width: 1200px) {
+    flex-flow: column nowrap;
+    align-items: flex-start;
+  }
 `;
 
 export const PokemonName = styled.div`
@@ -29,6 +34,10 @@ export const PokemonName = styled.div`
 
   font-weight: bold;
   text-transform: capitalize;
+
+  @media screen and (max-width: 1200px) {
+    align-self: auto;
+  }
 `;
 export const PokemonType = styled.div`
   text-transform: capitalize;
