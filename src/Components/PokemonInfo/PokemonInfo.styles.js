@@ -5,7 +5,7 @@ export const Wrapper = styled.div`
   flex-flow: column nowrap;
   padding: 2rem;
   gap: 2rem;
-  justify-content: space-between;
+
   min-width: 100%;
 
   background: white;
