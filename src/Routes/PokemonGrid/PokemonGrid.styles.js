@@ -4,7 +4,6 @@ export const Wrapper = styled.div`
   position: relative;
   display: flex;
   flex-flow: column nowrap;
-
   align-items: center;
   width: 100%;
   height: 100vh;

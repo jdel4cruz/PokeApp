@@ -40,7 +40,7 @@ const ItemCard = ({
           <ImgContainer>
             <CardImg
               src={sprite}
-              alt="Card Img"
+              alt="Img not supported by the API"
               onError={() => isValid && setIsValid(false)}
             />
           </ImgContainer>

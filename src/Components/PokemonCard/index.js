@@ -31,7 +31,7 @@ const PokemonCard = ({ img, name, id, filterSort }) => {
           <ImgContainer>
             <CardImg
               src={img}
-              alt="Card Img"
+              alt="Img not supported by the API"
               onError={() => isValid && setIsValid(false)}
             />
           </ImgContainer>

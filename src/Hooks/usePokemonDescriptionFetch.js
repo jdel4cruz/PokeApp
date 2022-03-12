@@ -45,15 +45,26 @@ export const usePokemonDescriptionFetch = (pokemonId) => {
         }))
       );
       setAbilities(
-        rawData.pokemon[0].pokemon_v2_pokemonabilities.map((item) => ({
-          title: `${item.pokemon_v2_ability.name} ${
-            item.is_hidden ? "(Hidden)" : ""
-          }`,
-          key: uuidv4(),
+        rawData.pokemon[0].pokemon_v2_pokemonabilities.map((item) => {
+          const effectArray =
+            item.pokemon_v2_ability.pokemon_v2_abilityeffecttexts;
 
-          content:
-            item.pokemon_v2_ability.pokemon_v2_abilityeffecttexts[0].effect,
-        }))
+          const title = `${item.pokemon_v2_ability.name} ${
+            item.is_hidden ? "(Hidden)" : ""
+          }`;
+
+          const content =
+            effectArray.length > 0
+              ? effectArray[0].effect
+              : "Not supported by API";
+
+          return {
+            title: title,
+            key: uuidv4(),
+
+            content: content,
+          };
+        })
       );
 
       setSprite(rawData.pokemon[0].sprite);
