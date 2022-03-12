@@ -22,10 +22,12 @@ export const NavContainer = styled.nav`
   li {
     list-style: none;
   }
+  flex-shrink: 1;
 `;
 
 export const LogoContainer = styled.div`
   margin-left: 1rem;
+  flex-shrink: 1;
 `;
 
 export const StyledLink = styled(Link)`
@@ -61,6 +63,13 @@ export const StyledLink = styled(Link)`
 
   &:hover::before {
     width: 100%;
+  }
+
+  @media screen and (max-width: 930px) {
+    font-size: 32px;
+  }
+  @media screen and (max-width: 768px) {
+    font-size: 24px;
   }
 `;
 

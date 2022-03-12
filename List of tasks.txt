@@ -1,6 +1,13 @@
-- Some data pulled from the API contains hyphens/underscores for spaces and does not capitalize the 1st letter of words. Create a function to replace hyphens/underscores with spaces and use text-transform to get proper capitalization
-- Filter on pokemon grid isn't fixed or sticky and disappears as you scroll down. Needs to be fixed
+- Need to pull hyphens out of pokemon ability names for AllAbilities route.
 - Eventually will add loading triggers and some form of loading transition for the routes so things don't just phase into existance
-- Ignoring styling right now until all components/routes are ironed out. 
-- Am considering putting off search functionality until styling is done.
+- Will eventually re-evaluate what states need to actually be states. A lot of data that I current store in states are static so they could simply be assigned to a const instead. List of potential states to be changed listed below
+	- PokemonDescription:
+		- Just about everything tbh. There's no user input really available that would change the data in the components and require a re-render
+	- PokemonEvolutions:
+		- Same as above
+	- PokemonMoves: 
+		- Same as above
+	- PokemonGrid/ItemGrid
+		- The raw data and raw cards that are generated from the raw data are static. These could be set to consts, leaving cards as the only state that needs to be present as it will change based on searchTerm/filterSort
+
 
