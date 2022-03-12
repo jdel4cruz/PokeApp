@@ -20,6 +20,10 @@ export const Wrapper = styled.div`
   border-radius: 12px;
 
   z-index: 99999;
+
+  @media screen and (max-width: 1024px) {
+    width: 80%;
+  }
 `;
 
 export const ImgContainer = styled.div`
@@ -36,35 +40,6 @@ export const ItemText = styled.div`
   flex-flow: column nowrap;
   gap: 1rem;
 `;
-
-// export const CloseButton = styled.button`
-//   position: absolute;
-
-//   min-width: 3rem;
-//   min-height: 3rem;
-//   top: 2rem;
-//   right: 2rem;
-//   padding: 0;
-//   border: none;
-
-//   ::before,
-//   ::after {
-//     position: absolute;
-//     right: -1.4px;
-//     content: "";
-//     background-color: black;
-//     width: 100%;
-
-//     border: 1px solid black;
-//   }
-
-//   ::before {
-//     transform: rotate(45deg);
-//   }
-//   ::after {
-//     transform: rotate(-45deg);
-//   }
-// `;
 
 export const CloseButton = styled.button`
   position: absolute;
