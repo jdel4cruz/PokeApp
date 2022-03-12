@@ -24,6 +24,15 @@ export const Wrapper = styled.div`
   @media screen and (max-width: 1024px) {
     width: 80%;
   }
+
+  @media screen and (max-width: 600px) {
+    height: 80%;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    border: 6px solid var(--pokedexBlue);
+    padding: 1rem;
+  }
 `;
 
 export const ImgContainer = styled.div`
@@ -63,6 +72,10 @@ export const CloseButton = styled.button`
     cursor: pointer;
     background-color: var(--pokedexOrange);
     color: white;
+  }
+
+  @media screen and (max-width: 600px) {
+    font-size: var(--fontSmall);
   }
 `;
 
