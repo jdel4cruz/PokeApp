@@ -3,7 +3,10 @@ import styled from "styled-components";
 export const Wrapper = styled.ul`
   position: relative;
   display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
   list-style: none;
+
   margin: 0;
 `;
 

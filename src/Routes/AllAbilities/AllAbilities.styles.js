@@ -13,6 +13,7 @@ export const Wrapper = styled.div`
 export const ListOptions = styled.div`
   display: flex;
   align-items: center;
+
   gap: 1rem;
   margin-top: 2rem;
   margin-bottom: 3rem;

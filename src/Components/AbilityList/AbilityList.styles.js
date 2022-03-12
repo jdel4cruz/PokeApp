@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Wrapper = styled.div`
   position: relative;
 
-  width: var(--maxWidth);
+  width: 80%;
 
   border: 1px solid black;
   padding: 0;
@@ -46,6 +46,14 @@ export const AbilityContainer = styled.li`
 
   div {
     font-size: ${(props) => (props.isHeader ? "var(--fontMed)" : "")};
+  }
+
+  @media screen and (max-width: 600px) {
+    grid-template-columns: 6rem 4rem 1fr;
+  }
+
+  @media screen and (max-width: 480px) {
+    grid-template-columns: 4rem 2.7rem 1fr;
   }
 `;
 

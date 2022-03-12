@@ -8,6 +8,14 @@ export const AbilityContainer = styled.li`
   div {
     font-size: ${(props) => (props.isHeader ? "var(--fontMed)" : "")};
   }
+
+  @media screen and (max-width: 600px) {
+    grid-template-columns: 6rem 4rem 1fr;
+  }
+
+  @media screen and (max-width: 480px) {
+    grid-template-columns: 4rem 2.7rem 1fr;
+  }
 `;
 
 export const AbilityCell = styled.div`
