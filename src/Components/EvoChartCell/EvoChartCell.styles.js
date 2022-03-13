@@ -24,6 +24,10 @@ export const Wrapper = styled.div`
   @media screen and (max-width: 960px) {
     height: 30rem;
   }
+
+  @media screen and (max-width: 960px) {
+    height: 20rem;
+  }
 `;
 
 export const ImgContainer = styled.div`
