@@ -9,5 +9,12 @@
 		- Same as above
 	- PokemonGrid/ItemGrid
 		- The raw data and raw cards that are generated from the raw data are static. These could be set to consts, leaving cards as the only state that needs to be present as it will change based on searchTerm/filterSort
-
+- Media Queries need to be generated to accomodate for different screen sizes. Currently when scaled down it looks terrible.
+	- Grids don't need to be accomodated for as they auto-scale
+	- Header needs to scale down as it currently fails at ~900px width
+	- The PokemonMoves and PokemonEvo routes need width/grid updates. PokemonEvo is pretty barebones so it'll be trivial to update tbh.
+- Refactor based on Michael's feedback and potentially refactor PokemonMoves route to use the components in AllMoves (may be difficult as they receive data in different forms)
+- Should create an error page if something explodes.
+	
+	
 

@@ -85,7 +85,7 @@ const AllMoves = () => {
         <SearchLabel htmlFor="searchBar">Search: </SearchLabel>
         <SearchBar
           type="text"
-          placeholder="Search Pokemon name!"
+          placeholder="Search move name!"
           id="searchBar"
           onChange={(e) => setDebouncedTerm(e.target.value)}
         />
