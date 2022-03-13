@@ -10,8 +10,20 @@ export const Wrapper = styled.div`
   background-color: white;
   border-radius: 12px;
   padding: 1rem;
-  height: 18rem;
+  height: 40rem;
   width: fit-content;
+
+  @media screen and (max-width: 1600px) {
+    height: 30rem;
+  }
+
+  @media screen and (max-width: 1200px) {
+    height: 20rem;
+  }
+
+  @media screen and (max-width: 960px) {
+    height: 30rem;
+  }
 `;
 
 export const ImgContainer = styled.div`

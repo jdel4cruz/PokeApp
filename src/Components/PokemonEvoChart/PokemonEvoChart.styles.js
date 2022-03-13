@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const Wrapper = styled.div`
   display: flex;
   flex-flow: column nowrap;
-
   justify-content: center;
   align-items: center;
 
@@ -20,11 +19,14 @@ export const ChartContainer = styled.div`
 
   align-items: center;
   padding: 2rem;
-  max-width: var(--maxWidth);
   gap: 4rem;
 
   background-color: var(--pokedexBlue);
   border-radius: 12px;
+
+  @media screen and (max-width: 960px) {
+    flex-flow: column nowrap;
+  }
 `;
 
 export const EvoTier = styled.div`
