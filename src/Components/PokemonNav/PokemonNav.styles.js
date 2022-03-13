@@ -17,6 +17,7 @@ export const Wrapper = styled.div`
 `;
 
 export const StyledLink = styled(Link)`
+  color: var(--pokedexBlue);
   display: flex;
   justify-content: space-between;
   align-items: center;
