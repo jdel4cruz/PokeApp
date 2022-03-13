@@ -53,13 +53,15 @@ export const MoveContainer = styled.li`
 
   div {
     font-size: ${(props) => (props.isHeader ? "var(--fontMed)" : "")};
+    @media screen and (max-width: 1000px) {
+      font-size: var(--fontSmall);
+    }
   }
   @media screen and (max-width: 1000px) {
     grid-template-columns: ${(props) =>
       props.isLevel
-        ? "4rem 6rem 3rem 4rem 2rem 2rem 2rem 1fr"
+        ? "3rem 6rem 3rem 4rem 2rem 2rem 2rem 1fr"
         : "6rem 3rem 5rem 2.5rem 2.5rem 2.5rem 1fr"};
-    border: 1px solid black;
   }
 `;
 

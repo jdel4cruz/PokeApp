@@ -25,7 +25,7 @@ export const MoveCell = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-
+  text-align: ${(props) => (props.isEffect ? "" : "center")};
   padding: 1rem;
 
   text-transform: ${(props) => (props.isName ? "capitalize" : "")};

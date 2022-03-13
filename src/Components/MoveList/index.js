@@ -28,7 +28,7 @@ const MoveHeader = ({ isLevel, title }) => {
         <MoveCell>Pow</MoveCell>
         <MoveCell>Acc</MoveCell>
         <MoveCell>PP</MoveCell>
-        <MoveCell>Effect</MoveCell>
+        <MoveCell isEffect={true}>Effect</MoveCell>
       </MoveContainer>
     </MoveHeaderContainer>
   );
