@@ -12,6 +12,7 @@ import {
   NavMid,
   NavButton,
   NavMenu,
+  Overlay,
 } from "./Header.styles";
 
 //Images
@@ -36,16 +37,24 @@ const Header = () => {
       <NavMenu isOpen={isOpen}>
         <ul>
           <li key={uuidv4()}>
-            <StyledLink to="/pokemon">Pokemon</StyledLink>
+            <StyledLink to="/pokemon" onCLick={() => setIsOpen(!isOpen)}>
+              Pokemon
+            </StyledLink>
           </li>
           <li key={uuidv4()}>
-            <StyledLink to="/items">Items</StyledLink>
+            <StyledLink to="/items" onCLick={() => setIsOpen(!isOpen)}>
+              Items
+            </StyledLink>
           </li>
           <li key={uuidv4()}>
-            <StyledLink to="/moves">Moves</StyledLink>
+            <StyledLink to="/moves" onCLick={() => setIsOpen(!isOpen)}>
+              Moves
+            </StyledLink>
           </li>
           <li key={uuidv4()}>
-            <StyledLink to="/abilities">Abilities</StyledLink>
+            <StyledLink to="/abilities" onCLick={() => setIsOpen(!isOpen)}>
+              Abilities
+            </StyledLink>
           </li>
         </ul>
       </NavMenu>
@@ -66,6 +75,8 @@ const Header = () => {
           </li>
         </ul>
       </NavContainer>
+
+      <Overlay isOpen={isOpen} />
     </Wrapper>
   );
 };

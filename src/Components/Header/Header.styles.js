@@ -35,12 +35,13 @@ export const NavContainer = styled.nav`
 
 export const NavMenu = styled.div`
   position: absolute;
-  top: 10rem;
-  right: 0;
-  width: fit-content;
+  top: 8rem;
+  right: ${(props) => (props.isOpen ? `50%` : "0")};
+  width: 100%;
 
   transition: all 0.3s ease-in-out;
-  transform: ${(props) => (props.isOpen ? "translate(0%)" : "translate(100%)")};
+  transform: ${(props) =>
+    props.isOpen ? "translate(50%)" : "translate(100%)"};
   background: white;
   z-index: 2;
 
@@ -163,7 +164,13 @@ export const StyledLink = styled(Link)`
     font-size: 32px;
   }
   @media screen and (max-width: 768px) {
-    font-size: 24px;
+    font-size: 28px;
+  }
+  @media screen and (max-width: 700px) {
+    font-size: 6rem;
+  }
+  @media screen and (max-width: 480px) {
+    font-size: 5rem;
   }
 `;
 
@@ -174,4 +181,25 @@ export const Logo = styled.img`
   @media screen and (max-width: 400px) {
     width: 100%;
   }
+`;
+
+export const Overlay = styled.div`
+  position: absolute;
+  width: 100%;
+  min-height: 2000px;
+
+  top: 8rem;
+
+  transition: all 0.3s ease-in-out;
+  background-color: ${(props) =>
+    props.isOpen
+      ? "rgba(0, 0, 0, 0.8)"
+      : props.popup
+      ? "rgba(0, 0, 0, 0.8)"
+      : "transparent"};
+
+  visibility: ${(props) =>
+    props.isOpen ? "visible" : props.popup ? "visible" : "hidden"};
+
+  z-index: 1;
 `;
