@@ -25,6 +25,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-flow: column nowrap;
   height: 100vh;
+  overflow-x: hidden;
 `;
 
 function App() {
