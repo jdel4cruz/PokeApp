@@ -49,7 +49,6 @@ const Pokemon = () => {
         <WeaknessContainer>
           <PokemonWeakness />
         </WeaknessContainer>
-
         <StatsContainer>
           <PokemonStats stats={stats}></PokemonStats>
         </StatsContainer>

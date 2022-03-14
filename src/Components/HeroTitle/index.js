@@ -1,9 +1,8 @@
-import styled from "styled-components";
-
-const Title = styled.img``;
+//Components
+import { Title } from "./HeroTitle.styles";
 
 const HeroTitle = () => (
-  <Title src="https://fontmeme.com/permalink/220118/f85e10bf8af1fc1c3f06f1e0097fef2c.png"></Title>
+  <Title src="https://fontmeme.com/permalink/220314/b8830ea2e6a5dbdd433beda62a5e2450.png"></Title>
 );
 
 export default HeroTitle;

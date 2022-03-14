@@ -130,7 +130,7 @@ const Header = () => {
         </ul>
       </NavContainer>
 
-      <Overlay isOpen={isOpenCurrent.open} />
+      <Overlay isOpen={isOpenCurrent.isOpen} />
     </Wrapper>
   );
 };

@@ -201,7 +201,7 @@ export const Logo = styled.img`
 export const Overlay = styled.div`
   position: absolute;
   width: 100%;
-  min-height: 2000px;
+  min-height: 100vh;
 
   top: 8rem;
 
