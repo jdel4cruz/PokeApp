@@ -37,9 +37,12 @@ export const NavMenu = styled.div`
   position: absolute;
   top: 8rem;
   right: ${(props) => (props.isOpen ? `50%` : "0")};
+  /* right: 50%; */
   width: 100%;
-
+  height: fit-content;
+  color: black;
   transition: all 0.3s ease-in-out;
+  /* transform: translate(50%); */
   transform: ${(props) =>
     props.isOpen ? "translate(50%)" : "translate(100%)"};
   background: white;
@@ -49,14 +52,19 @@ export const NavMenu = styled.div`
     display: flex;
     flex-flow: column nowrap;
     padding: 0;
+    margin: 0;
   }
 
-  li {
-    list-style: none;
-  }
   @media screen and (min-width: 700px) {
     display: none;
   }
+`;
+
+export const NavMenuItem = styled.li`
+  list-style: none;
+
+  background: ${(props) =>
+    props.current == props.id ? "var(--pokedexOrange)" : "white"};
 `;
 
 export const NavButton = styled.div`
@@ -99,11 +107,11 @@ export const NavMid = styled.div`
       ? `
       background: transparent;
       &::before {
-      transform: rotate(45deg) translateY(0);
+      transform: rotate(-45deg) translateY(0);
     }
     
     &::after {
-      transform: rotate(-45deg) translateY(0);
+      transform: rotate(45deg) translateY(0);
     }`
       : `
     &::before {
@@ -125,9 +133,13 @@ export const LogoContainer = styled.div`
   }
 `;
 
-export const StyledLink = styled(Link)`
+export const StyledLink = styled(Link).attrs((props) => ({
+  id: props.id,
+  current: props.current,
+}))`
+  ${(props) => console.log(props)};
   position: relative;
-  color: black;
+
   display: inline-block;
   text-decoration: none;
   overflow: hidden;
@@ -135,10 +147,6 @@ export const StyledLink = styled(Link)`
   font-size: 48px;
   font-weight: bold;
   margin: 1rem 1rem;
-
-  &:visited {
-    color: inherit;
-  }
 
   &::before {
     position: absolute;
@@ -160,6 +168,12 @@ export const StyledLink = styled(Link)`
     width: 100%;
   }
 
+  @media screen and (min-width: 700px) {
+    &:visited {
+      color: inherit;
+    }
+  }
+
   @media screen and (max-width: 930px) {
     font-size: 32px;
   }
@@ -167,6 +181,7 @@ export const StyledLink = styled(Link)`
     font-size: 28px;
   }
   @media screen and (max-width: 700px) {
+    color: ${(props) => (props.current === props.id ? "white" : "black")};
     font-size: 6rem;
   }
   @media screen and (max-width: 480px) {

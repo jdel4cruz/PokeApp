@@ -12,6 +12,7 @@ import {
   NavMid,
   NavButton,
   NavMenu,
+  NavMenuItem,
   Overlay,
 } from "./Header.styles";
 
@@ -20,42 +21,95 @@ const LogoImg =
   "https://fontmeme.com/permalink/220228/42265cafe99a4859e3a787b661dff437.png";
 
 const Header = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  console.log(isOpen);
+  const [isOpenCurrent, setIsOpenCurrent] = useState({
+    isOpen: false,
+    isCurrent: null,
+  });
+  console.log(isOpenCurrent.isOpen);
+  console.log(isOpenCurrent.isCurrent);
+
+  const handleOnClick = (id) => {
+    setIsOpenCurrent({ isOpen: false, isCurrent: id });
+  };
+
   return (
     <Wrapper>
       <LogoContainer>
-        <Link to="/">
+        <Link to="/" onClick={() => handleOnClick(null)}>
           <Logo src={LogoImg} />
         </Link>
       </LogoContainer>
 
-      <NavButton onClick={() => setIsOpen(!isOpen)} isOpen={isOpen}>
-        <NavMid isOpen={isOpen} />
+      <NavButton
+        onClick={() =>
+          setIsOpenCurrent((prevState) => ({
+            ...prevState,
+            isOpen: !prevState.isOpen,
+          }))
+        }
+        isOpen={isOpenCurrent.isOpen}
+      >
+        <NavMid isOpen={isOpenCurrent.isOpen} />
       </NavButton>
 
-      <NavMenu isOpen={isOpen}>
+      <NavMenu isOpen={isOpenCurrent.isOpen}>
         <ul>
-          <li key={uuidv4()}>
-            <StyledLink to="/pokemon" onCLick={() => setIsOpen(!isOpen)}>
+          <NavMenuItem
+            key={"pokemon"}
+            id={"pokemon"}
+            current={isOpenCurrent.isCurrent}
+          >
+            <StyledLink
+              to="/pokemon"
+              onClick={() => handleOnClick("pokemon")}
+              id={"pokemon"}
+              current={isOpenCurrent.isCurrent}
+            >
               Pokemon
             </StyledLink>
-          </li>
-          <li key={uuidv4()}>
-            <StyledLink to="/items" onCLick={() => setIsOpen(!isOpen)}>
+          </NavMenuItem>
+          <NavMenuItem
+            key={"items"}
+            id={"items"}
+            current={isOpenCurrent.isCurrent}
+          >
+            <StyledLink
+              to="/items"
+              onClick={() => handleOnClick("items")}
+              id={"items"}
+              current={isOpenCurrent.isCurrent}
+            >
               Items
             </StyledLink>
-          </li>
-          <li key={uuidv4()}>
-            <StyledLink to="/moves" onCLick={() => setIsOpen(!isOpen)}>
+          </NavMenuItem>
+          <NavMenuItem
+            key={"moves"}
+            id={"moves"}
+            current={isOpenCurrent.isCurrent}
+          >
+            <StyledLink
+              to="/moves"
+              onClick={() => handleOnClick("moves")}
+              id={"moves"}
+              current={isOpenCurrent.isCurrent}
+            >
               Moves
             </StyledLink>
-          </li>
-          <li key={uuidv4()}>
-            <StyledLink to="/abilities" onCLick={() => setIsOpen(!isOpen)}>
+          </NavMenuItem>
+          <NavMenuItem
+            key={"abilities"}
+            id={"abilities"}
+            current={isOpenCurrent.isCurrent}
+          >
+            <StyledLink
+              to="/abilities"
+              onClick={() => handleOnClick("abilities")}
+              id={"abilities"}
+              current={isOpenCurrent.isCurrent}
+            >
               Abilities
             </StyledLink>
-          </li>
+          </NavMenuItem>
         </ul>
       </NavMenu>
 
@@ -76,7 +130,7 @@ const Header = () => {
         </ul>
       </NavContainer>
 
-      <Overlay isOpen={isOpen} />
+      <Overlay isOpen={isOpenCurrent.open} />
     </Wrapper>
   );
 };

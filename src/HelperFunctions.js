@@ -354,7 +354,6 @@ export const splitPokemonAbilties = (data) => {
   let currentArray = new Array();
 
   for (let ability of data) {
-    console.log(ability);
     if (currentIndex == ability.name.charAt(0)) {
       currentArray.push(ability);
     } else {
