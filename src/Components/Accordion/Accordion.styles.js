@@ -38,12 +38,12 @@ export const AccordionData = styled.div`
   background: white;
   font-size: var(--fontMed);
 
-  transition: all 0.5s cubic-bezier(0, 1, 0, 1);
+  transition: all 0.3s cubic-bezier(0, 1, 0, 1);
 
   &.open {
     height: auto;
     max-height: 9999px;
-    transition: all 0.5s cubic-bezier(1, 0, 1, 0);
+    transition: all 0.3s cubic-bezier(1, 0, 1, 0);
   }
 
   div {
