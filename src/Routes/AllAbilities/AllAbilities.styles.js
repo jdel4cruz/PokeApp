@@ -7,7 +7,7 @@ export const Wrapper = styled.div`
   align-items: center;
 
   overflow: hidden;
-  height: 100vh;
+  height: 140vh;
 `;
 
 export const ListOptions = styled.div`
@@ -16,5 +16,4 @@ export const ListOptions = styled.div`
 
   gap: 1rem;
   margin-top: 2rem;
-  margin-bottom: 3rem;
 `;

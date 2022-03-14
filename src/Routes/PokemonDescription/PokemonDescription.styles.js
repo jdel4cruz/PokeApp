@@ -4,9 +4,9 @@ export const Wrapper = styled.div`
   display: flex;
   flex-flow: column nowrap;
   width: 100%;
-  flex-grow: 1;
 
   padding-top: 3rem;
+  padding-bottom: 6rem;
   align-items: center;
 
   background: linear-gradient(135deg, transparent, 90%, var(--pokedexBlue)),
