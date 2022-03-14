@@ -11,6 +11,7 @@ import {
   Button,
   Overlay,
   SearchContainer,
+  SearchBarContainer,
   SearchBar,
   SearchLabel,
 } from "./AllMoves.styles";
@@ -82,21 +83,25 @@ const AllMoves = () => {
   return (
     <Wrapper>
       <SearchContainer>
-        <SearchLabel htmlFor="searchBar">Search: </SearchLabel>
-        <SearchBar
-          type="text"
-          placeholder="Search move name!"
-          id="searchBar"
-          onChange={(e) => setDebouncedTerm(e.target.value)}
-        />
-        <Button
-          onClick={(e) => {
-            setIsOpen(!isOpen);
-          }}
-          isOpen={isOpen}
-        >
-          Filter/Sort
-        </Button>
+        <SearchBarContainer>
+          <SearchLabel htmlFor="searchBar">Search: </SearchLabel>
+          <SearchBar
+            type="text"
+            placeholder="Search move name!"
+            id="searchBar"
+            onChange={(e) => setDebouncedTerm(e.target.value)}
+          />
+        </SearchBarContainer>
+        <SearchBarContainer>
+          <Button
+            onClick={(e) => {
+              setIsOpen(!isOpen);
+            }}
+            isOpen={isOpen}
+          >
+            Filter/Sort
+          </Button>
+        </SearchBarContainer>
       </SearchContainer>
       <MoveList moveSet={rawData.moves} isLevel={false} title={title} />
       <MoveFilter

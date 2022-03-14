@@ -13,6 +13,7 @@ import {
   GridOptions,
   SearchBar,
   SearchContainer,
+  SearchBarContainer,
   SearchLabel,
 } from "./ItemGrid.style";
 
@@ -38,29 +39,33 @@ const ItemGrid = () => {
   return (
     <Wrapper>
       <SearchContainer>
-        <SearchLabel htmlFor="searchBar">Search: </SearchLabel>
-        <SearchBar
-          type="text"
-          placeholder="Search item name!"
-          id="searchBar"
-          onChange={(e) => setDebouncedTerm(e.target.value)}
-        />
-        <Button
-          onClick={(e) => {
-            setIsOpen(!isOpen);
-          }}
-          isOpen={isOpen}
-        >
-          Filter/Sort
-        </Button>
-        <Button
-          onClick={(e) => {
-            console.log(e.target.innerText);
-            setPage((prevPage) => prevPage + 1);
-          }}
-        >
-          Load More
-        </Button>
+        <SearchBarContainer>
+          <SearchLabel htmlFor="searchBar">Search: </SearchLabel>
+          <SearchBar
+            type="text"
+            placeholder="Search item name!"
+            id="searchBar"
+            onChange={(e) => setDebouncedTerm(e.target.value)}
+          />
+        </SearchBarContainer>
+        <SearchBarContainer>
+          <Button
+            onClick={(e) => {
+              setIsOpen(!isOpen);
+            }}
+            isOpen={isOpen}
+          >
+            Filter/Sort
+          </Button>
+          <Button
+            onClick={(e) => {
+              console.log(e.target.innerText);
+              setPage((prevPage) => prevPage + 1);
+            }}
+          >
+            Load More
+          </Button>
+        </SearchBarContainer>
       </SearchContainer>
 
       <ItemFilter

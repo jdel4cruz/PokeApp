@@ -68,15 +68,32 @@ export const SearchContainer = styled.div`
   align-items: center;
   width: 100%;
   margin-top: 2rem;
+
+  @media screen and (max-width: 700px) {
+    display: flex;
+    flex-flow: column nowrap;
+  }
 `;
 
 export const SearchBar = styled.input`
   padding: 5px;
   margin-left: 0.5rem;
   margin-right: 1rem;
-  width: 20%;
+  width: 16rem;
+  height: fit-content;
 
   font-size: var(--fontSmall);
+
+  @media screen and (max-width: 700px) {
+    width: 14rem;
+  }
 `;
 
 export const SearchLabel = styled.h2``;
+
+export const SearchBarContainer = styled.div`
+  display: flex;
+  width: fit-content;
+  justify-content: start;
+  align-items: center;
+`;
