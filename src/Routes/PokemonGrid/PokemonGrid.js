@@ -13,6 +13,7 @@ import {
   Button,
   Overlay,
   SearchContainer,
+  SearchBarContainer,
   SearchBar,
   SearchLabel,
 } from "./PokemonGrid.styles";
@@ -36,29 +37,35 @@ const Pokemon = () => {
   return (
     <Wrapper>
       <SearchContainer>
-        <SearchLabel htmlFor="searchBar">Search: </SearchLabel>
-        <SearchBar
-          type="text"
-          placeholder="Search Pokemon name!"
-          id="searchBar"
-          onChange={(e) => setDebouncedTerm(e.target.value)}
-        />
-        <Button
-          onClick={(e) => {
-            setOpenFilter(!openFilter);
-          }}
-          openFilter={openFilter}
-        >
-          Filter/Sort
-        </Button>
-        <Button
-          onClick={(e) => {
-            console.log(e.target.innerText);
-            setPage((prevPage) => prevPage + 1);
-          }}
-        >
-          Load More
-        </Button>
+        <SearchBarContainer>
+          {" "}
+          <SearchLabel htmlFor="searchBar">Search: </SearchLabel>
+          <SearchBar
+            type="text"
+            placeholder="Search Pokemon name!"
+            id="searchBar"
+            onChange={(e) => setDebouncedTerm(e.target.value)}
+          />
+        </SearchBarContainer>
+        <SearchBarContainer>
+          {" "}
+          <Button
+            onClick={(e) => {
+              setOpenFilter(!openFilter);
+            }}
+            openFilter={openFilter}
+          >
+            Filter/Sort
+          </Button>
+          <Button
+            onClick={(e) => {
+              console.log(e.target.innerText);
+              setPage((prevPage) => prevPage + 1);
+            }}
+          >
+            Load More
+          </Button>
+        </SearchBarContainer>
       </SearchContainer>
 
       <PokemonFilter
