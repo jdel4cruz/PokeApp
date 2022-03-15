@@ -2,10 +2,10 @@ import { useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 //API
-import API from "../API";
+import API from "../API/API";
 
 //Helper Function
-import { pokemonSpriteGenerator } from "../HelperFunctions";
+import { pokemonSpriteGenerator } from "../HelperFunctions/HelperFunctions";
 
 export const usePokemonDescriptionFetch = (pokemonId) => {
   const [rawData, setRawData] = useState(null);

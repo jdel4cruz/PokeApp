@@ -13,7 +13,7 @@ import {
 import {
   removeHyphen,
   capitalizeFirstLetterEachWord,
-} from "../../HelperFunctions";
+} from "../../HelperFunctions/HelperFunctions";
 
 import { Wrapper } from "./PokemonStats.styles";
 

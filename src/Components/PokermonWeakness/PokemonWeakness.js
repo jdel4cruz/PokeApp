@@ -10,7 +10,7 @@ import { Wrapper } from "./PokemonWeakness.styles";
 import { usePokemonWeaknessFetch } from "../../Hooks/usePokemonWeaknessFetch";
 
 //Helper Functions
-import { calcDamageFactor } from "../../HelperFunctions";
+import { calcDamageFactor } from "../../HelperFunctions/HelperFunctions";
 
 const PokemonWeakness = () => {
   const { pokemonId } = useParams();

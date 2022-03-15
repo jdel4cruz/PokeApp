@@ -15,7 +15,7 @@ import {
 } from "./PokemonInfo.styles";
 
 // Helper functions
-import { removeHyphen } from "../../HelperFunctions";
+import { removeHyphen } from "../../HelperFunctions/HelperFunctions";
 
 const PokemonAccordion = styled(Accordion)`
   width: 50%;

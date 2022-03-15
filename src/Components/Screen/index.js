@@ -11,7 +11,7 @@ import Accordion from "../Accordion";
 import { Wrapper, StyledLink } from "./Screen.styles";
 
 //Helper Functions
-import { keyGenerator } from "../../HelperFunctions";
+import { keyGenerator } from "../../HelperFunctions/HelperFunctions";
 
 const Screen = () => {
   return (

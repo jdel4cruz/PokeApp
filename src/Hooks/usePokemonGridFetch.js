@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 
 //API
-import API from "../API";
+import API from "../API/API";
 
 //Helper Function
 import {
   pokemonSpriteGenerator,
   pokemonCardGenerator,
-} from "../HelperFunctions";
+} from "../HelperFunctions/HelperFunctions";
 
 //If type == true, will filter pokemontypes array against typecriteria, otherwise skip
 //If special !="", will filter pokemonspecy object to see if array[special] == true

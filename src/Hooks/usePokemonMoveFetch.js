@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 //API
-import API from "../API";
+import API from "../API/API";
 
 export const usePokemonMoveFetch = (pokemonId) => {
   const [moves, setMoves] = useState(null);

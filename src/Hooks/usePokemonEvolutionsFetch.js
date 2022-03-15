@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 //API
-import API from "../API";
+import API from "../API/API";
 
 export const usePokemonEvolutionsFetch = (pokemonId) => {
   const [state, setState] = useState(null);

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 //API
-import API from "../API";
+import API from "../API/API";
 
 const initialFilterSort = {
   filter: null,
@@ -61,5 +61,12 @@ export const useAllMovesFetch = () => {
     await fetchAllMoves();
   }, [filterSort, page, limit, searchTerm]);
 
-  return { rawData, setPage, setLimit, filterSort, setFilterSort, setDebouncedTerm};
+  return {
+    rawData,
+    setPage,
+    setLimit,
+    filterSort,
+    setFilterSort,
+    setDebouncedTerm,
+  };
 };

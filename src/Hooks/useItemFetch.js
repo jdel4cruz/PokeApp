@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 
 //API
-import API from "../API";
+import API from "../API/API";
 
 //Helper Functions
-import { itemCardGenerator } from "../HelperFunctions";
+import { itemCardGenerator } from "../HelperFunctions/HelperFunctions";
 
 const initialFilterSort = {
   filter: "Battle Item",
