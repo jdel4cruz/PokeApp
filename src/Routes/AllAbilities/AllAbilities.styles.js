@@ -15,5 +15,5 @@ export const ListOptions = styled.div`
   align-items: center;
 
   gap: 1rem;
-  margin-top: 2rem;
+  margin: 2rem 0;
 `;
