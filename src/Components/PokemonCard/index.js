@@ -13,7 +13,7 @@ import {
   ImgContainer,
 } from "./Card.Styles";
 
-const PokemonCard = ({ img, name, id, filterSort }) => {
+const PokemonCard = ({ img, name, pokemonId, filterSort }) => {
   // If part of a cards data is not available from the API and an error is thrown upon card generation, this state is used to set className isValid on the Wrapper to "broken". This in turn sets display: none
   const [isValid, setIsValid] = useState(true);
 
@@ -25,7 +25,7 @@ const PokemonCard = ({ img, name, id, filterSort }) => {
   }, [filterSort]);
 
   return (
-    <StyledLink to={`/pokemon/${id}`}>
+    <StyledLink to={`/pokemon/${pokemonId}`}>
       <Wrapper className={!isValid ? "broken" : ""}>
         <Wrapper2>
           <ImgContainer>
@@ -36,7 +36,7 @@ const PokemonCard = ({ img, name, id, filterSort }) => {
             />
           </ImgContainer>
           <CardText>
-            <CardId>{id}</CardId>
+            <CardId>{pokemonId}</CardId>
             <CardName>{name}</CardName>
           </CardText>
         </Wrapper2>

@@ -17,7 +17,7 @@ export const pokemonCardGenerator = (data) => {
     <PokemonCard
       img={item.sprite}
       name={item.name}
-      id={item.id}
+      pokemonId={item.id}
       key={item.id}
       data={{
         pokemonspecy: item.pokemon_v2_pokemonspecy,
