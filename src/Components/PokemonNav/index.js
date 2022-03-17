@@ -22,7 +22,7 @@ const PokemonNav = ({ currentRoute, hasEvo }) => {
       <StyledLink
         to={`/pokemon/${id}/evo`}
         isCurrent={currentRoute === "evo" ? true : false}
-        active={hasEvo}
+        active={hasEvo ? "flex" : "none"}
       >
         Evolutions
       </StyledLink>

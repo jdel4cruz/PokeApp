@@ -174,6 +174,12 @@ query PokemonLevelMoves($id: Int) {
   machineMoves: pokemon_v2_pokemonmove(where: {pokemon_id: {_eq: $id}, move_learn_method_id: {_eq: 4}, version_group_id: {_eq: 18}}, order_by: {pokemon_v2_move: {name: asc}}) {
     ...PokemonMoveFields
   }
+  evo : pokemon_v2_evolutionchain(where: {pokemon_v2_pokemonspecies: {id: {_eq:  $id}}}) {
+    evoChain: pokemon_v2_pokemonspecies {
+      id
+      name
+    }
+  }
 }`;
 
 export const evoQuery = `query PokemonEvolution($id: [Int!]) {

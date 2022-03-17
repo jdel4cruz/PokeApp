@@ -86,10 +86,12 @@ export const calcDamageFactor = (weakness1, weakness2) => {
 // Goes into 4 different moveList objects (level up, egg, tutor, tm) and updates name and text. Aliases could be applied to the graphQL request to clean up some of the code
 export const updateMoveText = (data) =>
   Object.keys(data).forEach((moveList) => {
+    if (moveList === "evo") {
+      return;
+    }
     data[moveList].forEach((move) => {
-      console.log(move);
       const moveData = move.pokemon_v2_move;
-      console.log(moveData);
+
       const moveEffectChance = moveData.move_effect_chance;
 
       moveData.name = moveData.name.replace("-", " ");

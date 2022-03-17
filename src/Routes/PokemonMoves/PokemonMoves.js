@@ -91,21 +91,21 @@ const Move = ({ move, isLevel }) => {
 
 const PokemonMoves = () => {
   const { pokemonId } = useParams();
-  const { moves } = usePokemonMoveFetch(pokemonId);
+  const { movesEvo } = usePokemonMoveFetch(pokemonId);
 
-  if (moves == null) {
+  if (movesEvo == null) {
     return <div>loading</div>;
   }
 
-  const eggMoves = moves.eggMoves;
-  const machineMoves = moves.machineMoves;
-  const tutorMoves = moves.tutorMoves;
-  const levelMoves = moves.levelMoves;
+  const eggMoves = movesEvo.eggMoves;
+  const machineMoves = movesEvo.machineMoves;
+  const tutorMoves = movesEvo.tutorMoves;
+  const levelMoves = movesEvo.levelMoves;
 
   return (
     <Wrapper>
       <div>
-        <PokemonNav currentRoute={"moves"} />
+        <PokemonNav currentRoute={"moves"} hasEvo={movesEvo.evo} />
       </div>
 
       {levelMoves.length > 0 && (

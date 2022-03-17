@@ -5,7 +5,8 @@ import { useNavigate } from "react-router-dom";
 import API from "../API/API";
 
 export const usePokemonMoveFetch = (pokemonId) => {
-  const [moves, setMoves] = useState(null);
+  const [movesEvo, setMovesEvo] = useState(null);
+
   const navigate = useNavigate();
 
   const fetchMoves = async (pokemonId) => {
@@ -15,7 +16,7 @@ export const usePokemonMoveFetch = (pokemonId) => {
 
       let hasMoves = false;
       Object.keys(response).forEach((key) => {
-        if (response[key].length > 1) {
+        if (response[key].length > 1 && key != "evo") {
           hasMoves = true;
         }
       });
@@ -24,7 +25,13 @@ export const usePokemonMoveFetch = (pokemonId) => {
         throw new Error(`Moves missing from API`);
       }
 
-      setMoves(response);
+      if (response.evo[0].evoChain.length < 2) {
+        response.evo = false;
+      } else {
+        response.evo = true;
+      }
+
+      setMovesEvo(response);
     } catch (error) {
       console.log("There was an error", error);
       navigate("/error");
@@ -36,5 +43,5 @@ export const usePokemonMoveFetch = (pokemonId) => {
     fetchMoves(pokemonId);
   }, []);
 
-  return { moves };
+  return { movesEvo };
 };
