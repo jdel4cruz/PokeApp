@@ -70,6 +70,20 @@ const Filter = ({
     setOpenFilter(false);
   };
 
+  const filterVal = filter
+    ? filterOptions[filterOptions.map((option) => option.value).indexOf(filter)]
+    : filterOptions[0];
+
+  const sortVal =
+    sortOptions[
+      sortOptions.map((option) => option.value).indexOf(sortParams.criteria)
+    ];
+
+  const orderVal =
+    orderOptions[
+      orderOptions.map((option) => option.value).indexOf(sortParams.order)
+    ];
+
   return (
     <Wrapper className={openFilter ? "open" : ""}>
       <div>
@@ -80,15 +94,7 @@ const Filter = ({
               <Select
                 options={filterOptions}
                 styles={selectStyles}
-                value={
-                  filter
-                    ? filterOptions[
-                        filterOptions
-                          .map((option) => option.value)
-                          .indexOf(filter)
-                      ]
-                    : filterOptions[0]
-                }
+                value={filterVal}
                 onChange={(e) => handleChange(e, "filter")}
               />
             </SelectContainer>
@@ -103,25 +109,13 @@ const Filter = ({
               <Select
                 options={sortOptions}
                 styles={selectStyles}
-                value={
-                  sortOptions[
-                    sortOptions
-                      .map((option) => option.value)
-                      .indexOf(sortParams.criteria)
-                  ]
-                }
+                value={sortVal}
                 onChange={(e) => handleChange(e, "sortCriteria")}
               />
               <Select
                 options={orderOptions}
                 styles={selectStyles}
-                value={
-                  orderOptions[
-                    orderOptions
-                      .map((option) => option.value)
-                      .indexOf(sortParams.order)
-                  ]
-                }
+                value={orderVal}
                 onChange={(e) => handleChange(e, "order")}
               />
             </SelectContainer>
