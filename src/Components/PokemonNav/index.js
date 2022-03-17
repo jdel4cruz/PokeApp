@@ -9,19 +9,19 @@ const PokemonNav = ({ currentRoute, hasEvo }) => {
     <Wrapper>
       <StyledLink
         to={`/pokemon/${id}`}
-        isCurrent={currentRoute === "pokemon" ? true : false}
+        current={currentRoute === "pokemon" ? "true" : "false"}
       >
         Pokemon
       </StyledLink>
       <StyledLink
         to={`/pokemon/${id}/moves`}
-        isCurrent={currentRoute === "moves" ? true : false}
+        current={currentRoute === "moves" ? "true" : "false"}
       >
         Moves
       </StyledLink>
       <StyledLink
         to={`/pokemon/${id}/evo`}
-        isCurrent={currentRoute === "evo" ? true : false}
+        current={currentRoute === "evo" ? "true" : "false"}
         active={hasEvo ? "flex" : "none"}
       >
         Evolutions

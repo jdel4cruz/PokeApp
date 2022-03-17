@@ -32,7 +32,7 @@ const PokemonEvoChart = ({ evoTiers }) => {
   return (
     <Wrapper>
       <NavContainer>
-        <PokemonNav currentRoute={"evo"} />
+        <PokemonNav currentRoute={"evo"} hasEvo={true} />
       </NavContainer>
 
       <ChartContainer length={evoTiers.length}>

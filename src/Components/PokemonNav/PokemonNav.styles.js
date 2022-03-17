@@ -28,8 +28,9 @@ export const StyledLink = styled(Link)`
   font-weight: bold;
   padding: 0 1rem;
 
-  text-decoration: ${(props) => (props.isCurrent ? "underline" : "none")};
-  pointer-events: ${(props) => (props.isCurrent ? "none" : "")};
+  text-decoration: ${(props) =>
+    props.current === "true" ? "underline" : "none"};
+  pointer-events: ${(props) => (props.current === "true" ? "none" : "")};
 
   :visited {
     color: var(--pokedexBlue);

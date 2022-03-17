@@ -10,6 +10,7 @@ const Pagination = ({ data, currentIndex, setCurrentIndex }) => {
       <PageItem
         onClick={() => setCurrentIndex(i)}
         isCurrent={i == currentIndex}
+        key={i}
       >
         {char}
       </PageItem>
