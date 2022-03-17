@@ -80,11 +80,7 @@ const typeLabels = [
   },
 ];
 
-const TypeChart = ({ weakness, type1, type2 }) => {
-  console.log(weakness);
-  console.log(type1);
-  console.log(type2);
-
+const TypeChart = ({ weakness }) => {
   // Used to set the background color of the damage cells based on the value within the cell
   const damageColor = (value) => {
     switch (value) {

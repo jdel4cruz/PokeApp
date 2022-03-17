@@ -43,7 +43,7 @@ export const usePokemonDescriptionFetch = (pokemonId) => {
   useEffect(() => {
     if (rawData != null) {
       const evoChain = rawData.evo[0].evoChain;
-      console.log(evoChain.length);
+
       setStats(
         rawData.pokemon[0].pokemon_v2_pokemonstats.map((item) => ({
           base_stat: item.base_stat,

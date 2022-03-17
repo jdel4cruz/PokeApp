@@ -35,7 +35,6 @@ const MoveHeader = ({ isLevel, title }) => {
 };
 
 const MoveList = ({ moveSet, isLevel, title }) => {
-  // console.log("moveset", moveSet);
   return (
     <Wrapper>
       <MoveHeader isLevel={isLevel} title={title}></MoveHeader>

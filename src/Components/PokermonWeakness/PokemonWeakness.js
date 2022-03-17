@@ -24,8 +24,6 @@ const PokemonWeakness = () => {
     <Wrapper>
       <TypeChart
         weakness={calcDamageFactor(typeData.weakness1, typeData.weakness2)}
-        type1={typeData.type1}
-        type2={typeData.type2}
       />
     </Wrapper>
   );

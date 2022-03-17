@@ -25,7 +25,7 @@ const PokemonInfo = ({ name, id, types, abilities, hasEvo }) => {
   if (types == null) {
     return <div>loading</div>;
   }
-  console.log(abilities);
+
   abilities.forEach((ability) => removeHyphen(ability, "title"));
 
   return (

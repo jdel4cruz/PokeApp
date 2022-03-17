@@ -25,8 +25,6 @@ const Header = () => {
     isOpen: false,
     isCurrent: null,
   });
-  console.log(isOpenCurrent.isOpen);
-  console.log(isOpenCurrent.isCurrent);
 
   const handleOnClick = (id) => {
     setIsOpenCurrent({ isOpen: false, isCurrent: id });

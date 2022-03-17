@@ -4,7 +4,7 @@ import { Wrapper, StyledLink } from "./PokemonNav.styles";
 
 const PokemonNav = ({ currentRoute, hasEvo }) => {
   const { pokemonId: id } = useParams();
-  console.log(hasEvo);
+
   return (
     <Wrapper>
       <StyledLink

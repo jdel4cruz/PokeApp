@@ -20,8 +20,6 @@ export const fetchData = async (queryString, vars = {}) => {
 
     const data = toJson.data;
 
-    console.log(data);
-
     return data;
   } catch (error) {
     console.error(`Failed to fetch data: ${error}`);

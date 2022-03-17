@@ -12,7 +12,6 @@ import {
 
 //Functions to create the cards shown in their respective grids
 export const pokemonCardGenerator = (data) => {
-  console.log("creating cards");
   const cards = data.map((item) => (
     <PokemonCard
       img={item.sprite}
@@ -26,7 +25,7 @@ export const pokemonCardGenerator = (data) => {
       }}
     />
   ));
-  console.log(cards);
+
   return cards;
 };
 

@@ -11,7 +11,6 @@ export const usePokemonWeaknessFetch = (pokemonId) => {
   const fetchPokemonWeakness = async (pokemonId) => {
     try {
       const response = await API.fetchTypeWeakness(pokemonId);
-      console.log(response);
 
       setTypeData({ ...response });
     } catch (error) {
