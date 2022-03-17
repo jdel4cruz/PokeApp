@@ -9,27 +9,16 @@ import {
   CloseButton,
 } from "./Filter.styles";
 
-// A bunch of arrays filled with objects that contain the label and value properties for the filter options.
-const filterOptions = [
-  { value: "", label: "Choose Category" },
-  { value: "Consumable", label: "Consumable" },
-  { value: "Battle Item", label: "Battle Item" },
-  { value: "Held Item", label: "Held Item" },
-  { value: "Evolution", label: "Evolution" },
-  { value: "Key Item", label: "Key Item" },
-  { value: "Sellable", label: "Sellable" },
-  { value: "TM", label: "TM" },
-];
-
-const sortOptions = [
-  { value: "id", label: "Id" },
-  { value: "name", label: "Name" },
-];
-
-const orderOptions = [
-  { value: "asc", label: "Asc" },
-  { value: "desc", label: "Desc" },
-];
+//Constants
+import {
+  filterOptions,
+  sortOptions,
+  orderOptions,
+  selectStyles,
+  filterVal,
+  sortVal,
+  orderVal,
+} from "./constants";
 
 const Filter = ({
   filterSort,
@@ -39,10 +28,6 @@ const Filter = ({
   setPage,
 }) => {
   const { filter, sort: sortParams } = filterSort;
-
-  const selectStyles = {
-    container: (base) => ({ ...base, width: "7rem" }),
-  };
 
   // Function that is called when a filter or sort option is changed. Takes changes and passes them to setFilterSort to update the state
   const handleChange = (event, key) => {
@@ -70,20 +55,6 @@ const Filter = ({
     setOpenFilter(false);
   };
 
-  const filterVal = filter
-    ? filterOptions[filterOptions.map((option) => option.value).indexOf(filter)]
-    : filterOptions[0];
-
-  const sortVal =
-    sortOptions[
-      sortOptions.map((option) => option.value).indexOf(sortParams.criteria)
-    ];
-
-  const orderVal =
-    orderOptions[
-      orderOptions.map((option) => option.value).indexOf(sortParams.order)
-    ];
-
   return (
     <Wrapper className={openFilter ? "open" : ""}>
       <Selection>
@@ -92,7 +63,7 @@ const Filter = ({
           <Select
             options={filterOptions}
             styles={selectStyles}
-            value={filterVal}
+            value={filterVal(filter)}
             onChange={(e) => handleChange(e, "filter")}
           />
         </li>
@@ -102,13 +73,13 @@ const Filter = ({
             <Select
               options={sortOptions}
               styles={selectStyles}
-              value={sortVal}
+              value={sortVal(sortParams)}
               onChange={(e) => handleChange(e, "sortCriteria")}
             />
             <Select
               options={orderOptions}
               styles={selectStyles}
-              value={orderVal}
+              value={orderVal(sortParams)}
               onChange={(e) => handleChange(e, "order")}
             />
           </SelectContainer>
