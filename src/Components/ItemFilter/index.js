@@ -86,42 +86,34 @@ const Filter = ({
 
   return (
     <Wrapper className={openFilter ? "open" : ""}>
-      <div>
-        <Selection>
-          <li>
-            <h2>Filter Options:</h2>
-            <SelectContainer>
-              <Select
-                options={filterOptions}
-                styles={selectStyles}
-                value={filterVal}
-                onChange={(e) => handleChange(e, "filter")}
-              />
-            </SelectContainer>
-          </li>
-        </Selection>
-      </div>
-      <div>
-        <Selection>
-          <li>
-            <h2>Sort Options:</h2>
-            <SelectContainer>
-              <Select
-                options={sortOptions}
-                styles={selectStyles}
-                value={sortVal}
-                onChange={(e) => handleChange(e, "sortCriteria")}
-              />
-              <Select
-                options={orderOptions}
-                styles={selectStyles}
-                value={orderVal}
-                onChange={(e) => handleChange(e, "order")}
-              />
-            </SelectContainer>
-          </li>
-        </Selection>
-      </div>
+      <Selection>
+        <li>
+          <h2>Filter Options:</h2>
+          <Select
+            options={filterOptions}
+            styles={selectStyles}
+            value={filterVal}
+            onChange={(e) => handleChange(e, "filter")}
+          />
+        </li>
+        <li>
+          <h2>Sort Options:</h2>
+          <SelectContainer>
+            <Select
+              options={sortOptions}
+              styles={selectStyles}
+              value={sortVal}
+              onChange={(e) => handleChange(e, "sortCriteria")}
+            />
+            <Select
+              options={orderOptions}
+              styles={selectStyles}
+              value={orderVal}
+              onChange={(e) => handleChange(e, "order")}
+            />
+          </SelectContainer>
+        </li>
+      </Selection>
       <CloseButton type="button" onClick={() => closeFilter()}>
         Close
       </CloseButton>
