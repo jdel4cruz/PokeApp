@@ -130,8 +130,8 @@ export const usePokemonGridFetch = () => {
         }
 
         if (sortId) {
-          const { id: aId } = a;
-          const { id: bId } = b;
+          const { pokemonId: aId } = a.props;
+          const { pokemonId: bId } = b.props;
           if (idAsc) {
             return aId - bId;
           }
@@ -139,8 +139,8 @@ export const usePokemonGridFetch = () => {
         }
 
         if (sortName) {
-          const { name: aName } = a;
-          const { name: bName } = b;
+          const { name: aName } = a.props;
+          const { name: bName } = b.props;
           if (nameAsc) {
             if (aName.toUpperCase() < bName.toUpperCase()) {
               return -1;

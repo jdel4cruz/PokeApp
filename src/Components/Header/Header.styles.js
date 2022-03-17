@@ -137,7 +137,6 @@ export const StyledLink = styled(Link).attrs((props) => ({
   id: props.id,
   current: props.current,
 }))`
-  ${(props) => console.log(props)};
   position: relative;
 
   display: inline-block;

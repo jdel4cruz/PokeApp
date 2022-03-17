@@ -9,67 +9,22 @@ import {
   CloseButton,
 } from "./Filter.styles";
 
-// A bunch of arrays filled with objects that contain the label and value properties for the filter options.
-const filterOptions = [
-  { value: "", label: "Choose Type" },
-  { value: "normal", label: "Normal" },
-  { value: "fire", label: "Fire" },
-  { value: "water", label: "Water" },
-  { value: "grass", label: "Grass" },
-  { value: "electric", label: "Electric" },
-  { value: "ice", label: "Ice" },
-  { value: "fighting", label: "Fighting" },
-  { value: "ground", label: "Ground" },
-  { value: "flying", label: "Flying" },
-  { value: "psychic", label: "Psychic" },
-  { value: "bug", label: "Bug" },
-  { value: "rock", label: "Rock" },
-  { value: "ghost", label: "Ghost" },
-  { value: "dark", label: "Dark" },
-  { value: "dragon", label: "Dragon" },
-  { value: "steel", label: "Steel" },
-  { value: "fairy", label: "Fairy" },
-];
-
-const categoryOptions = [
-  {
-    value: "",
-    label: "Choose Category",
-  },
-  {
-    value: "is_legendary",
-    label: "Legendary",
-  },
-  {
-    value: "is_mythical",
-    label: "Mythical",
-  },
-  {
-    value: "is_baby",
-    label: "Baby",
-  },
-];
-
-const orderOptions = [
-  { value: true, label: "Asc" },
-  { value: false, label: "Desc" },
-];
-
-const idNameOptions = [
-  { value: { isOn: false, order: false }, label: "Asc/Desc" },
-  { value: { isOn: true, order: true }, label: "Asc" },
-  { value: { isOn: true, order: false }, label: "Desc" },
-];
-
-const statOptions = [
-  { value: null, label: "Choose stat" },
-  { value: 0, label: "Hp" },
-  { value: 1, label: "Atk" },
-  { value: 2, label: "Def" },
-  { value: 3, label: "Sp. Atk" },
-  { value: 4, label: "Sp.Def" },
-  { value: 5, label: "Speed" },
-];
+//Constants
+import {
+  filterOptions,
+  categoryOptions,
+  orderOptions,
+  idNameOptions,
+  statOptions,
+  selectStyles,
+  typeVal_1,
+  typeVal_2,
+  categoryVal,
+  statVal,
+  statOrderVal,
+  idVal,
+  nameVal,
+} from "./constants";
 
 const Filter = ({
   filterSort,
@@ -84,10 +39,6 @@ const Filter = ({
 
   const sorts = filterSort.sort;
   const { sortStat, statAsc, sortId, sortName, idAsc, nameAsc } = sorts;
-
-  const selectStyles = {
-    container: (base) => ({ ...base, width: "7rem" }),
-  };
 
   // Function that is called when a filter or sort option is changed. Takes changes and passes them to setFilterSort to update the state
   const handleChange = (event, key) => {
@@ -143,30 +94,13 @@ const Filter = ({
               <Select
                 options={filterOptions}
                 styles={selectStyles}
-                value={
-                  selectedTypes.length
-                    ? filterOptions[
-                        filterOptions
-                          .map((option) => option.value)
-                          .indexOf(selectedTypes[0])
-                      ]
-                    : filterOptions[0]
-                }
+                value={typeVal_1(selectedTypes)}
                 onChange={(e) => handleChange(e, "type1")}
               />
-
               <Select
                 options={filterOptions}
                 styles={selectStyles}
-                value={
-                  selectedTypes.length > 1
-                    ? filterOptions[
-                        filterOptions
-                          .map((option) => option.value)
-                          .indexOf(selectedTypes[1])
-                      ]
-                    : ""
-                }
+                value={typeVal_2(selectedTypes)}
                 onChange={(e) => handleChange(e, "type2")}
               />
             </SelectContainer>
@@ -176,15 +110,7 @@ const Filter = ({
             <Select
               options={categoryOptions}
               styles={selectStyles}
-              value={
-                category == "is_legendary"
-                  ? categoryOptions[1]
-                  : category == "is_mythical"
-                  ? categoryOptions[2]
-                  : category == "is_baby"
-                  ? categoryOptions[3]
-                  : categoryOptions[0]
-              }
+              value={categoryVal(category)}
               onChange={(e) => handleChange(e, "category")}
             />
           </li>
@@ -199,27 +125,13 @@ const Filter = ({
               <Select
                 options={statOptions}
                 styles={selectStyles}
-                value={
-                  sortStat != null
-                    ? statOptions[
-                        statOptions.map((stat) => stat.value).indexOf(sortStat)
-                      ]
-                    : statOptions[0]
-                }
+                value={statVal(sortStat)}
                 onChange={(e) => handleChange(e, "stat")}
               />
               <Select
                 options={orderOptions}
                 styles={selectStyles}
-                value={
-                  sortStat != null
-                    ? orderOptions[
-                        orderOptions
-                          .map((option) => option.value)
-                          .indexOf(statAsc)
-                      ]
-                    : orderOptions[0]
-                }
+                value={statOrderVal(sortStat, statAsc)}
                 onChange={(e) => handleChange(e, "order")}
               />
             </SelectContainer>
@@ -229,29 +141,16 @@ const Filter = ({
             <Select
               options={idNameOptions}
               styles={selectStyles}
-              value={
-                sortId && idAsc
-                  ? idNameOptions[1]
-                  : sortId && !idAsc
-                  ? idNameOptions[2]
-                  : idNameOptions[0]
-              }
+              value={idVal(sortId, idAsc)}
               onChange={(e) => handleChange(e, "id")}
             />
           </li>
-
           <li>
             <h2>Name:</h2>
             <Select
               options={idNameOptions}
               styles={selectStyles}
-              value={
-                sortName && nameAsc
-                  ? idNameOptions[1]
-                  : sortName && !nameAsc
-                  ? idNameOptions[2]
-                  : idNameOptions[0]
-              }
+              value={nameVal(sortName, nameAsc)}
               onChange={(e) => handleChange(e, "name")}
             />
           </li>
