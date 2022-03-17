@@ -1,23 +1,31 @@
 export const fetchData = async (queryString, vars = {}) => {
-  const endpoint = "https://beta.pokeapi.co/graphql/v1beta";
+  try {
+    const endpoint = "https://beta.pokeapi.co/graphql/v1beta";
 
-  const response = await fetch(endpoint, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      query: queryString,
-      variables: vars,
-    }),
-  });
+    const response = await fetch(endpoint, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        query: queryString,
+        variables: vars,
+      }),
+    });
+    if (!response.ok) {
+      throw new Error(`HTTP Error: ${response.status}`);
+    }
 
-  const toJson = await response.json();
-  const data = toJson.data;
+    const toJson = await response.json();
 
-  console.log(data);
+    const data = toJson.data;
 
-  return data;
+    console.log(data);
+
+    return data;
+  } catch (error) {
+    console.error(`Failed to fetch data: ${error}`);
+  }
 };
 
 export const pokemonGridQuery = `query PokemonGrid  {
@@ -72,7 +80,16 @@ export const pokemonDescriptionQuery = `query PokemonDescription($id: Int) {
       id
       name
     }
-  }`;
+    evo : pokemon_v2_evolutionchain(where: {pokemon_v2_pokemonspecies: {id: {_eq:  $id}}}) {
+      evoChain: pokemon_v2_pokemonspecies {
+        id
+        name
+      }
+    }
+  
+  }
+  
+  `;
 
 export const typeQuery = `query PokemonType($id: Int) {
     pokemon_v2_pokemontype(where: {pokemon_id: {_eq: $id}}) {

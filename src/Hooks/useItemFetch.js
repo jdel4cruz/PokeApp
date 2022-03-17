@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 //API
 import API from "../API/API";
@@ -25,6 +26,7 @@ export const useItemFetch = () => {
   const [filterSort, setFilterSort] = useState(initialFilterSort);
   const [searchTerm, setSearchTerm] = useState("");
   const [debouncedTerm, setDebouncedTerm] = useState(searchTerm);
+  const navigate = useNavigate();
 
   const fetchItems = async () => {
     try {
@@ -33,6 +35,7 @@ export const useItemFetch = () => {
       setRawData(items);
     } catch (error) {
       console.log("there was an error", error);
+      navigate("/error");
     }
   };
 

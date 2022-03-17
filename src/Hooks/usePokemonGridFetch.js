@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 //API
@@ -42,6 +43,8 @@ export const usePokemonGridFetch = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [debouncedTerm, setDebouncedTerm] = useState(searchTerm);
 
+  const navigate = useNavigate();
+
   // Fetches data from API and sets it to rawData
   const fetchGrid = async () => {
     try {
@@ -50,7 +53,8 @@ export const usePokemonGridFetch = () => {
       pokemonSpriteGenerator(pokemon);
       setRawData(pokemon);
     } catch (error) {
-      console.log(error);
+      console.log("There was an error", error);
+      navigate("/error");
     }
   };
 

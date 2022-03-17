@@ -11,6 +11,7 @@ import PokemonEvolutions from "./Routes/PokemonEvolutions/PokemonEvolutions.js";
 import ItemGrid from "./Routes/ItemGrid/ItemGrid.js";
 import AllMoves from "./Routes/AllMoves/AllMoves.js";
 import AllAbilities from "./Routes/AllAbilities";
+import { ErrorPage } from "./Routes/ErrorPage/ErrorPage.js";
 
 // Components
 import Header from "./Components/Header";
@@ -45,6 +46,7 @@ function App() {
           <Route path="items" element={<ItemGrid />} />
           <Route path="moves" element={<AllMoves />} />
           <Route path="abilities" element={<AllAbilities />} />
+          <Route path="*" element={<ErrorPage />} />
         </Routes>
       </Router>
       <GlobalStyle />

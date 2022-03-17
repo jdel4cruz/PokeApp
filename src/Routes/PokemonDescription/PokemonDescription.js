@@ -25,7 +25,7 @@ import Background from "../../Images/Pokedex_Background.png";
 
 const Pokemon = () => {
   const { pokemonId } = useParams();
-  const { rawData, stats, abilities, sprite, id, name, pokemonTypes } =
+  const { rawData, stats, abilities, sprite, id, name, pokemonTypes, hasEvo } =
     usePokemonDescriptionFetch(pokemonId);
 
   if (rawData == null) {
@@ -41,6 +41,7 @@ const Pokemon = () => {
             id={id}
             types={pokemonTypes}
             abilities={abilities}
+            hasEvo={hasEvo}
           ></PokemonInfo>
         </PokemonText>
         <ImgContainer>

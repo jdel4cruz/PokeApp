@@ -2,8 +2,9 @@
 import { useParams } from "react-router-dom";
 import { Wrapper, StyledLink } from "./PokemonNav.styles";
 
-const PokemonNav = ({ currentRoute }) => {
+const PokemonNav = ({ currentRoute, hasEvo }) => {
   const { pokemonId: id } = useParams();
+  console.log(hasEvo);
   return (
     <Wrapper>
       <StyledLink
@@ -21,6 +22,7 @@ const PokemonNav = ({ currentRoute }) => {
       <StyledLink
         to={`/pokemon/${id}/evo`}
         isCurrent={currentRoute === "evo" ? true : false}
+        active={hasEvo}
       >
         Evolutions
       </StyledLink>

@@ -21,7 +21,7 @@ const PokemonAccordion = styled(Accordion)`
   width: 50%;
 `;
 
-const PokemonInfo = ({ name, id, types, abilities }) => {
+const PokemonInfo = ({ name, id, types, abilities, hasEvo }) => {
   if (types == null) {
     return <div>loading</div>;
   }
@@ -32,7 +32,7 @@ const PokemonInfo = ({ name, id, types, abilities }) => {
     <Wrapper>
       <PokemonNameNav>
         <PokemonName>{name}</PokemonName>{" "}
-        <PokemonNav currentRoute={"pokemon"} />
+        <PokemonNav currentRoute={"pokemon"} hasEvo={hasEvo} />
       </PokemonNameNav>
       <PokemonType>
         type: {types.length > 1 ? `${types[0]}/${types[1]}` : `${types[0]}`}
