@@ -31,13 +31,11 @@ const AbilityHeader = ({ isLevel, title }) => {
 };
 
 const AbilityList = ({ abilities, title }) => {
-  console.log("abilities", abilities);
   return (
     <Wrapper>
       <AbilityHeader title={title}></AbilityHeader>
       <AbilityListContainer>
         {abilities.map((ability) => {
-          console.log(ability);
           return <Ability ability={ability} key={uuidv4()} />;
         })}
       </AbilityListContainer>

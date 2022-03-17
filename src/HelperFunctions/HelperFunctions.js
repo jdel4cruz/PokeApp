@@ -30,7 +30,6 @@ export const pokemonCardGenerator = (data) => {
 };
 
 export const itemCardGenerator = (data, setPopup) => {
-  console.log("Creating item cards");
   const cards = data.map((item) => {
     let itemEffect;
 
@@ -220,7 +219,6 @@ export const updateAllMoveText = (data) =>
   });
 
 export const splitPokemonAbilties = (data) => {
-  console.log("in splitPokemonAbilities", data);
   const splitData = new Array();
 
   let currentIndex = data[0].name.charAt(0);
@@ -238,6 +236,5 @@ export const splitPokemonAbilties = (data) => {
     }
   }
 
-  console.log(splitData);
   return splitData;
 };

@@ -12,7 +12,6 @@ export const usePokemonMoveFetch = (pokemonId) => {
   const fetchMoves = async (pokemonId) => {
     try {
       const response = await API.fetchMoves(pokemonId);
-      console.log(response);
 
       let hasMoves = false;
       Object.keys(response).forEach((key) => {

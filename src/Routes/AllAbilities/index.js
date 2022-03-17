@@ -6,11 +6,10 @@ import AbilityList from "../../Components/AbilityList";
 import Pagination from "../../Components/Pagination";
 
 //Styles
-import { Wrapper, ListOptions, Button } from "./AllAbilities.styles";
+import { Wrapper, ListOptions } from "./AllAbilities.styles";
 
 //Hooks
 import { useAbilityFetch } from "../../Hooks/useAbilityFetch";
-import Ability from "../../Components/Ability";
 
 const AllAbilities = () => {
   const { abilities, currentIndex, setCurrentIndex } = useAbilityFetch();
@@ -18,8 +17,6 @@ const AllAbilities = () => {
   if (abilities == null) {
     return null;
   }
-  console.log(currentIndex);
-  console.log(abilities[currentIndex]);
 
   return (
     <Wrapper>

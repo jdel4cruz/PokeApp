@@ -21,10 +21,6 @@ const ItemPopup = ({ data, setPopup }) => {
     setFadeIn(!fadeIn);
   }, [state]);
 
-  useEffect(() => {
-    console.log(fadeIn);
-  }, [fadeIn]);
-
   return (
     <Wrapper isOpen={fadeIn}>
       <CloseButton onClick={() => setPopup(null)}>Close</CloseButton>

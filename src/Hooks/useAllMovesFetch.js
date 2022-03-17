@@ -32,8 +32,7 @@ export const useAllMovesFetch = () => {
         sort,
         sortVal
       );
-      console.log(moves);
-      console.log(applySearch(moves));
+
       setRawData(applySearch(moves));
     } catch (error) {
       console.log("there was an error", error);
@@ -42,11 +41,8 @@ export const useAllMovesFetch = () => {
   };
 
   const applySearch = (data) => {
-    console.log(data);
-
     if (searchTerm != "") {
       data.moves = data.moves.filter((move) => {
-        console.log(searchTerm);
         return move.name.includes(searchTerm.toLowerCase());
       });
     }

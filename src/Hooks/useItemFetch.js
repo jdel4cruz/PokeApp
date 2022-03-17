@@ -44,11 +44,7 @@ export const useItemFetch = () => {
 
     const { filter, sort: sortParams } = filterSort;
 
-    console.log("Filter", filter);
-    console.log("SortParams", sortParams);
-
     if (filter) {
-      console.log(`Filtering by ${filter}`);
       newData = data.filter((item) => filter == item.props.category);
     }
 
@@ -103,7 +99,6 @@ export const useItemFetch = () => {
 
   useEffect(() => {
     if (rawData != null) {
-      console.log(rawData);
       setRawCards(itemCardGenerator(rawData, setPopup));
     }
   }, [rawData]);
@@ -115,7 +110,6 @@ export const useItemFetch = () => {
 
   useEffect(() => {
     if (rawCards != null) {
-      console.log(rawCards);
       const data = applySearch(applyFilterSort(rawCards));
       const end = page * limit;
       const start = page * limit - limit;
