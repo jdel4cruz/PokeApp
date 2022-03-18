@@ -1,2 +1,0 @@
-- When conditionally rendering components, react only skips a component when it is evaluated to false, null, or undefined. If something like array.length && <component> is performed and length = 0, react renders the falsy expression 0, whereas if array.length > 0 && <component> is used, react attempts to render the falsy expression false which is then skipped.
-- 
