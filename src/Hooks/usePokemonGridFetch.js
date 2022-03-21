@@ -33,7 +33,7 @@ const initialSort = {
 export const usePokemonGridFetch = () => {
   const [rawData, setRawData] = useState(null);
   const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(54);
+  const [limit, setLimit] = useState(60);
   const [rawCards, setRawCards] = useState(null);
   const [cards, setCards] = useState([]);
   const [filterSort, setFilterSort] = useState({

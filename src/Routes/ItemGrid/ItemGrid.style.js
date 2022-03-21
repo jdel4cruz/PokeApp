@@ -6,16 +6,15 @@ export const Wrapper = styled.div`
   flex-flow: column nowrap;
   align-items: center;
   width: 100%;
-  height: 100vh;
+  height: fit-content;
   gap: 2rem 0;
-
-  overflow: hidden;
 `;
 
 export const Overlay = styled.div`
   position: absolute;
+  top: -10%;
   width: 100%;
-  min-height: 2000px;
+  min-height: 110%;
 
   transition: all 0.3s ease-in-out;
   background-color: ${(props) =>

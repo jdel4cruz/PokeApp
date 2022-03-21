@@ -27,6 +27,11 @@ const Wrapper = styled.div`
   flex-flow: column nowrap;
   height: 100vh;
   overflow-x: hidden;
+
+  ::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+  }
 `;
 
 function App() {

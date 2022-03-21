@@ -19,7 +19,7 @@ const initialFilterSort = {
 export const useItemFetch = () => {
   const [rawData, setRawData] = useState(null);
   const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(54);
+  const [limit, setLimit] = useState(60);
   const [rawCards, setRawCards] = useState(null);
   const [cards, setCards] = useState(null);
   const [popup, setPopup] = useState(null);
