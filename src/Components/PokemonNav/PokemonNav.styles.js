@@ -18,7 +18,7 @@ export const Wrapper = styled.div`
 
 export const StyledLink = styled(Link)`
   color: var(--pokedexBlue);
-  display: ${(props) => props.active};
+  display: ${(props) => props.isActive};
   justify-content: space-between;
   align-items: center;
 

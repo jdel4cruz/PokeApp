@@ -147,29 +147,29 @@ export const StyledLink = styled(Link).attrs((props) => ({
   font-weight: bold;
   margin: 1rem 1rem;
 
-  &::before {
-    position: absolute;
-
-    content: "${(props) => props.children}";
-
-    bottom: 0;
-
-    color: white;
-    overflow: hidden;
-    transition: width 0.25s ease;
-
-    height: 100%;
-    width: 0;
-    white-space: nowrap;
-  }
-
-  &:hover::before {
-    width: 100%;
-  }
-
   @media screen and (min-width: 700px) {
     &:visited {
       color: inherit;
+    }
+
+    &::before {
+      position: absolute;
+
+      content: "${(props) => props.children}";
+
+      bottom: 0;
+
+      color: white;
+      overflow: hidden;
+      transition: width 0.25s ease;
+
+      height: 100%;
+      width: 0;
+      white-space: nowrap;
+    }
+
+    &:hover::before {
+      width: 100%;
     }
   }
 
