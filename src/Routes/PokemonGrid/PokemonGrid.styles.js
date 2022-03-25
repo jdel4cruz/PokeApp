@@ -42,10 +42,10 @@ export const Button = styled.button`
 `;
 
 export const Overlay = styled.div`
-  position: absolute;
-  top: -10rem;
+  position: fixed;
+  top: -10%;
   width: 100%;
-  min-height: 20000px;
+  height: 110%;
 
   transition: all 0.3s ease-in-out;
   background-color: ${(props) =>
