@@ -6,8 +6,8 @@ export const Wrapper = styled.div`
   flex-flow: column nowrap;
   align-items: center;
 
-  overflow: hidden;
   height: 100%;
+  padding-bottom: 3rem;
 `;
 
 export const Button = styled.button`
@@ -33,8 +33,9 @@ export const Button = styled.button`
 
 export const Overlay = styled.div`
   position: absolute;
+  top: -20rem;
   width: 100%;
-  min-height: 2000px;
+  min-height: 20000px;
 
   transition: all 0.3s ease-in-out;
   background-color: ${(props) =>

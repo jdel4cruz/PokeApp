@@ -12,9 +12,9 @@ export const Wrapper = styled.div`
 
 export const Overlay = styled.div`
   position: absolute;
-  top: -10%;
+  top: -10rem;
   width: 100%;
-  min-height: 110%;
+  min-height: 20000px;
 
   transition: all 0.3s ease-in-out;
   background-color: ${(props) =>
