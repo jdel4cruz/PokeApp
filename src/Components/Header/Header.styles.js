@@ -138,7 +138,6 @@ export const StyledLink = styled(Link).attrs((props) => ({
   current: props.current,
 }))`
   position: relative;
-
   display: inline-block;
   text-decoration: none;
   overflow: hidden;
@@ -146,6 +145,7 @@ export const StyledLink = styled(Link).attrs((props) => ({
   font-size: 48px;
   font-weight: bold;
   margin: 1rem 1rem;
+  color: inherit;
 
   @media screen and (min-width: 700px) {
     &:visited {

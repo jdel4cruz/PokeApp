@@ -1,15 +1,12 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 //Components
-import Header from "../../Components/Header";
 import Grid from "../../Components/Grid";
-import Pagination from "../../Components/Pagination";
 import PokemonFilter from "../../Components/PokemonFilter";
 
 //Styles
 import {
   Wrapper,
-  GridOptions,
   Button,
   Overlay,
   SearchContainer,
@@ -38,7 +35,6 @@ const Pokemon = () => {
     <Wrapper>
       <SearchContainer>
         <SearchBarContainer>
-          {" "}
           <SearchLabel htmlFor="searchBar">Search: </SearchLabel>
           <SearchBar
             type="text"
@@ -48,7 +44,6 @@ const Pokemon = () => {
           />
         </SearchBarContainer>
         <SearchBarContainer>
-          {" "}
           <Button
             onClick={(e) => {
               setOpenFilter(!openFilter);

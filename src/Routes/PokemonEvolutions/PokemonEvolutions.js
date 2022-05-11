@@ -14,7 +14,7 @@ const PokemonEvolutions = () => {
 
   const { state } = usePokemonEvolutionsFetch(pokemonId);
 
-  if (state == null) {
+  if (state === null) {
     return <div>Loading</div>;
   }
 

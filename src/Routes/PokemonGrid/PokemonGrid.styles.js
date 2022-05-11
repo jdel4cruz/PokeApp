@@ -84,7 +84,7 @@ export const SearchBar = styled.input`
   }
 `;
 
-export const SearchLabel = styled.h2``;
+export const SearchLabel = styled.label``;
 
 export const SearchBarContainer = styled.div`
   display: flex;
